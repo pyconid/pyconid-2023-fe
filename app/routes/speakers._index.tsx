@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { prisma } from "~/db.server";
 
 export async function loader() {
@@ -18,7 +18,9 @@ export default function Route() {
         {speakers.map((speaker) => {
           return (
             <li key={speaker.id}>
-              <h4>{speaker.name}</h4>
+              <Link to={`/speakers/${speaker.slug}`}>
+                <h4>{speaker.name}</h4>
+              </Link>
               <p>{speaker.bio}</p>
             </li>
           );
