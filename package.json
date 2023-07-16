@@ -8,7 +8,12 @@
     "db:gen": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "lint": "eslint \"app/**/*.+(ts|tsx)\"",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "prettier app --check",
+    "prettier:fix": "prettier app --write",
+    "format-code": "npm run prettier:fix & npm run lint:fix"
   },
   "dependencies": {
     "@prisma/client": "5.0.0",
@@ -22,6 +27,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "4.1.0",
     "@remix-run/dev": "^1.18.1",
     "@remix-run/eslint-config": "^1.18.1",
     "@remix-run/serve": "^1.18.1",
@@ -29,6 +35,10 @@
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
     "eslint": "^8.38.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-prettier": "5.0.0",
+    "prettier": "3.0.0",
+    "prettier-plugin-tailwindcss": "0.4.1",
     "prisma": "5.0.0",
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.2.0",
