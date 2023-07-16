@@ -18,7 +18,7 @@ export default function Index() {
       <div>
         <section className="py-10">
           <div className="mx-auto max-w-screen-xl items-center justify-between gap-x-12 overflow-hidden text-gray-600 md:flex md:px-8">
-            <div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl">
+            <div className="flex-none space-y-5 sm:max-w-lg md:px-0 lg:max-w-xl">
               <h2 className="text-4xl font-extrabold text-gray-800 md:text-5xl">
                 PyCon ID 2023
               </h2>
