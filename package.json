@@ -2,7 +2,7 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
+    "build": "pnpm prisma generate && pnpm remix build",
     "dev": "remix dev",
     "typecheck": "tsc",
     "db:gen": "prisma generate",
