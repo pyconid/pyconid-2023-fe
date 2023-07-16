@@ -12,6 +12,7 @@ module.exports = {
   serverModuleFormat: "cjs",
 
   tailwind: true,
+  postcss: true,
 
   future: {
     v2_dev: true,
