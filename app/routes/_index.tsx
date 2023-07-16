@@ -16,11 +16,12 @@ export default function Index() {
     <>
       <nav className="relative mx-auto max-w-screen-xl items-center px-4 pt-5 sm:px-8 md:flex md:space-x-6">
         <div className="flex justify-between">
-          <Link to="/">
+          <Link to="/" className="block">
             <img
               src="https://firebasestorage.googleapis.com/v0/b/pyconid-2023-asset.appspot.com/o/Logo_Pycon_2023.png?alt=media&token=a5b61f8a-515a-4eac-af2f-b1998b9dafae"
               width={120}
               height={50}
+              className="object"
               alt="PyCon ID 2023"
             />
           </Link>
@@ -46,13 +47,13 @@ export default function Index() {
         >
           <div className="items-center space-y-5 md:ml-12 md:flex md:space-x-6 md:space-y-0">
             <li className="text-gray-500 hover:text-indigo-600" key="a">
-              <a href="/code-of-conduct">Code of Conduct</a>
+              <Link to="/coc">Code of Conduct</Link>
             </li>
             <li className="text-gray-500 hover:text-indigo-600" key="b">
-              <a href="/cfp">Call for Paper</a>
+              <Link to="/cfp">Call for Proposals</Link>
             </li>
             <li className="text-gray-500 hover:text-indigo-600" key="c">
-              <a href="/sponsors">Sponsors</a>
+              <Link to="/sponsor">Sponsor</Link>
             </li>
           </div>
         </ul>
