@@ -24,7 +24,7 @@ export default {
   ],
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
   plugins: [
-    require("@ianvs/prettier-plugin-sort-imports"),
-    require("prettier-plugin-tailwindcss"),
+    import("@ianvs/prettier-plugin-sort-imports"),
+    import("prettier-plugin-tailwindcss"),
   ],
 }

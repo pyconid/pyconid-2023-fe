@@ -1,15 +1,15 @@
-import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
-import { prisma } from "~/db.server";
+import { json } from "@remix-run/node"
+import { Link, useLoaderData } from "@remix-run/react"
+import { prisma } from "~/db.server"
 
 export async function loader() {
-  const speakers = await prisma.speaker.findMany();
+  const speakers = await prisma.speaker.findMany()
 
-  return json({ speakers });
+  return json({ speakers })
 }
 
 export default function Route() {
-  const { speakers } = useLoaderData<typeof loader>();
+  const { speakers } = useLoaderData<typeof loader>()
 
   return (
     <div>
@@ -23,9 +23,9 @@ export default function Route() {
               </Link>
               <p>{speaker.bio}</p>
             </li>
-          );
+          )
         })}
       </ul>
     </div>
-  );
+  )
 }
