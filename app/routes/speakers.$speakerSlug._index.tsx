@@ -1,23 +1,23 @@
-import { json, type LoaderArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { prisma } from "~/db.server";
+import { json, type LoaderArgs } from "@remix-run/node"
+import { useLoaderData } from "@remix-run/react"
+import { prisma } from "~/db.server"
 
 export async function loader({ params }: LoaderArgs) {
   const speaker = await prisma.speaker.findFirst({
     where: { slug: params.speakerSlug },
-  });
+  })
   if (!speaker) {
-    return json({ speaker: null });
+    return json({ speaker: null })
   }
 
-  return json({ speaker });
+  return json({ speaker })
 }
 
 export default function Route() {
-  const { speaker } = useLoaderData<typeof loader>();
+  const { speaker } = useLoaderData<typeof loader>()
 
   if (!speaker) {
-    return <p>Sorry, speaker not found</p>;
+    return <p>Sorry, speaker not found</p>
   }
 
   return (
@@ -25,5 +25,5 @@ export default function Route() {
       <h1>{speaker.name}</h1>
       <p>{speaker.bio}</p>
     </div>
-  );
+  )
 }
