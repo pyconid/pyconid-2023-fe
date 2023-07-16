@@ -1,6 +1,6 @@
 import type { V2_MetaFunction } from "@remix-run/node"
 
-import { Button, Layout } from "~/components"
+import { Layout } from "~/components"
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -16,7 +16,7 @@ export default function Index() {
   return (
     <Layout>
       <div>
-        <section className="py-28">
+        <section className="py-10">
           <div className="mx-auto max-w-screen-xl items-center justify-between gap-x-12 overflow-hidden text-gray-600 md:flex md:px-8">
             <div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl">
               <h2 className="text-4xl font-extrabold text-gray-800 md:text-5xl">
