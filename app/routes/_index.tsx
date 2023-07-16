@@ -18,7 +18,7 @@ export default function Index() {
         <div className="flex justify-between">
           <Link to="/" className="block">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/pyconid-2023-asset.appspot.com/o/Logo_Pycon_2023.png?alt=media&token=a5b61f8a-515a-4eac-af2f-b1998b9dafae"
+              src="/logo.png"
               width={120}
               height={50}
               className="object"
