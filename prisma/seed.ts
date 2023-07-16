@@ -1,10 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client"
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 async function main() {
-  await prisma.user.deleteMany();
-  await prisma.speaker.deleteMany();
+  await prisma.user.deleteMany()
+  await prisma.speaker.deleteMany()
 
   await prisma.user.create({
     data: {
@@ -12,25 +12,37 @@ async function main() {
       name: "Admin",
       username: "admin",
     },
-  });
+  })
 
   await prisma.speaker.createMany({
     data: [
-      { name: "Dima", slug: "dima", bio: "Insert bio here." },
-      { name: "Guido", slug: "guido", bio: "Insert bio here." },
-      { name: "Rektor BINUS", slug: "rektor", bio: "Insert bio here." },
+      {
+        name: "Dima Dinama",
+        slug: "dimadinama",
+        bio: "Insert Dima bio here.",
+      },
+      {
+        name: "Guido van Rossum",
+        slug: "guidovanrossum",
+        bio: "Insert Guido bio here.",
+      },
+      {
+        name: "Ainun Najib",
+        slug: "ainunnajib",
+        bio: "Insert Ainun bio here.",
+      },
     ],
-  });
+  })
 }
 
 main()
   .then(async () => {
-    console.log("Seeding complete");
-    await prisma.$disconnect();
+    console.log("Seeding complete")
+    await prisma.$disconnect()
   })
   .catch((e) => {
-    console.error(e);
-    console.log("Seeding failed");
-    prisma.$disconnect();
-    process.exit(1);
-  });
+    console.error(e)
+    console.log("Seeding failed")
+    prisma.$disconnect()
+    process.exit(1)
+  })

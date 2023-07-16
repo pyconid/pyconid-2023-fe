@@ -1,19 +1,21 @@
 {
+  "name": "pycon.id",
   "private": true,
   "sideEffects": false,
+  "type": "module",
   "scripts": {
-    "build": "pnpm prisma generate && pnpm remix build",
+    "build": "prisma generate && remix build",
     "dev": "remix dev",
     "typecheck": "tsc",
+    "lint": "eslint \"app/**/*.+(ts|tsx)\"",
+    "lint:fix": "pnpm lint -- --fix",
+    "format": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:fix": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "db:gen": "prisma generate",
     "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
-    "db:studio": "prisma studio",
-    "lint": "eslint \"app/**/*.+(ts|tsx)\"",
-    "lint:fix": "npm run lint -- --fix",
-    "prettier": "prettier app --check",
-    "prettier:fix": "prettier app --write",
-    "format-code": "npm run prettier:fix & npm run lint:fix"
+    "db:studio": "prisma studio --browser none"
   },
   "dependencies": {
     "@prisma/client": "5.0.0",
@@ -21,8 +23,8 @@
     "@remix-run/node": "^1.18.1",
     "@remix-run/react": "^1.18.1",
     "@remix-run/vercel": "^1.18.1",
-    "@vercel/node": "^2.10.3",
-    "isbot": "^3.6.8",
+    "@vercel/node": "^2.15.5",
+    "isbot": "^3.6.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -32,9 +34,9 @@
     "@remix-run/eslint-config": "^1.18.1",
     "@remix-run/serve": "^1.18.1",
     "@types/node": "20.4.2",
-    "@types/react": "^18.0.35",
-    "@types/react-dom": "^18.0.11",
-    "eslint": "^8.38.0",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "eslint": "^8.45.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-prettier": "5.0.0",
     "prettier": "3.0.0",
@@ -42,7 +44,7 @@
     "prisma": "5.0.0",
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.2.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.1.6"
   },
   "engines": {
     "node": ">=14.0.0"
