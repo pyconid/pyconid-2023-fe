@@ -1,13 +1,15 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-generator client {
-  provider = "prisma-client-js"
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
-datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex", "metrics", "views"]
 }
 
 model User {
@@ -16,6 +18,28 @@ model User {
   email    String @unique
   name     String
   username String @unique
+
+  role   UserRole? @relation(fields: [roleId], references: [id])
+  roleId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([roleId])
+}
+
+model UserRole {
+  id String @id @default(cuid())
+
+  sequence    Int    @unique // 1 | 2 | 3 | ...
+  symbol      String @unique // "ADMIN" | "MANAGER" | "EDITOR"
+  name        String @unique // "Administrator" | "Manager" | "Editor"
+  description String @db.Text // "Manage everything"
+
+  users User[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Speaker {
@@ -24,4 +48,7 @@ model Speaker {
   name String
   slug String  @unique
   bio  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client"
 
+import { dataSpeakers } from "~/data"
+
 const prisma = new PrismaClient()
 
 async function main() {
@@ -15,23 +17,7 @@ async function main() {
   })
 
   await prisma.speaker.createMany({
-    data: [
-      {
-        name: "Dima Dinama",
-        slug: "dimadinama",
-        bio: "Insert Dima bio here.",
-      },
-      {
-        name: "Guido van Rossum",
-        slug: "guidovanrossum",
-        bio: "Insert Guido bio here.",
-      },
-      {
-        name: "Ainun Najib",
-        slug: "ainunnajib",
-        bio: "Insert Ainun bio here.",
-      },
-    ],
+    data: dataSpeakers,
   })
 }
 

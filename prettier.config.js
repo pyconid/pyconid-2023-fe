@@ -1,5 +1,5 @@
 /** @type {import('prettier').Config} */
-export default {
+module.exports = {
   endOfLine: "lf",
   semi: false,
   singleQuote: false,
@@ -18,13 +18,13 @@ export default {
     "^~/components",
     "^~/registry",
     "^~/styles",
-    "^~/app",
+    "^~/data",
     "",
     "^[./]",
   ],
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
   plugins: [
-    import("@ianvs/prettier-plugin-sort-imports"),
-    import("prettier-plugin-tailwindcss"),
+    require("@ianvs/prettier-plugin-sort-imports"),
+    require("prettier-plugin-tailwindcss"),
   ],
 }
