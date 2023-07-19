@@ -8,8 +8,8 @@ export function Footer() {
   const today = new Date()
 
   return (
-    <footer className="mb-10 mt-20 flex justify-center">
-      <ul className="flex gap-4 text-muted-foreground">
+    <footer className="mb-10 mt-20 flex justify-center px-6">
+      <ul className="flex gap-4 text-muted-foreground text-sm">
         <li>&copy; {today.getFullYear()} PyCon ID</li>
         {footerLinks.map((link) => {
           return <li key={link.to}>{link.name}</li>

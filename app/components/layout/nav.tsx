@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react"
 
 export function Nav() {
   return (
-    <nav className="relative mx-auto flex max-w-screen-xl items-center space-x-6 px-4">
+    <nav className="relative mx-auto flex max-w-screen-xl items-center space-x-6 px-6">
       <Link to="/" className="block">
         <img
           src="/logo.png"
