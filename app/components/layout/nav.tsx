@@ -50,8 +50,8 @@ export function Nav() {
             )}
           </button>
         </CollapsiblePrimitive.Trigger>
-        <div className="justif-center flex w-full md:justify-evenly ">
-          <div>
+        <div className="justif-center flex w-full md:justify-evenly">
+          <div className="flex justify-center w-full sm:w-[10%]">
             <Link to="/">
               <img
                 src="/logo.png"
