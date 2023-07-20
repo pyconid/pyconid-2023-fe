@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "@remix-run/react"
+import { Link, useLocation } from "@remix-run/react"
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible"
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons"
 
@@ -23,14 +23,16 @@ export function Nav() {
       label: "Code of Conduct",
     },
     {
-      to: "/cfc",
+      to: "/sponsor",
       label: "Sponsorship",
     },
     {
-      to: "/",
+      to: "/org",
       label: "Organizer",
     },
   ]
+  const location = useLocation();
+  const pathName = location.pathname;
   return (
     <CollapsiblePrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
       <nav className="fixed mx-auto block w-full bg-blue-100 px-6">
@@ -71,7 +73,7 @@ export function Nav() {
                     to={item.to}
                     className="inline-flex items-center border-b-2 px-1 pt-1 text-lg font-medium"
                   >
-                    <span className="flex h-full w-full items-center font-normal text-[#42449C]">
+                    <span className={`flex h-full w-full items-center ${pathName === item.to? 'font-semibold': 'font-normal'} text-[#42449C] hover:font-semibold`}>
                       {item.label}
                     </span>
                   </Link>
@@ -93,9 +95,9 @@ export function Nav() {
                   <div key={index}>
                     <Link
                       to={item.to}
-                      className="block pl-3 pr-4 text-base font-medium text-blue-500 sm:pl-5 sm:pr-6"
+                      className="block pl-3 pr-4 text-base font-medium text-[#42449C] sm:pl-5 sm:pr-6"
                     >
-                      <span className="flex h-full w-full items-center py-2 font-normal">
+                      <span className={`flex h-full w-full items-center py-2 ${pathName === item.to ? 'font-semibold': 'font-normal' } `}>
                         {item.label}
                       </span>
                     </Link>
