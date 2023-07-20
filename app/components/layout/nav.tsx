@@ -78,7 +78,7 @@ export function Nav() {
                     <span
                       className={`flex h-full w-full items-center ${
                         pathName === item.to ? "font-semibold" : "font-normal"
-                      } text-[#42449C] hover:font-semibold`}
+                      } text-primary hover:font-semibold`}
                     >
                       {item.label}
                     </span>
@@ -88,7 +88,7 @@ export function Nav() {
             })}
           </div>
           <div className="hidden items-center text-lg md:ml-6 md:flex md:space-x-8">
-            <button className="text-md h-12 w-40 rounded-full bg-[#42449C] font-bold text-white">
+            <button className="text-md h-12 w-40 rounded-full bg-primary font-bold text-white">
               Sign Up
             </button>
           </div>
@@ -101,7 +101,7 @@ export function Nav() {
                   <div key={index}>
                     <Link
                       to={item.to}
-                      className="block pl-3 pr-4 text-base font-medium text-[#42449C] sm:pl-5 sm:pr-6"
+                      className="block pl-3 pr-4 text-base font-medium text-primary sm:pl-5 sm:pr-6"
                     >
                       <span
                         className={`flex h-full w-full items-center py-2 ${
@@ -116,7 +116,7 @@ export function Nav() {
               })}
             </div>
             <div className="flex items-center justify-center p-4">
-              <button className="text-md h-10 w-[152px] rounded-full bg-[#42449C] font-bold text-white">
+              <button className="text-md h-10 w-[152px] rounded-full bg-primary font-bold text-white">
                 Sign Up
               </button>
             </div>
