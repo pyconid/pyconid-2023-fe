@@ -11,11 +11,11 @@ export default function Index() {
   return (
     <Layout>
       <div className="flex h-full min-h-[300px] w-full items-center justify-center bg-primary-100 md:h-[600px]">
-        <div className="mx-auto max-w-7xl py-10 text-center">
-          <p className="mb-1 text-lg font-semibold md:text-4xl">
+        <div className="mx-auto my-10 max-w-6xl px-4 text-center">
+          <p className="mb-1 text-base font-semibold md:text-4xl">
             We are open for PyCon ID 2023 Sponsorship
           </p>
-          <p className="text-4xl font-semibold text-primary md:text-6xl">
+          <p className="text-3xl font-semibold text-primary md:text-6xl">
             Look at our Sponsorship Propectus
           </p>
           <Button asChild size="lg" className="mt-10 md:mt-28">
@@ -31,7 +31,7 @@ export default function Index() {
       </div>
       <article
         className={cn(
-          "prose prose-lg mx-auto mt-20 w-full max-w-6xl px-4 ",
+          "prose prose-lg mx-auto mt-20 w-full max-w-6xl px-4",
           "prose prose-h3:mb-16 prose-h3:text-center prose-h3:text-3xl md:prose-h3:text-4xl",
           "prose prose-h4:mb-5 prose-h4:mt-12 prose-h4:text-2xl md:prose-h4:text-3xl",
           "prose-p:text-base prose-p:leading-normal prose-p:tracking-wide md:prose-p:text-xl",
