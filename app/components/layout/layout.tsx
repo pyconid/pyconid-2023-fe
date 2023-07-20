@@ -8,7 +8,7 @@ export function Layout({ children }: Props) {
   return (
     <div className="flex min-h-screen flex-col">
       <Nav />
-      <main className="flex-[1] px-6">{children}</main>
+      <main className="flex-[1] px-6 mt-20">{children}</main>
       <Footer />
     </div>
   )

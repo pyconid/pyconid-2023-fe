@@ -34,7 +34,7 @@ export function Nav() {
   return (
     <CollapsiblePrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
       <nav className="fixed mx-auto block w-full bg-blue-100 px-6">
-        <CollapsiblePrimitive.Trigger className="absolute right-3 top-7 -ml-2 mr-2 flex items-center md:hidden">
+        <CollapsiblePrimitive.Trigger className="absolute right-3 top-8 -ml-2 mr-2 flex items-center md:hidden">
           <button
             type="button"
             className="focus:ring-primary-500 inline-flex items-center justify-center rounded-md p-2 text-lg text-gray-400 hover:bg-blue-200 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset"
@@ -104,7 +104,7 @@ export function Nav() {
               })}
             </div>
             <div className="flex items-center justify-center p-4">
-              <button className="text-md h-12 w-[152px] rounded-full bg-[#42449C] font-bold text-white">
+              <button className="text-md h-10 w-[152px] rounded-full bg-[#42449C] font-bold text-white">
                 Sign Up
               </button>
             </div>
