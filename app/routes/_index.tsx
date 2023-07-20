@@ -31,8 +31,12 @@ export default function Index() {
                 <h1 className="mt-2 space-x-3 text-3xl lg:mt-4 lg:text-6xl">
                   Bandung Indonesia
                 </h1>
-                <p className="mb-8 mt-2 flex items-center text-xl text-black lg:mt-4">
-                  <img className="mr-2" src="/Pin_alt_fill.svg" alt="maps" />
+                <p className="mb-8 mt-2 flex h-[30px] items-center text-xl text-black lg:mt-4">
+                  <img
+                    className="mr-2 w-[30px]"
+                    src="/Pin_alt_fill.svg"
+                    alt="maps"
+                  />
                   <span className="font-normal">Venue, TBA</span>
                 </p>
                 <Link to="/">
@@ -42,11 +46,11 @@ export default function Index() {
                 </Link>
               </div>
             </div>
-            <div className="ml-24 hidden w-full items-center justify-center lg:mt-0 lg:flex  lg:w-1/2 lg:max-w-2xl">
+            <div className="ml-24 hidden h-[650px] w-full items-center justify-center lg:mt-0 lg:flex  lg:w-1/2 lg:max-w-2xl">
               <img
-                className="h-full w-full lg:max-w-7xl "
                 src="/logo-party.png"
-                alt="logo-party.svg"
+                className="w-[650px]"
+                alt="logo-party.png"
               />
             </div>
           </div>
