@@ -1,4 +1,5 @@
 import type { V2_MetaFunction } from "@remix-run/node"
+import { Link } from "@remix-run/react"
 
 import { Layout } from "~/components"
 
@@ -15,53 +16,46 @@ export const meta: V2_MetaFunction = () => {
 export default function Index() {
   return (
     <Layout>
-      <div>
-        <section className="py-10">
-          <div className="mx-auto max-w-screen-xl items-center justify-between gap-x-12 overflow-hidden text-gray-600 md:flex md:px-8">
-            <div className="flex-none space-y-5 sm:max-w-lg md:px-0 lg:max-w-xl">
-              <h2 className="text-4xl font-extrabold text-gray-800 md:text-5xl">
-                PyCon ID 2023
-              </h2>
-              <p>
-                We are waiting to see you again! <br />
-                Bandung, November 18th-19th, 2023 <br />
-                Venue TBA
-              </p>
-              <h3 className="text-2xl font-extrabold text-gray-800 md:text-3xl">
-                What is PyCon ID?
-              </h3>
-              <p>
-                Python Conference Indonesia or PyCon ID is annual conference
-                where Python enthusiasts share their knowledge with the others,
-                especially in Indonesia regional.
-              </p>
-              <h3 className="text-2xl font-extrabold text-gray-800 md:text-3xl">
-                Contact Us
-              </h3>
-              <p>
-                Instagram : @pythonid <br />
-                Twitter : @id_python <br />
-                Mail : pycon@python.or.id <br />
-                PyCon ID 2023 is organized by volunteers, so it may take a week
-                for us to reply to inquiries. <br />
-                Thank you for your patience.
-              </p>
+      <div className="w-full bg-blue-100 h-[300px] lg:h-[600px]">
+        <section className="container mx-auto px-2 lg:px-0 py-0 font-semibold text-[#42449C]">
+          <div className="item-center mt-0 lg:flex">
+            <div className="w-full lg:w-1/2 p-5 lg:p-0">
+              <div className="lg:mt-24 lg:max-w-2xl">
+                <p className="text-sm lg:text-lg font-normal ">PYCON ID 2023</p>
+                <h1 className="lg:mt-4 mt-2 lg:text-4xl text-xl font-medium text-black">
+                  We are waiting to see you again!
+                </h1>
+                <h1 className="lg:mt-4 mt-2 space-x-3 text-3xl lg:text-6xl">
+                  Nov. 18th - 19th, 2023
+                </h1>
+                <h1 className="lg:mt-4 mt-2 space-x-3 text-3xl lg:text-6xl">Bandung Indonesia</h1>
+                <p className="lg:mt-4 mt-2 mb-8 flex items-center text-xl text-black">
+                  <img className="mr-2" src="/Pin_alt_fill.svg" alt="maps" />
+                  <span className="font-normal">Venue, TBA</span>
+                </p>
+                <Link to="/" >
+                <span className="w-auto transform rounded-full  bg-[#42449C] px-10 py-3 text-sm uppercase tracking-wider text-white transition-colors duration-300 hover:bg-blue-700 focus:bg-blue-50 focus:outline-none lg:w-auto">
+                  Buy Ticket
+                </span>
+                </Link>
+          
+              </div>
             </div>
-            <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
-              <span className="sr-only">Watch our video to learn more</span>
-              <iframe
-                width="100%"
-                height="315"
-                src="https://www.youtube-nocookie.com/embed/1f6S3x1XUho"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen={true}
-                className="rounded"
+            <div className="ml-24 hidden w-full items-center justify-center lg:mt-0 lg:flex  lg:w-1/2 lg:max-w-2xl">
+              <img
+                className="h-full w-full lg:max-w-7xl "
+                src="/logo-party.png"
+                alt="logo-party.svg"
               />
             </div>
           </div>
         </section>
       </div>
+      <div className="flex items-center justify-center container h-[300px]  mt-10 lg:h-[350px] flex-col text-center">
+        <h1 className="text-4xl lg:text-5xl font-semibold">What is <span className="text-[#42449C]">Pycon ID?</span></h1>
+        <p className="text-sm lg:text-xl mt-3 text-gray-500">Python Conference Indonesia or Pycon ID is annual conference where Python enthusiasts shere their</p>
+        <p className="text-sm lg:text-xl mt-0 lg:mt-3 text-gray-500">knowledge with the others, especially in Indonesia regional</p>
+    </div>
     </Layout>
   )
 }

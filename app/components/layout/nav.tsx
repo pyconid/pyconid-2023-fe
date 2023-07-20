@@ -15,8 +15,8 @@ export function Nav() {
       label: "Schedule",
     },
     {
-      to: "/our-speakers",
-      label: "Our Speakers",
+      to: "/cfp",
+      label: "Call for proposal",
     },
     {
       to: "/coc",
@@ -52,8 +52,8 @@ export function Nav() {
             )}
           </button>
         </CollapsiblePrimitive.Trigger>
-        <div className="justif-center flex w-full md:justify-evenly">
-          <div className="flex justify-center w-full sm:w-[10%]">
+        <div className="flex w-full md:justify-evenly">
+          <div className="lg:pl-8 w-full sm:w-[10%]">
             <Link to="/">
               <img
                 src="/logo.png"
