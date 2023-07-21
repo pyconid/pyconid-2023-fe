@@ -7,6 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react"
+import { Analytics } from "@vercel/analytics/react"
 import stylesheet from "~/globals.css"
 
 export const links: LinksFunction = () => [
@@ -27,6 +28,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <Analytics />
       </body>
     </html>
   )
