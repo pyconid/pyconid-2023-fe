@@ -13,7 +13,11 @@ export default function Index() {
         <h2>Call for Proposals</h2>
         <p>Let's talk at PyCon ID 2023. We are open for talks submission.</p>
         <Button asChild>
-          <a href="https://papercall.io/pyconid2023">
+          <a
+            href="https://papercall.io/pyconid2023"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Submit your proposal here
           </a>
         </Button>
