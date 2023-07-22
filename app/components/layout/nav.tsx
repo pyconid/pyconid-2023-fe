@@ -39,7 +39,7 @@ export function Nav() {
     <CollapsiblePrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
       <nav className="fixed mx-auto block w-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-44">
         <div className="flex w-full  justify-between lg:h-full lg:pl-14 ">
-          <div className="h-[100px] w-full lg:w-[10%] lg:pl-0 xl:w-[10%]">
+          <div className="h-[100px] w-full lg:w-[10%] lg:pl-0 xl:w-[10%] xl:pl-14">
             <Link to="/">
               <img
                 src="/logo.png"
@@ -65,7 +65,7 @@ export function Nav() {
             </button>
           </CollapsiblePrimitive.Trigger>
 
-          <div className="hidden md:ml-6 md:space-x-8 lg:flex lg:w-[60%] xl:w-[60%]">
+          <div className="hidden md:ml-6 md:space-x-8 lg:flex lg:w-[40%] lg:space-x-4 xl:ml-6 xl:space-x-8 2xl:w-[60%]">
             {navLink.map((item, index) => {
               return (
                 <div key={index} className="item-center flex">
@@ -85,9 +85,9 @@ export function Nav() {
               )
             })}
           </div>
-          <div className="pr-18 hidden items-center text-lg lg:ml-6 lg:flex lg:space-x-8">
-            <button className="text-md h-12 w-40 rounded-full bg-primary font-bold text-white">
-              Sign Up
+          <div className="pr-18 hidden items-center justify-end text-lg lg:ml-6 lg:flex lg:w-[30%] lg:space-x-8 xl:mr-14 xl:w-[10%]">
+            <button className="text-md h-12 w-40 cursor-not-allowed rounded-full bg-primary font-bold text-white opacity-50">
+              Sign Up <span className="text-xs">(soon)</span>
             </button>
           </div>
         </div>
@@ -117,8 +117,8 @@ export function Nav() {
                 })}
               </div>
               <div className="flex items-center justify-center p-4">
-                <button className="text-md h-10 w-[152px] rounded-full bg-primary font-bold text-white">
-                  Sign Up
+                <button className="text-md h-10 w-[152px] cursor-not-allowed rounded-full bg-primary font-bold text-white opacity-50">
+                  Sign Up <span className="text-xs">(soon)</span>
                 </button>
               </div>
             </div>

@@ -42,8 +42,8 @@ export default function Index() {
                   <span className="font-normal">Venue, TBA</span>
                 </p>
                 <Link to="/">
-                  <span className="w-auto transform rounded-full bg-primary px-10 py-3 text-sm uppercase tracking-wider text-white transition-colors duration-300 hover:bg-blue-700 focus:bg-blue-50 focus:outline-none lg:w-auto">
-                    Buy Ticket
+                  <span className=" h w-auto transform cursor-not-allowed rounded-full bg-primary px-10 py-3 text-sm uppercase tracking-wider text-white opacity-50 transition-colors duration-300 focus:bg-blue-50 focus:outline-none lg:w-auto">
+                    Buy Ticket <span className="text-xs">(soon)</span>
                   </span>
                 </Link>
               </div>
