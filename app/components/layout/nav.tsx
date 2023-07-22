@@ -16,7 +16,7 @@ export function Nav() {
     },
     {
       to: "/cfp",
-      label: "Call for proposal",
+      label: "Call for Proposal",
     },
     {
       to: "/coc",
@@ -37,9 +37,9 @@ export function Nav() {
 
   return (
     <CollapsiblePrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
-      <nav className="fixed mx-auto block w-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-44">
+      <nav className="fixed mx-auto block w-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-44">
         <div className="flex w-full  justify-between lg:h-full lg:pl-14 ">
-          <div className="h-[100px] w-full lg:w-[10%] lg:pl-0 xl:w-[10%]">
+          <div className="h-[100px] w-full lg:w-[10%] lg:pl-0 xl:w-[15%] xl:pl-0 2xl:pl-14">
             <Link to="/">
               <img
                 src="/logo.png"
@@ -65,13 +65,13 @@ export function Nav() {
             </button>
           </CollapsiblePrimitive.Trigger>
 
-          <div className="hidden md:ml-6 md:space-x-8 lg:flex lg:w-[60%] xl:w-[60%]">
+          <div className="hidden md:ml-6 md:space-x-8 lg:flex lg:w-[60%] lg:space-x-5 xl:ml-0 xl:w-[60%] xl:space-x-8 2xl:ml-6 2xl:w-[60%]">
             {navLink.map((item, index) => {
               return (
                 <div key={index} className="item-center flex">
                   <Link
                     to={item.to}
-                    className="inline-flex items-center px-1 pt-1 text-lg font-medium"
+                    className="xl:text-md inline-flex items-center px-1 pt-1 text-xs font-medium 2xl:text-lg"
                   >
                     <span
                       className={`flex h-full w-full items-center ${
@@ -85,9 +85,9 @@ export function Nav() {
               )
             })}
           </div>
-          <div className="pr-18 hidden items-center text-lg lg:ml-6 lg:flex lg:space-x-8">
-            <button className="text-md h-12 w-40 rounded-full bg-primary font-bold text-white">
-              Sign Up
+          <div className="pr-18 hidden items-center justify-end text-lg lg:mr-6 lg:flex lg:w-[15%] lg:space-x-8 lg:text-xs xl:mr-14 xl:w-[10%]">
+            <button className="xl:text-md h-10 w-40 cursor-not-allowed rounded-full bg-cyan-500 text-xs font-bold text-white lg:h-8 lg:w-24 xl:h-10 xl:w-40 2xl:h-10 2xl:w-40 2xl:text-[16px]">
+              Sign Up (Soon)
             </button>
           </div>
         </div>
@@ -117,8 +117,8 @@ export function Nav() {
                 })}
               </div>
               <div className="flex items-center justify-center p-4">
-                <button className="text-md h-10 w-[152px] rounded-full bg-primary font-bold text-white">
-                  Sign Up
+                <button className="text-md h-10 w-[152px] cursor-not-allowed rounded-full bg-cyan-500 font-bold text-white">
+                  Sign Up <span className="text-xs">(SOON)</span>
                 </button>
               </div>
             </div>
