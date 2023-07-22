@@ -27,7 +27,7 @@ export function Footer() {
           {socials.map((social) => (
             <li
               key={social.href}
-              className="text-base hover:underline md:text-xl"
+              className="md:text-md text-base hover:underline"
             >
               <a
                 href={social.href}
