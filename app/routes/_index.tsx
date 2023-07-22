@@ -21,19 +21,21 @@ export default function Index() {
           <div className="item-center mt-0 sm:flex sm:px-10 lg:flex">
             <div className="w-full p-5 lg:w-1/2 lg:p-0">
               <div className="lg:mt-24 lg:max-w-2xl lg:pl-10 xl:pl-0">
-                <p className="text-sm font-normal lg:text-lg ">PYCON ID 2023</p>
-                <h1 className="mt-2 text-xl font-medium text-black lg:mt-4 lg:text-3xl xl:text-4xl ">
+                <p className="text-sm font-normal sm:text-xs md:text-xs lg:text-lg">
+                  PYCON ID 2023
+                </p>
+                <h1 className="mt-2 text-xl font-medium text-black sm:text-lg md:text-xl lg:mt-4 lg:text-3xl xl:text-4xl ">
                   We are waiting to see you again!
                 </h1>
-                <h1 className="mt-2 space-x-3 text-3xl lg:mt-4 lg:text-4xl xl:text-6xl">
+                <h1 className="mt-2 space-x-3 text-3xl sm:text-xl md:text-2xl lg:mt-4 lg:text-4xl xl:text-6xl">
                   Nov. 18th - 19th, 2023
                 </h1>
-                <h1 className="mt-2 space-x-3 text-3xl lg:mt-4 lg:text-4xl xl:text-6xl">
+                <h1 className="mt-2 space-x-3 text-3xl sm:text-xl md:text-2xl lg:mt-4 lg:text-4xl xl:text-6xl">
                   Bandung Indonesia
                 </h1>
-                <p className="mb-8 mt-2 flex h-[30px] items-center text-xl text-black lg:mt-4">
+                <p className="mb-8 mt-2 flex h-[30px] items-center text-xl text-black sm:text-sm md:text-sm lg:mt-4">
                   <img
-                    className="mr-2 w-[30px]"
+                    className="mr-2 w-[30px] sm:w-[20px] md:w-[20px]"
                     src="/Pin_alt_fill.svg"
                     alt="maps"
                   />
@@ -46,7 +48,7 @@ export default function Index() {
                 </Link>
               </div>
             </div>
-            <div className="ml-24 hidden h-[650px] w-full items-center justify-center sm:flex sm:h-[300px] lg:mt-0  lg:flex lg:w-1/2 lg:max-w-2xl ">
+            <div className="ml-24 hidden h-[650px] w-full items-center justify-center sm:flex sm:h-[300px] md:flex lg:mt-0 lg:flex lg:w-1/2 lg:max-w-2xl ">
               <img
                 src="/logo-party.png"
                 className="sm:w-[350px] lg:my-auto lg:w-[650px]"

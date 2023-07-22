@@ -37,9 +37,9 @@ export function Nav() {
 
   return (
     <CollapsiblePrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
-      <nav className="fixed mx-auto block w-full bg-primary-100 px-6 lg:h-24">
-        <div className="flex w-full  md:justify-evenly lg:h-full lg:pl-14 ">
-          <div className="h-[100px] w-full sm:w-[10%] lg:pl-8">
+      <nav className="fixed mx-auto block w-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-44">
+        <div className="flex w-full  justify-between lg:h-full lg:pl-14 ">
+          <div className="h-[100px] w-full lg:w-[10%] lg:pl-0 xl:w-[10%]">
             <Link to="/">
               <img
                 src="/logo.png"
@@ -65,7 +65,7 @@ export function Nav() {
             </button>
           </CollapsiblePrimitive.Trigger>
 
-          <div className="hidden md:ml-6 md:flex md:space-x-8">
+          <div className="hidden md:ml-6 md:space-x-8 lg:flex lg:w-[60%] xl:w-[60%]">
             {navLink.map((item, index) => {
               return (
                 <div key={index} className="item-center flex">
