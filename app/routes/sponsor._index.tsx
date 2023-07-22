@@ -78,7 +78,7 @@ function SponsorshipCard({
     <div className="relative">
       <div
         className={cn(
-          "relative z-0 h-full rounded-xl border-2 bg-white p-6",
+          "relative -z-10 h-full rounded-xl border-2 bg-white p-6",
           colorMap[color].card,
           className,
         )}
@@ -88,7 +88,7 @@ function SponsorshipCard({
       </div>
       <div
         className={cn(
-          "absolute -left-2 top-2 -z-10 h-full w-full rounded-xl",
+          "absolute -left-2 top-2 -z-20 h-full w-full rounded-xl",
           colorMap[color].shadow,
         )}
       />
@@ -101,16 +101,16 @@ export default function Index() {
     <Layout>
       <div className="flex min-h-[300px] w-full items-center bg-primary-100 md:h-[600px]">
         <div className="mx-auto my-10 w-full max-w-7xl px-4">
-          <p className="mb-6 text-base md:text-6xl">
+          <p className="mb-6 text-4xl md:text-6xl">
             We are open for
             <span className="mt-3 block font-bold">
               PyCon ID 2023 Sponsorship
             </span>
           </p>
-          <p className="text-3xl text-primary md:text-4xl">
+          <p className="text-xl text-primary md:text-4xl">
             Look at our Sponsorship Propectus
           </p>
-          <Button asChild size="lg" className="mt-10 md:mt-28">
+          <Button asChild size="lg" className="mt-10 w-full md:mt-28 md:w-auto">
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -124,7 +124,7 @@ export default function Index() {
       <article
         className={cn(
           "prose prose-lg mx-auto mt-20 w-full max-w-6xl px-4",
-          "prose-h3:mb-16 prose-h3:text-center prose-h3:text-5xl prose-h3:font-normal md:prose-h3:text-5xl md:prose-h3:leading-normal",
+          "prose-h3:mb-16 prose-h3:text-center prose-h3:text-4xl prose-h3:font-normal md:prose-h3:text-5xl md:prose-h3:leading-normal",
           "prose-h4:mb-5 prose-h4:mt-0 prose-h4:text-2xl md:prose-h4:text-3xl",
           "prose-p:text-justify prose-p:text-base prose-p:leading-normal prose-p:tracking-wide md:prose-p:text-base",
           "md:prose-lg",
@@ -141,7 +141,7 @@ export default function Index() {
           companies are searching for, so much that we added on-site Job Fair to
           make it even easier.
         </p>
-        <div className="mt-16 grid grid-cols-2 gap-6">
+        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
           {benefits.map((benefit, i) => (
             <SponsorshipCard
               key={`benefit-${i}`}
