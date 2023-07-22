@@ -23,11 +23,11 @@ export function Footer() {
     <footer className="mt-20  bg-primary px-6 pt-14 text-primary-foreground">
       <div className="mx-auto flex max-w-7xl flex-col md:flex-row md:justify-between">
         <h4 className="mb-2 text-xl font-bold md:text-4xl">Contact Us</h4>
-        <ul className="mb-8 flex flex-col md:flex-row md:gap-32">
+        <ul className="mb-8 flex flex-col md:flex-row md:gap-7 lg:flex-row lg:gap-32">
           {socials.map((social) => (
             <li
               key={social.href}
-              className="text-base hover:underline md:text-xl"
+              className="md:text-md text-base hover:underline"
             >
               <a
                 href={social.href}
