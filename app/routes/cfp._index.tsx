@@ -3,7 +3,17 @@ import type { V2_MetaFunction } from "@remix-run/node"
 import { Button, Layout } from "~/components"
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Call For Paper" }]
+  return [
+    { title: "PyCon ID 2023 - Call for Proposal" },
+    {
+      property: "og:image",
+      content: "https://vercel-og-image-amber.vercel.app/api/pycon-id-tailwind"
+    },
+    {
+      name: "description",
+      content: "Let's talk at PyCon ID 2023. We are open for talks submission.",
+    },
+  ]
 }
 
 export default function Index() {

@@ -1,4 +1,4 @@
-import type { V2_MetaFunction } from "@remix-run/node"
+import { V2_MetaFunction } from "@remix-run/node"
 import { Link } from "@remix-run/react"
 
 import { Layout } from "~/components"
@@ -7,8 +7,12 @@ export const meta: V2_MetaFunction = () => {
   return [
     { title: "PyCon ID 2023" },
     {
+      property: "og:image",
+      content: "https://vercel-og-image-amber.vercel.app/api/pycon-id-tailwind"
+    },
+    {
       name: "description",
-      content: "Python Conference Indonesia 2023 in Bandung.",
+      content: "Python Conference Indonesia is an annual conference where Python enthusiasts shere their knowledge with the others, especially in Indonesia regional.",
     },
   ]
 }
