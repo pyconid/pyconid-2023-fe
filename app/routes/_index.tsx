@@ -21,16 +21,16 @@ export default function Index() {
           <div className="item-center mt-0 sm:flex sm:px-10 lg:flex">
             <div className="w-full p-5 lg:w-1/2 lg:p-0">
               <div className="lg:mt-24 lg:max-w-2xl lg:pl-10 xl:pl-0">
-                <p className="text-sm font-normal sm:text-xs md:text-xs lg:text-lg">
+                <p className="text-sm font-normal sm:text-lg md:text-xs lg:text-lg">
                   PYCON ID 2023
                 </p>
-                <h1 className="mt-2 text-xl font-medium text-black sm:text-lg md:text-xl lg:mt-4 lg:text-3xl xl:text-4xl ">
+                <h1 className="mt-2 text-xl font-medium text-black sm:text-4xl md:text-xl lg:mt-4 lg:text-3xl xl:text-4xl ">
                   We are waiting to see you again!
                 </h1>
-                <h1 className="mt-2 space-x-3 text-3xl sm:text-xl md:text-2xl lg:mt-4 lg:text-4xl xl:text-6xl">
+                <h1 className="mt-2 space-x-3 text-3xl sm:text-4xl md:text-2xl lg:mt-4 lg:text-4xl xl:text-6xl">
                   Nov. 18th - 19th, 2023
                 </h1>
-                <h1 className="mt-2 space-x-3 text-3xl sm:text-xl md:text-2xl lg:mt-4 lg:text-4xl xl:text-6xl">
+                <h1 className="mt-2 space-x-3 text-3xl sm:text-4xl md:text-2xl lg:mt-4 lg:text-4xl xl:text-6xl">
                   Bandung Indonesia
                 </h1>
                 <p className="mb-8 mt-2 flex h-[30px] items-center text-xl text-black sm:text-sm md:text-sm lg:mt-4">
@@ -39,7 +39,7 @@ export default function Index() {
                     src="/Pin_alt_fill.svg"
                     alt="maps"
                   />
-                  <span className="font-normal">Venue, TBA</span>
+                  <span className="font-normal  2xl:text-2xl">Venue, TBA</span>
                 </p>
                 <Link to="/">
                   <span className=" z-10 w-auto transform cursor-not-allowed rounded-full bg-cyan-500 px-10 py-3 text-sm uppercase  tracking-wider text-white transition-colors duration-300 focus:bg-blue-50 focus:outline-none sm:text-xs md:text-xs lg:w-auto lg:text-sm  xl:text-sm">
@@ -51,10 +51,10 @@ export default function Index() {
                 </Link>
               </div>
             </div>
-            <div className="ml-24 hidden h-[650px] w-full items-center justify-center sm:flex sm:h-[300px] md:flex lg:mt-0 lg:flex lg:w-1/2 lg:max-w-2xl ">
+            <div className="ml-24 hidden h-[650px] w-full items-center justify-center sm:hidden sm:h-[300px] md:flex lg:mt-0 lg:flex lg:w-1/2 lg:max-w-2xl ">
               <img
                 src="/logo-party.png"
-                className="sm:w-[350px] lg:my-auto lg:w-[650px]"
+                className=" sm:w-[350px] lg:my-auto lg:w-[650px]"
                 alt="logo-party.png"
               />
             </div>
