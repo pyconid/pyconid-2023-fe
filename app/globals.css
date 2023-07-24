@@ -20,8 +20,12 @@
     --input: 214.3 31.8% 91.4%;
 
     --primary: 239 41% 44%;
-    --primary-100: 248, 27%, 94%;
+    --primary-red: 360 85% 53%;
+    --primary-purple: 239 41% 44%;
+    --primary-black: 0 0% 16%;
+    --primary-orange: 34 93% 54%;
     --primary-foreground: 210 40% 98%;
+    --primary-100: 248, 27%, 94%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
