@@ -125,7 +125,7 @@ export default function Index() {
       </div>
       <article
         className={cn(
-          "prose prose-lg mx-auto mt-20 w-full max-w-6xl px-4",
+          "prose prose-lg mx-auto mt-20 w-full max-w-7xl px-6 md:px-4",
           "prose-h3:mb-16 prose-h3:text-center prose-h3:text-4xl prose-h3:font-normal md:prose-h3:text-5xl md:prose-h3:leading-normal",
           "prose-h4:mb-5 prose-h4:mt-0 prose-h4:text-2xl md:prose-h4:text-3xl",
           "prose-p:text-justify prose-p:text-base prose-p:leading-normal prose-p:tracking-wide md:prose-p:text-base",
