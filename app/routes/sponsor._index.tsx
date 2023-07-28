@@ -51,16 +51,6 @@ const benefits = [
     description:
       "PyCon’s ever diversifying audience puts your organization in front of a wide variety of people. From beginners to experts, PyCon draws attendees from those with zero experience all the way through a significant group of the contributors to the language itself. We also see people of all levels from many industries. From developers to managers, executives to owners, startups to big businesses, PyCon draws attendees from all sorts of places. Some organizations send entire teams, and in the case of many startups, the entire company may be there.",
   },
-  {
-    title: "CSR",
-    description:
-      "Sponsoring can show your gratitude for Python community. It's one of CSR activity that supports technology companies and engineers community.",
-  },
-  {
-    title: "Flexibility",
-    description:
-      "If you want to help PyCon, we want to help you construct a sponsorship package that fits your needs. If a small booth would work better than a large one, perhaps we can swap it in exchange for another benefit that works better for your organization. For some organizations, a booth is not practical at all, but adding another conference pass may work better.",
-  },
 ]
 
 type SponsorshipCardProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -100,25 +90,37 @@ export default function Index() {
   return (
     <Layout>
       <div className="flex min-h-[300px] w-full items-center bg-primary-100 md:h-[600px]">
-        <div className="mx-auto my-10 w-full max-w-7xl px-4">
-          <p className="mb-6 text-4xl md:text-6xl">
-            We are open for
-            <span className="mt-3 block font-bold">
-              PyCon ID 2023 Sponsorship
-            </span>
-          </p>
-          <p className="text-xl text-primary md:text-4xl">
-            Look at our Sponsorship Propectus
-          </p>
-          <Button asChild size="lg" className="mt-10 w-full md:mt-28 md:w-auto">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://drive.google.com/file/d/1Xcn9GyAFnlVk7Yhxu1Xx77V2T2u4LLMj/view?usp=sharing"
+        <div className="mx-auto my-10 flex w-full max-w-7xl items-center justify-between">
+          <div className="px-4">
+            <p className="mb-6 text-4xl md:text-6xl">
+              We are open for
+              <span className="mt-3 block font-bold">
+                PyCon ID 2023 Sponsorship
+              </span>
+            </p>
+            <p className="text-xl text-primary md:text-4xl">
+              Look at our Sponsorship Propectus
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="mt-10 w-full md:mt-28 md:w-auto"
             >
-              Sponsorship Prospectus
-            </a>
-          </Button>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://drive.google.com/file/d/1Xcn9GyAFnlVk7Yhxu1Xx77V2T2u4LLMj/view?usp=sharing"
+              >
+                Sponsorship Prospectus
+              </a>
+            </Button>
+          </div>
+          <div className="hidden md:block">
+            <img
+              src="sponsorship_hero.svg"
+              alt="Sponsorship Hero Illustration"
+            />
+          </div>
         </div>
       </div>
       <article
