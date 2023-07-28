@@ -37,7 +37,7 @@ export function Nav() {
 
   return (
     <CollapsiblePrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
-      <nav className="fixed mx-auto block w-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-44">
+      <nav className="fixed z-10 mx-auto block w-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-44">
         <div className="flex w-full  justify-between lg:h-full lg:pl-14 ">
           <div className="h-[100px] w-full lg:w-[10%] lg:pl-0 xl:w-[15%] xl:pl-0 2xl:pl-14">
             <Link to="/">
