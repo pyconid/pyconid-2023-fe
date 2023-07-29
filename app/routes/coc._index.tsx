@@ -9,7 +9,7 @@ export const meta: V2_MetaFunction = () => {
 export default function Index() {
   return (
     <Layout>
-      <article className="prose prose-slate mx-auto max-w-3xl py-10 dark:prose-invert lg:prose-xl">
+      <article className="prose prose-slate mx-auto max-w-3xl py-10 dark:prose-invert lg:prose-xl prose-h3:my-0">
         <h2 className="text-center">Code of Conduct</h2>
         <p>
           A code of conduct is a set of rules outlining the norms, rules, and
@@ -18,8 +18,8 @@ export default function Index() {
         </p>
 
         <div className="space-y-16 ">
-          <div className="rounded-2xl border-2 border-solid border-primary-purple">
-            <div className="rounded-tl-2xl rounded-tr-2xl bg-primary-purple p-2 prose-h3:my-0">
+          <div className="overflow-hidden rounded-2xl border-2 border-solid border-primary-purple">
+            <div className="bg-primary-purple p-2 ">
               <h3 className="pl-3 text-2xl font-semibold text-white ">
                 The Short Version
               </h3>
@@ -49,8 +49,8 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="rounded-2xl border-2 border-solid border-primary-red">
-            <div className=" rounded-tl-2xl rounded-tr-2xl bg-primary-red p-2 prose-h3:my-0">
+          <div className="overflow-hidden rounded-2xl border-2 border-solid border-primary-red">
+            <div className="bg-primary-red p-2">
               <h3 className="pl-3 text-2xl font-semibold text-white">
                 The Long Version
               </h3>
@@ -123,8 +123,8 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="rounded-2xl border-2 border-solid border-primary-orange">
-            <div className="rounded-tl-2xl rounded-tr-2xl bg-primary-orange p-2 prose-h3:my-0">
+          <div className="overflow-hidden rounded-2xl border-2 border-solid border-primary-orange">
+            <div className="bg-primary-orange p-2">
               <h3 className="pl-3 text-2xl font-semibold text-white">
                 License
               </h3>
