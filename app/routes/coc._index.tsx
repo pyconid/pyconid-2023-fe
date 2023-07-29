@@ -9,7 +9,7 @@ export const meta: V2_MetaFunction = () => {
 export default function Index() {
   return (
     <Layout>
-      <article className="prose prose-slate mx-auto max-w-3xl py-10 dark:prose-invert lg:prose-xl prose-h3:my-0">
+      <article className="prose prose-slate mx-auto max-w-xs py-10 dark:prose-invert lg:prose-xl prose-h3:my-0 sm:max-w-xl lg:max-w-3xl">
         <h2 className="text-center">Code of Conduct</h2>
         <p>
           A code of conduct is a set of rules outlining the norms, rules, and
@@ -17,7 +17,7 @@ export default function Index() {
           attending PyCon ID 2021, you agree with the Code of Conduct.
         </p>
 
-        <div className="space-y-16 ">
+        <div className="space-y-16">
           <div className="overflow-hidden rounded-2xl border-2 border-solid border-primary-purple">
             <div className="bg-primary-purple p-2 ">
               <h3 className="pl-3 text-2xl font-semibold text-white ">
