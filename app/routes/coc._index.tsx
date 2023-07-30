@@ -9,7 +9,6 @@ export const meta: V2_MetaFunction = () => {
 export default function Index() {
   return (
     <Layout>
-      {/* <article className="prose prose-slate mx-auto w-[300px] py-10 dark:prose-invert lg:prose-xl prose-h3:my-0 sm:w-[600px] sm:max-w-xl md:max-w-3xl lg:w-[1000px]"> */}
       <article className="prose prose-slate mx-auto max-w-2xl px-5 py-10 dark:prose-invert lg:prose-xl prose-h3:my-0 lg:px-4">
         <h2 className="text-center">Code of Conduct</h2>
         <p>
