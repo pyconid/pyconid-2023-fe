@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@fontsource/open-sans':
+    specifier: ^5.0.5
+    version: 5.0.5
   '@prisma/client':
     specifier: 5.0.0
     version: 5.0.0(prisma@5.0.0)
@@ -1905,6 +1908,10 @@ packages:
     resolution: {integrity: sha512-Ag+9YM4ocKQx9AarydN0KY2j0ErMHNIocPDrVo8zAE44xLTjEtz81OdR68/cydGtk6m6jDb5Za3r2useMzYmSw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@fontsource/open-sans@5.0.5:
+    resolution: {integrity: sha512-gxFAandXkpbHKysq5gXk1zEpx44izNyaJs82gjnx8Z0Qi2nwCamweowiSGv42JxLZPgM8RB5amztHxPCeKcBJw==}
+    dev: false
 
   /@gar/promisify@1.1.3:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
