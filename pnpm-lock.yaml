@@ -8,6 +8,9 @@ dependencies:
   '@fontsource/open-sans':
     specifier: ^5.0.5
     version: 5.0.5
+  '@fontsource/quicksand':
+    specifier: ^5.0.5
+    version: 5.0.5
   '@prisma/client':
     specifier: 5.0.0
     version: 5.0.0(prisma@5.0.0)
@@ -1911,6 +1914,10 @@ packages:
 
   /@fontsource/open-sans@5.0.5:
     resolution: {integrity: sha512-gxFAandXkpbHKysq5gXk1zEpx44izNyaJs82gjnx8Z0Qi2nwCamweowiSGv42JxLZPgM8RB5amztHxPCeKcBJw==}
+    dev: false
+
+  /@fontsource/quicksand@5.0.5:
+    resolution: {integrity: sha512-yXFMzX1gTWQ3g7kxzz0BM28uUSF8z5Vhaz4BxIgZNXgcaerKLfGnc4vmcM9B1sKGofXJo+8gUcqc7zbszC3nlw==}
     dev: false
 
   /@gar/promisify@1.1.3:

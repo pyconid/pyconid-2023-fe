@@ -11,6 +11,8 @@ import {
 } from "@remix-run/react"
 import sansFontStylesBold from "@fontsource/open-sans/700.css"
 import sansFontStyles from "@fontsource/open-sans/index.css"
+import brandFontStylesBold from "@fontsource/quicksand/700.css"
+import brandFontStyles from "@fontsource/quicksand/index.css"
 import { Analytics } from "@vercel/analytics/react"
 import stylesheet from "~/globals.css"
 
@@ -18,6 +20,8 @@ import { Error, Layout } from "~/components"
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
+  { rel: "stylesheet", href: brandFontStyles },
+  { rel: "stylesheet", href: brandFontStylesBold },
   { rel: "stylesheet", href: sansFontStyles },
   { rel: "stylesheet", href: sansFontStylesBold },
 ]

@@ -14,6 +14,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
+        brand: ["Quicksand", ...defaultTheme.fontFamily.sans],
         sans: ["Open Sans", ...defaultTheme.fontFamily.sans],
       },
       colors: {
