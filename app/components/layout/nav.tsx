@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "@remix-run/react"
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible"
+import { Button } from "../ui"
 
 export function Nav() {
   const [isOpen, setIsOpen] = useState(false)
@@ -96,9 +97,9 @@ export function Nav() {
                     className="xl:text-md inline-flex items-center px-1 pt-1 text-xs font-medium 2xl:text-lg"
                   >
                     <span
-                      className={`flex h-full w-full items-center ${
-                        pathName === item.to ? "font-semibold" : "font-normal"
-                      } text-[#757575] hover:font-semibold`}
+                      className={`flex h-full w-full items-center text-[#757575] ${
+                        pathName === item.to ? "font-semibold text-primary" : "font-normal"
+                      }  hover:font-semibold hover:text-primary`}
                     >
                       {item.label}
                     </span>
@@ -108,9 +109,10 @@ export function Nav() {
             })}
           </div>
           <div className="pr-18 hidden items-center justify-end text-lg lg:mr-6 lg:flex lg:w-[15%] lg:space-x-8 lg:text-xs xl:mr-14 xl:w-[10%]">
-            <button className="xl:text-md h-10 w-40 cursor-not-allowed rounded-full bg-cyan-500 text-xs font-bold text-white lg:h-8 lg:w-24 xl:h-10 xl:w-40 2xl:h-10 2xl:w-40 2xl:text-[16px]">
-              Sign Up (Soon)
-            </button>
+          <Button className="bg-cyan-500 text-xs h-10 hover:bg-cyan-500 cursor-not-allowed">
+            Sign Up(Soon)            
+          </Button>
+
           </div>
         </div>
         <CollapsiblePrimitive.Content>
@@ -118,7 +120,7 @@ export function Nav() {
             <div id="mobile-menu">
               <div className="space-y-1 pb-3 pt-2">
                 {navLink.map((item, index) => {
-                  return (
+                  return ( 
                     <div key={index}>
                       <Link
                         to={item.to}
@@ -127,7 +129,7 @@ export function Nav() {
                         <span
                           className={`flex h-full w-full items-center py-2 ${
                             pathName === item.to
-                              ? "font-semibold"
+                              ? "font-semibold text-primary"
                               : "font-normal"
                           } `}
                         >
@@ -139,9 +141,9 @@ export function Nav() {
                 })}
               </div>
               <div className="flex items-center justify-center p-4">
-                <button className="text-md h-10 w-[152px] cursor-not-allowed rounded-full bg-cyan-500 font-bold text-white">
-                  Sign Up <span className="text-xs">(SOON)</span>
-                </button>
+                <Button className="bg-cyan-500 text-xs h-10 hover:bg-cyan-500 cursor-not-allowed">
+                  Sign Up(Soon)            
+                </Button>
               </div>
             </div>
           </div>
