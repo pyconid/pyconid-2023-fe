@@ -1,7 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useLocation } from "@remix-run/react"
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible"
-import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons"
 
 export function Nav() {
   const [isOpen, setIsOpen] = useState(false)
@@ -31,15 +30,32 @@ export function Nav() {
       label: "Organizer",
     },
   ]
+  
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [screenWidth, setScreenWidth] = useState(0);
+  const handleResize = () => {
+    setScreenWidth(window.innerWidth);
+    setIsOpen(false);
+  };
 
+ useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setScreenWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, []);
   const location = useLocation()
   const pathName = location.pathname
 
   return (
     <CollapsiblePrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
-      <nav className="fixed z-10 mx-auto block w-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-44">
+      <nav className={isOpen ? "fixed z-10 mx-auto block  bg-primary-100  px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-0 2xl:ml-20  w-full":"fixed z-10 mx-auto block  bg-primary-100  px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-0 ml-6 lg:ml-10 sm:ml-8 2xl:ml-20 rounded-full mt-6 w-[90%]"}>
         <div className="flex w-full  justify-between lg:h-full lg:pl-14 ">
-          <div className="h-[100px] w-full lg:w-[10%] lg:pl-0 xl:w-[15%] xl:pl-0 2xl:pl-14">
+          <div className="h-[100px] w-full lg:w-[10%] lg:pl-0 xl:w-[15%] xl:pl-0 2xl:pl-0">
             <Link to="/">
               <img
                 src="/logo.png"
@@ -51,21 +67,27 @@ export function Nav() {
           <CollapsiblePrimitive.Trigger>
             <button
               type="button"
-              className="focus:ring-primary-500 inline-flex items-center justify-center rounded-md p-2 text-lg text-gray-400 hover:bg-blue-200 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset lg:hidden"
+              className="focus:ring-primary-500 inline-flex items-center justify-center rounded-md p-2 text-lg focus:outline-none focus:ring-2 focus:ring-inset lg:hidden"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
 
               {isOpen ? (
-                <Cross2Icon className={"w-15 block h-6"} />
-              ) : (
-                <HamburgerMenuIcon className={"w-15 block h-6 "} />
-              )}
+              <img
+                src="/close-icon.svg"
+                className="object w-[35px]"
+                alt="PyCon ID 2023"
+              /> ) : (
+              <img
+                src="/bar-icon.svg"
+                className="object w-[35px]"
+                alt="PyCon ID 2023"
+              />               )}
             </button>
           </CollapsiblePrimitive.Trigger>
 
-          <div className="hidden md:ml-6 md:space-x-8 lg:flex lg:w-[60%] lg:space-x-5 xl:ml-0 xl:w-[60%] xl:space-x-8 2xl:ml-6 2xl:w-[60%]">
+          <div className="hidden md:ml-6 md:space-x-8 lg:flex lg:w-[70%] lg:space-x-5 xl:ml-0 xl:w-[60%] xl:space-x-8 2xl:ml-6 2xl:w-[60%]">
             {navLink.map((item, index) => {
               return (
                 <div key={index} className="item-center flex">
@@ -76,7 +98,7 @@ export function Nav() {
                     <span
                       className={`flex h-full w-full items-center ${
                         pathName === item.to ? "font-semibold" : "font-normal"
-                      } text-primary hover:font-semibold`}
+                      } text-[#757575] hover:font-semibold`}
                     >
                       {item.label}
                     </span>
@@ -100,7 +122,7 @@ export function Nav() {
                     <div key={index}>
                       <Link
                         to={item.to}
-                        className="block pl-3 pr-4 text-base font-medium text-primary sm:pl-5 sm:pr-6"
+                        className="block pl-3 pr-4 text-base font-medium text-[#757575] sm:pl-5 sm:pr-6"
                       >
                         <span
                           className={`flex h-full w-full items-center py-2 ${
