@@ -7,7 +7,7 @@ export const meta: V2_MetaFunction = () => {
     { title: "PyCon ID 2023 - Call for Proposal" },
     {
       property: "og:image",
-      content: "https://vercel-og-image-amber.vercel.app/api/pycon-id-tailwind"
+      content: "https://vercel-og-image-amber.vercel.app/api/pycon-id-tailwind",
     },
     {
       name: "description",
@@ -19,19 +19,38 @@ export const meta: V2_MetaFunction = () => {
 export default function Index() {
   return (
     <Layout>
-      <article className="prose prose-slate mx-auto max-w-3xl py-10 dark:prose-invert lg:prose-xl">
-        <h2>Call for Proposals</h2>
-        <p>Let's talk at PyCon ID 2023. We are open for talks submission.</p>
-        <Button asChild>
-          <a
-            href="https://papercall.io/pyconid2023"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Submit your proposal here
-          </a>
-        </Button>
-      </article>
+      <div className="flex min-h-[300px] w-full items-center bg-primary-100 lg:min-h-[430px] 2xl:min-h-[550px] lg:px-5">
+        <div className="mx-auto my-10 flex w-full max-w-7xl flex-col items-center justify-between md:flex-col 2xl:flex-row lg:flex-row">
+          <div className="px-4 w-full lg:space-y-8 sm:px-8">
+            <p className="mb-6 text-4xl font-bold md:text-6xl sm:text-5xl">
+              Call For Proposals
+            </p>
+            <p className="text-xl text-primary md:text-4xl lg:text-4xl sm:text-3xl">
+              Lets's talk at Pycon ID 2023. We are open for talks submission.
+            </p>
+
+            <Button
+              asChild
+              size="lg"
+              className="mt-10 md:mt-28 md:w-auto lg:mt-8 "
+            >
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://papercall.io/pyconid2023"
+              >
+                Submit you proposal here
+              </a>
+            </Button>
+
+
+
+          </div>
+          <div className="p-6">
+            <img src="cfp_hero.svg" alt="Call For Proposal Hero Illustration" />
+          </div>
+        </div>
+      </div>
     </Layout>
   )
 }
