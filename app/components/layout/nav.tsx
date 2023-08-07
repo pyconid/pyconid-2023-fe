@@ -54,13 +54,13 @@ export function Nav() {
 
   return (
     <CollapsiblePrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
-      <nav className={isOpen ? "fixed z-10 mx-auto block  bg-primary-100  px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-0 2xl:ml-20  w-full":"fixed z-10 mx-auto block  bg-primary-100  px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-0 ml-6 lg:ml-10 sm:ml-8 2xl:ml-20 rounded-full mt-6 w-[90%]"}>
+      <nav className={isOpen ? "fixed z-10 mx-auto block  bg-primary-100  px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-0 2xl:ml-20  w-full":"fixed z-10 mx-auto block  bg-primary-100  px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-0 ml-3 md:ml-6 lg:ml-10 sm:ml-8 2xl:ml-20 rounded-full mt-3 lg:mt-6 w-[95%] lg:w-[90%]"}>
         <div className="flex w-full  justify-between lg:h-full lg:pl-14 ">
-          <div className="h-[100px] w-full lg:w-[10%] lg:pl-0 xl:w-[15%] xl:pl-0 2xl:pl-0">
+          <div className="h-[60px] lg:h-[100px] w-full lg:w-[10%] lg:pl-0 xl:w-[15%] xl:pl-0 2xl:pl-0">
             <Link to="/">
               <img
                 src="/logo.png"
-                className="object w-[100px]"
+                className="object w-[60px] lg:w-[100px]"
                 alt="PyCon ID 2023"
               />
             </Link>
@@ -77,12 +77,12 @@ export function Nav() {
               {isOpen ? (
               <img
                 src="/close-icon.svg"
-                className="object w-[35px]"
+                className="object w-[30px]"
                 alt="PyCon ID 2023"
               /> ) : (
               <img
                 src="/bar-icon.svg"
-                className="object w-[35px]"
+                className="object w-[30px]"
                 alt="PyCon ID 2023"
               />               )}
             </button>
