@@ -22,8 +22,11 @@ model User {
   role   UserRole? @relation(fields: [roleId], references: [id])
   roleId String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  TicketTransaction  TicketTransaction[]
+  Voucher            Voucher[]
+  VoucherTransaction VoucherTransaction[]
 
   @@index([roleId])
 }
@@ -51,4 +54,64 @@ model Speaker {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Ticket {
+  id String @id @default(cuid())
+
+  name  String
+  quota Int
+  price Int
+  etc   String?
+}
+
+model TicketTransaction {
+  id     String  @id @default(cuid())
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  status Boolean
+  etc    String?
+
+  @@index([userId])
+}
+
+model Voucher {
+  id    String @id @default(cuid())
+  name  String
+  code  String
+  quota Int    @default(0)
+
+  requirement   VoucherRequirement? @relation(fields: [requirementId], references: [id])
+  requirementId String?
+
+  discount           Int
+  etc                String
+  User               User?                @relation(fields: [userId], references: [id])
+  userId             String?
+  VoucherTransaction VoucherTransaction[]
+
+  @@index([requirementId])
+  @@index([userId])
+}
+
+model VoucherRequirement {
+  id      String    @id @default(cuid())
+  etc     String
+  Voucher Voucher[]
+}
+
+model VoucherTransaction {
+  id     String  @id @default(cuid())
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  Voucher   Voucher? @relation(fields: [voucherId], references: [id])
+  voucherId String?
+
+  status Boolean
+  etc    String
+
+  @@index([voucherId])
+  @@index([userId])
 }
