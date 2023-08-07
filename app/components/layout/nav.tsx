@@ -99,7 +99,7 @@ export function Nav() {
                     <span
                       className={`flex h-full w-full items-center text-[#757575] ${
                         pathName === item.to ? "font-semibold text-primary" : "font-normal"
-                      }  hover:font-semibold hover:text-primary`}
+                      }  hover:text-primary`}
                     >
                       {item.label}
                     </span>
@@ -109,7 +109,7 @@ export function Nav() {
             })}
           </div>
           <div className="pr-18 hidden items-center justify-end text-lg lg:mr-6 lg:flex lg:w-[15%] lg:space-x-8 lg:text-xs xl:mr-14 xl:w-[10%]">
-          <Button className="bg-cyan-500 text-xs h-10 hover:bg-cyan-500 cursor-not-allowed">
+          <Button className="bg-primary text-xs h-10 cursor-not-allowed">
             Sign Up(Soon)            
           </Button>
 
@@ -141,7 +141,7 @@ export function Nav() {
                 })}
               </div>
               <div className="flex items-center justify-center p-4">
-                <Button className="bg-cyan-500 text-xs h-10 hover:bg-cyan-500 cursor-not-allowed">
+                <Button className="text-xs h-10 bg-primary cursor-not-allowed">
                   Sign Up(Soon)            
                 </Button>
               </div>
