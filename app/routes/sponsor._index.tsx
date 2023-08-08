@@ -143,7 +143,7 @@ export default function Index() {
           companies are searching for, so much that we added on-site Job Fair to
           make it even easier.
         </p>
-        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 pb-20">
           {benefits.map((benefit, i) => (
             <SponsorshipCard
               key={`benefit-${i}`}
