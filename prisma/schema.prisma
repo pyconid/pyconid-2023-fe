@@ -22,11 +22,14 @@ model User {
   role   UserRole? @relation(fields: [roleId], references: [id])
   roleId String?
 
-  createdAt          DateTime             @default(now())
-  updatedAt          DateTime             @updatedAt
-  TicketTransaction  TicketTransaction[]
-  Voucher            Voucher[]
-  VoucherTransaction VoucherTransaction[]
+  ticketTransactions  TicketTransaction[]
+  vouchers            Voucher[]
+  voucherTransactions VoucherTransaction[]
+
+  speaker Speaker? // User can link as the Speaker
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([roleId])
 }
@@ -48,12 +51,18 @@ model UserRole {
 model Speaker {
   id String @id @default(cuid())
 
-  name String
   slug String  @unique
+  name String  @unique
   bio  String?
+
+  // Speaker can link with their User account
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String? @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([userId])
 }
 
 model Ticket {
