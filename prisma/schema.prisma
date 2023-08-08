@@ -62,55 +62,84 @@ model Ticket {
   name  String
   quota Int
   price Int
-  etc   String?
+
+  description String?
+
+  transactions TicketTransaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model TicketTransaction {
-  id     String  @id @default(cuid())
+  id String @id @default(cuid())
+
+  status      Boolean
+  description String?
+
+  ticket   Ticket? @relation(fields: [ticketId], references: [id])
+  ticketId String?
+
   user   User?   @relation(fields: [userId], references: [id])
   userId String?
 
-  status Boolean
-  etc    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
+  @@index([ticketId])
 }
 
 model Voucher {
-  id    String @id @default(cuid())
+  id String @id @default(cuid())
+
   name  String
   code  String
   quota Int    @default(0)
 
+  discount    Int
+  description String
+
+  transactions VoucherTransaction[]
+
   requirement   VoucherRequirement? @relation(fields: [requirementId], references: [id])
   requirementId String?
 
-  discount           Int
-  etc                String
-  User               User?                @relation(fields: [userId], references: [id])
-  userId             String?
-  VoucherTransaction VoucherTransaction[]
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([requirementId])
   @@index([userId])
 }
 
 model VoucherRequirement {
-  id      String    @id @default(cuid())
-  etc     String
-  Voucher Voucher[]
+  id String @id @default(cuid())
+
+  description String
+
+  vouchers Voucher[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model VoucherTransaction {
-  id     String  @id @default(cuid())
-  User   User?   @relation(fields: [userId], references: [id])
-  userId String?
+  id String @id @default(cuid())
 
-  Voucher   Voucher? @relation(fields: [voucherId], references: [id])
+  status      Boolean
+  description String
+
+  voucher   Voucher? @relation(fields: [voucherId], references: [id])
   voucherId String?
 
-  status Boolean
-  etc    String
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([voucherId])
   @@index([userId])
