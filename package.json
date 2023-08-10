@@ -15,7 +15,9 @@
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
-    "db:studio": "prisma studio --browser none"
+    "db:studio": "prisma studio --browser none",
+    "prestart": "prisma db push --accept-data-loss",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@fontsource/open-sans": "^5.0.5",
