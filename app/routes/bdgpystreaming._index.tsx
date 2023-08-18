@@ -13,6 +13,7 @@ export const meta: V2_MetaFunction = () => {
 }
 
 export default function Index() {
+    const studioID = "8biqBKFN7RwP";
     return (
         <Layout>
             <div className="flex min-h-[300px] w-full items-center bg-primary-100 lg:min-h-[430px] 2xl:min-h-[550px] lg:px-5">
@@ -21,7 +22,7 @@ export default function Index() {
                         className="w-full h-[26vh] md:h-[36vh] lg:h-[70vh] xl:h-[76vh] relative"
                     >
                         <iframe
-                            src="https://streamyard.com/watch/v5nBXrDmkyDf?embed=true"
+                            src={`https://streamyard.com/watch/${studioID}?embed=true`}
                             width="100%"
                             height="100%"
                             allowFullScreen
