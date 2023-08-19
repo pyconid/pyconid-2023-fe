@@ -23,10 +23,8 @@ export default function Index() {
                     >
                         <iframe
                             src={`https://streamyard.com/watch/${studioID}?embed=true`}
-                            width="100%"
-                            height="100%"
                             allowFullScreen
-                            className="w-[90%] h-[90%] mx-auto border border-solid border-primary-200"
+                            className="w-[90%] aspect-video mx-auto border border-solid border-primary-200"
                         >
                         </iframe>
                     </div>
