@@ -10,8 +10,7 @@ jobs:
       - name: Setup NodeJS
         uses: pnpm/action-setup@v2
         with:
-          node-version: 18.x
-          cache: "pnpm"
+          version: 8
       - name: Install
         run: pnpm install
       - name: Rerun install
@@ -25,8 +24,7 @@ jobs:
       - name: Setup NodeJS
         uses: pnpm/action-setup@v2
         with:
-          node-version: 18.x
-          cache: "pnpm"
+          version: 8
       - name: install
         run: pnpm install
       - name: Generate Prisma Client
@@ -40,8 +38,7 @@ jobs:
       - name: Setup NodeJS
         uses: pnpm/action-setup@v2
         with:
-          node-version: 18.x
-          cache: "pnpm"
+          version: 8
       - name: install
         run: pnpm install
       - run: rm -rf node_modules/.prisma
