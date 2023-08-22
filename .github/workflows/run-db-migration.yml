@@ -44,6 +44,8 @@ jobs:
       - run: rm -rf node_modules/.prisma
       - name: Validate Prisma schema
         run: pnpm prisma validate
+        env:
+          DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
 
   migrate:
     runs-on: ubuntu-latest
