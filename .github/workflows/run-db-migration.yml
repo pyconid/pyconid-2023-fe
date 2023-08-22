@@ -1,0 +1,51 @@
+name: run-db-migration
+run-name: ${{ github.actor }} is running database migrations
+on: 
+  workflow_dispatch:
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "pnpm"
+      - name: Install
+        run: pnpm install
+      - name: Rerun install
+        run: pnpm install
+  
+  generate:
+    runs-on: ubuntu-latest
+    needs: install
+    steps: 
+      - uses: actions/checkout@v3
+      - name: Setup NodeJS
+        uses: action/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "pnpm"
+      - name: install
+        run: pnpm install
+      - name: Generate Prisma Client
+        run: pnpm prisma generate
+
+  migrate:
+    runs-on: ubuntu-latest
+    needs: install
+    steps: 
+      - uses: actions/checkout@v3
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "pnpm"
+      - name: install
+        run: pnpm install
+      - run: rm -rf node_modules/.prisma
+      - name: Deploy Migrations
+        run: pnpm prisma db push
+        env:
+          DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
