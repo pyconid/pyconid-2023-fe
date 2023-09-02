@@ -14,7 +14,7 @@ export default function Index() {
         <p>
           A code of conduct is a set of rules outlining the norms, rules, and
           responsibilities of, and or proper practices for an individual. By
-          attending PyCon ID 2021, you agree with the Code of Conduct.
+          attending PyCon ID 2023, you agree with the Code of Conduct.
         </p>
 
         <div className="space-y-16">
