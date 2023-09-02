@@ -178,7 +178,7 @@ model VoucherTransaction {
 model VoucherWhitelist {
   id String @id @default(cuid())
 
-  description String
+  email String
 
   voucher   Voucher? @relation(fields: [voucherId], references: [id])
   voucherId String?
