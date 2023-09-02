@@ -123,7 +123,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border-2 border-solid border-primary-orange">
+          <div className="overflow-hidden rounded-2xl border-2 border-solid border-primary-purple">
             <div className="bg-primary-purple p-2">
               <h3 className="pl-3 text-2xl font-semibold text-white">
                 Reporting an Incident
@@ -132,7 +132,7 @@ export default function Index() {
             <div className="px-2">
               <ul>
                 <li>
-                  If you believe that someone is violating the code of conduct, or have any other concerns, please contact a member of the event staff immediately.
+                  If you believe that someone is violating the code of conduct or have any other concerns, please contact a member of the event staff immediately.
                 </li> 
                 <li>
                   They can be reached by emailing pycon@python.or.id or direct messages us on social media.
