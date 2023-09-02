@@ -124,6 +124,23 @@ export default function Index() {
           </div>
 
           <div className="overflow-hidden rounded-2xl border-2 border-solid border-primary-orange">
+            <div className="bg-primary-purple p-2">
+              <h3 className="pl-3 text-2xl font-semibold text-white">
+                Reporting an Incident
+              </h3>
+            </div>
+            <div className="px-7">
+              <p className="text-gray-800">
+                If you believe that someone is violating the code of conduct, or have any other concerns, \please contact a member of the event staff immediately. 
+                They can be reached by emailing pycon@python.or.id or direct messages us on social media. 
+                Please give titles about Reporting Code of Conduct Violation so we can immediately respond.
+                On the conference day, you can also reporting a code of conduct violation by directly approaching one of our staff in the venue.
+                We expect participants to respect each others and help us to keep the conference safe for everyone.
+              </p>
+            </div>
+          </div>
+          
+          <div className="overflow-hidden rounded-2xl border-2 border-solid border-primary-orange">
             <div className="bg-primary-orange p-2">
               <h3 className="pl-3 text-2xl font-semibold text-white">
                 License
