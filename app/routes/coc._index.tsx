@@ -138,8 +138,7 @@ export default function Index() {
                 We expect participants to respect each others and help us to keep the conference safe for everyone.
               </p>
             </div>
-          </div>
-        </div>
+          </div
           
           <div className="overflow-hidden rounded-2xl border-2 border-solid border-primary-orange">
             <div className="bg-primary-orange p-2">
