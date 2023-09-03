@@ -18,7 +18,7 @@ model User {
   email    String @unique
   name     String
   username String @unique
-  phone    String @unique
+  phone    String
 
   role   UserRole? @relation(fields: [roleId], references: [id])
   roleId String?
