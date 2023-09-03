@@ -74,6 +74,7 @@ model Ticket {
   quota Int
   price Int
 
+  earlyBird Boolean @default(false)
   description String?
 
   transactions TicketTransaction[]
@@ -100,7 +101,7 @@ model TicketFeature {
 model TicketTransaction {
   id String @id @default(cuid())
 
-  status      Boolean
+  status      String @default("pending")
   description String?
 
   ticket   Ticket? @relation(fields: [ticketId], references: [id])
