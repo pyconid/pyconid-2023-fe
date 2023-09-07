@@ -108,6 +108,7 @@ model TicketTransaction {
   ticket   Ticket? @relation(fields: [ticketId], references: [id])
   ticketId String?
   paymentId String
+  paymentLink String
   transactionId String
 
   user   User?   @relation(fields: [userId], references: [id])
