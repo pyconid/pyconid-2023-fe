@@ -1,6 +1,14 @@
 import { json } from "@remix-run/node"
-import { Link, useLoaderData } from "@remix-run/react"
+import type { V2_MetaFunction } from "@remix-run/node"
+import { useLoaderData } from "@remix-run/react"
 import { prisma } from "~/db.server"
+
+import { Layout } from "~/components"
+import { SpeakerCard } from "~/components/speakers"
+
+export const meta: V2_MetaFunction = () => {
+  return [{ title: "Speakers" }]
+}
 
 export async function loader() {
   const speakers = await prisma.speaker.findMany()
@@ -12,20 +20,24 @@ export default function Route() {
   const { speakers } = useLoaderData<typeof loader>()
 
   return (
-    <div>
-      <h1>Speakers</h1>
-      <ul>
-        {speakers.map((speaker) => {
-          return (
-            <li key={speaker.id}>
-              <Link to={`/speakers/${speaker.slug}`}>
-                <h4>{speaker.name}</h4>
-              </Link>
-              <p>{speaker.bio}</p>
-            </li>
-          )
-        })}
-      </ul>
-    </div>
+    <Layout>
+      <div className="pb-10 pt-5 text-center lg:py-20">
+        <h1 className="mb-6 font-brand text-5xl font-semibold text-primary lg:text-6xl">
+          Speakers
+        </h1>
+        <p className="mx-auto w-full text-xl tracking-tight lg:w-[600px] lg:text-3xl">
+          Meet the pycon speakers who are speaking at this event
+        </p>
+      </div>
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="mt-2 grid gap-4 lg:grid-cols-3">
+          {speakers.map((speaker, i) => (
+            <SpeakerCard key={speaker.id} name={speaker.name} index={i}>
+              {speaker.bio}
+            </SpeakerCard>
+          ))}
+        </div>
+      </div>
+    </Layout>
   )
 }

@@ -13,6 +13,7 @@ async function main() {
       email: "admin@pycon.id",
       name: "Admin",
       username: "admin",
+      phone: "+6281111",
     },
   })
 
