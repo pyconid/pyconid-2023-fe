@@ -18,7 +18,7 @@ model User {
   email    String @unique
   name     String
   username String @unique
-  phone    String?
+  phone    String @default("https://pycon.id")
 
   role   UserRole? @relation(fields: [roleId], references: [id])
   roleId String?
@@ -108,7 +108,7 @@ model TicketTransaction {
   ticket   Ticket? @relation(fields: [ticketId], references: [id])
   ticketId String?
   paymentId String
-  paymentLink String?
+  paymentLink String @default("https://pycon.id")
   transactionId String
 
   user   User?   @relation(fields: [userId], references: [id])
