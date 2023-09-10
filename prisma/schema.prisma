@@ -25,7 +25,11 @@ model User {
   role   UserRole? @relation(fields: [roleId], references: [id])
   roleId String?
 
-  participantType String @default("non-participant")
+  participantType ParticipantType? @relation(fields: [participantTypeId], references: [id])
+  participantTypeId String?
+
+  jobCategory jobCategory? @relation(fields: [jobCategoryId], references: [id])
+  jobCategoryId String?
 
   ticketTransactions  TicketTransaction[]
   vouchers            Voucher[]
@@ -39,6 +43,8 @@ model User {
   emailVerifiedAt DateTime? @db.Timestamp(0)
 
   @@index([roleId])
+  @@index([participantTypeId])
+  @@index([jobCategoryId])
 }
 
 model UserVerify {
@@ -61,6 +67,32 @@ model UserRole {
   sequence    Int    @unique // 1 | 2 | 3 | ...
   symbol      String @unique // "ADMIN" | "MANAGER" | "EDITOR"
   name        String @unique // "Administrator" | "Manager" | "Editor"
+  description String @db.Text // "Manage everything"
+
+  users User[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ParticipantType {
+  id String @id @default(cuid())
+
+  symbol      String @unique // "NON_PARTICIPANT" | "IN_PERSON_PARTICIPANT" | "ONLINE_PARTICIPANT" | "COMMITEE" | "SPEAKER" | "SPONSOR" | "COMMUNITY" | "VOLUNTEER" | "PATRON"
+  name        String @unique // "Participant" | "In Person Participant" | "Online Participant" | "Commitee" | "Speaker" | "Sponsor" | "Community" | "Volunteer" | "Patron"
+  description String @db.Text // "Manage everything"
+
+  users User[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model jobCategory {
+  id String @id @default(cuid())
+
+  symbol      String @unique // EXAMPLE : "STUDENT" | "TECH_SPECIALIST"
+  name        String @unique // Example : "Student" | "Tech Specialist"
   description String @db.Text // "Manage everything"
 
   users User[]
