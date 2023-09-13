@@ -29,8 +29,8 @@ export default function Route() {
           Meet the pycon speakers who are speaking at this event
         </p>
       </div>
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="mt-2 grid gap-4 lg:grid-cols-3">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="mt-2 grid gap-4 md:grid-cols-2 md:gap-10 lg:grid-cols-3">
           {speakers.map((speaker, i) => (
             <SpeakerCard key={speaker.id} name={speaker.name} index={i}>
               {speaker.bio}
