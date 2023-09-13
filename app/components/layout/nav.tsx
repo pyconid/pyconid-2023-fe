@@ -31,7 +31,7 @@ export function Nav() {
       label: "Organizer",
     },
   ]
-  
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [screenWidth, setScreenWidth] = useState(0);
   const handleResize = () => {
@@ -39,7 +39,7 @@ export function Nav() {
     setIsOpen(false);
   };
 
- useEffect(() => {
+  useEffect(() => {
     if (typeof window !== 'undefined') {
       setScreenWidth(window.innerWidth);
       window.addEventListener('resize', handleResize);
@@ -54,7 +54,7 @@ export function Nav() {
 
   return (
     <CollapsiblePrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
-      <nav className={isOpen ? "fixed z-10 mx-auto block  bg-primary-100  px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-0 2xl:ml-20  w-full":"fixed z-10 mx-auto block  bg-primary-100  px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-0 ml-3 md:ml-6 lg:ml-10 sm:ml-8 2xl:ml-20 rounded-full mt-3 lg:mt-6 w-[95%] lg:w-[90%]"}>
+      <nav className={isOpen ? "fixed z-10 mx-auto block  bg-primary-100  px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-0 2xl:ml-10 2xl:mr-10  w-full" : "fixed z-10 mx-auto block  bg-primary-100  px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:px-0 ml-3 md:ml-6 lg:ml-[4%] lg:mr[5%] sm:ml-8 2xl:ml-20 rounded-full mt-3 lg:mt-6 w-[95%] lg:w-[90%]"}>
         <div className="flex w-full  justify-between lg:h-full lg:pl-14 ">
           <div className="h-[60px] lg:h-[100px] w-full lg:w-[10%] lg:pl-0 xl:w-[15%] xl:pl-0 2xl:pl-0">
             <Link to="/">
@@ -75,31 +75,30 @@ export function Nav() {
               <span className="sr-only">Open main menu</span>
 
               {isOpen ? (
-              <img
-                src="/close-icon.svg"
-                className="object w-[30px]"
-                alt="PyCon ID 2023"
-              /> ) : (
-              <img
-                src="/bar-icon.svg"
-                className="object w-[30px]"
-                alt="PyCon ID 2023"
-              />               )}
+                <img
+                  src="/close-icon.svg"
+                  className="object w-[30px]"
+                  alt="PyCon ID 2023"
+                />) : (
+                <img
+                  src="/bar-icon.svg"
+                  className="object w-[30px]"
+                  alt="PyCon ID 2023"
+                />)}
             </button>
           </CollapsiblePrimitive.Trigger>
 
-          <div className="hidden md:ml-6 md:space-x-8 lg:flex lg:w-[70%] lg:space-x-5 xl:ml-0 xl:w-[60%] xl:space-x-8 2xl:ml-6 2xl:w-[60%]">
+          <div className={`hidden md:ml-6 md:space-x-8 lg:flex lg:w-[60%] lg:space-x-5 xl:ml-0 xl:w-[60%] xl:space-x-8  ${screenWidth >= 1536 && screenWidth <= 1564 ? '2xl:w-[65%] ' : '2xl:w-[60%] 2xl:ml-6 '}`}>
             {navLink.map((item, index) => {
               return (
                 <div key={index} className="item-center flex">
                   <Link
                     to={item.to}
-                    className="xl:text-md inline-flex items-center px-1 pt-1 text-xs font-medium 2xl:text-lg"
+                    className="xl:text-md inline-flex items-center px-1 pt-1 text-xs font-medium 2xl:text-lg text-center"
                   >
                     <span
-                      className={`flex h-full w-full items-center text-[#757575] ${
-                        pathName === item.to ? "font-semibold text-primary" : "font-normal"
-                      }  hover:text-primary`}
+                      className={`flex h-full w-full items-center text-[#757575] ${pathName === item.to ? "font-semibold text-primary" : "font-normal"
+                        }  hover:text-primary`}
                     >
                       {item.label}
                     </span>
@@ -109,9 +108,9 @@ export function Nav() {
             })}
           </div>
           <div className="pr-18 hidden items-center justify-end text-lg lg:mr-6 lg:flex lg:w-[15%] lg:space-x-8 lg:text-xs xl:mr-14 xl:w-[10%]">
-          <Button className="bg-primary text-xs h-10 cursor-not-allowed">
-            Sign Up(Soon)            
-          </Button>
+            <Button className="bg-primary text-xs h-10 cursor-not-allowed">
+              Sign Up(Soon)
+            </Button>
 
           </div>
         </div>
@@ -120,18 +119,17 @@ export function Nav() {
             <div id="mobile-menu">
               <div className="space-y-1 pb-3 pt-2">
                 {navLink.map((item, index) => {
-                  return ( 
+                  return (
                     <div key={index}>
                       <Link
                         to={item.to}
                         className="block pl-3 pr-4 text-base font-medium text-[#757575] sm:pl-5 sm:pr-6"
                       >
                         <span
-                          className={`flex h-full w-full items-center py-2 ${
-                            pathName === item.to
-                              ? "font-semibold text-primary"
-                              : "font-normal"
-                          } `}
+                          className={`flex h-full w-full items-center py-2 ${pathName === item.to
+                            ? "font-semibold text-primary"
+                            : "font-normal"
+                            } `}
                         >
                           {item.label}
                         </span>
@@ -142,7 +140,7 @@ export function Nav() {
               </div>
               <div className="flex items-center justify-center p-4">
                 <Button className="text-xs h-10 bg-primary cursor-not-allowed">
-                  Sign Up(Soon)            
+                  Sign Up(Soon)
                 </Button>
               </div>
             </div>
