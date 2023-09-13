@@ -53,7 +53,16 @@ export default function Index() {
                   src="/Pin_alt_fill.svg"
                   alt="maps"
                 />
-                <span>Venue, <a href="https://goo.gl/maps/ZdesfzswxdeJfiSm7" target="_blank">Binus @Bandung</a></span>
+                <span>
+                  Venue,{" "}
+                  <a
+                    href="https://goo.gl/maps/ZdesfzswxdeJfiSm7"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Binus @Bandung
+                  </a>
+                </span>
               </p>
             </div>
             <Button className="font-bold" size="lg" disabled>
