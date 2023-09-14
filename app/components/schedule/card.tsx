@@ -4,11 +4,7 @@ import { cva } from "class-variance-authority"
 import { cn } from "~/libs"
 
 import { Button } from "../ui"
-import {
-  CATEGORIES_DISPLAY,
-  type CATEGORIES,
-  type Categories,
-} from "./constant"
+import { CATEGORIES_DISPLAY, type Categories } from "./constant"
 
 type ScheduleCardKeynote = {
   type: "keynote"
@@ -70,17 +66,20 @@ const PodiumCategories = ({ categories }: PodiumCategoriesProps) => {
   )
 }
 
-const scheduleCardVariants = cva("flex flex-col items-start gap-4 rounded-xl", {
-  variants: {
-    type: {
-      keynote: "border border-primary bg-primary/10 p-10",
-      podium: "border border-primary px-10 py-16",
+const scheduleCardVariants = cva(
+  "flex flex-col items-start gap-4 rounded-3xl lg:rounded-xl",
+  {
+    variants: {
+      type: {
+        keynote: "border border-primary bg-primary/10 p-6 lg:p-10",
+        podium: "border border-primary p-6 lg:px-10 lg:py-16",
+      },
+    },
+    defaultVariants: {
+      type: "keynote",
     },
   },
-  defaultVariants: {
-    type: "keynote",
-  },
-})
+)
 
 type ScheduleCardTypes = ScheduleCardKeynote | ScheduleCardPodium
 
@@ -95,9 +94,11 @@ const ScheduleCard = (props: ScheduleCardProps) => {
       {type === "podium" && (
         <PodiumSection podiumNo={props.podiumNo} tags={props.tags} />
       )}
-      <h1 className="text-3xl font-bold">{title}</h1>
-      <p className="text-xl">{description}</p>
-      {type === "keynote" && <span className="text-xl">{props.time}</span>}
+      <h1 className="text-xl font-bold lg:text-3xl">{title}</h1>
+      <p className="text-lg lg:text-xl">{description}</p>
+      {type === "keynote" && (
+        <span className="text-lg lg:text-xl">{props.time}</span>
+      )}
       {type === "podium" && <PodiumCategories categories={props.categories} />}
       <Button size="lg" className="flex-shrink-0" asChild>
         <Link to={url}>Watch Now</Link>

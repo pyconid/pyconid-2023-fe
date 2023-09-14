@@ -66,7 +66,7 @@ type ScheduleTabsProps = {
 const ScheduleTabs = ({ tabs }: ScheduleTabsProps) => {
   const { activeTabs } = useScheduleTabs()
   return (
-    <div className="sticky top-0 mx-auto -mb-8 -mt-24 flex w-full items-center justify-center gap-10 bg-white pb-16 pt-[calc(96px+3rem)]">
+    <div className="sticky top-0 mx-auto -mb-8 -mt-24 flex w-full items-center justify-center gap-10 bg-white pb-16 pt-[calc(64px+3rem)] lg:pt-[calc(96px+3rem)]">
       {tabs.map(({ id, title }) => (
         <TabItem
           key={id}

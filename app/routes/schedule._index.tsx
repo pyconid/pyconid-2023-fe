@@ -17,7 +17,7 @@ const tabs = [
 export default function Route() {
   return (
     <Layout>
-      <div className="relative z-[3] bg-white pt-5 text-center">
+      <div className="relative z-[3] bg-white px-4 pt-5 text-center">
         <h1 className="mb-6 font-brand text-5xl font-semibold text-primary lg:text-6xl">
           Schedule
         </h1>
@@ -49,7 +49,7 @@ export default function Route() {
             </div>
           </ScheduleTabs.Content>
           <Header variant="main" title="18 November 2023 10:00 AM" />
-          <ScheduleTabs.Content className="mb-4 grid grid-cols-2 gap-4">
+          <ScheduleTabs.Content className="mb-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
             <ScheduleCard
               type="podium"
               podiumNo={1}
@@ -114,7 +114,7 @@ export default function Route() {
             />
           </ScheduleTabs.Content>
           <Header variant="main" title="19 November 2023 10:00 AM" />
-          <ScheduleTabs.Content className="mb-20 grid grid-cols-2 gap-4">
+          <ScheduleTabs.Content className="mb-20 grid grid-cols-1 gap-4 lg:grid-cols-2">
             <ScheduleCard
               type="podium"
               podiumNo={1}
