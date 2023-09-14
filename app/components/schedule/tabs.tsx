@@ -66,7 +66,7 @@ type ScheduleTabsProps = {
 const ScheduleTabs = ({ tabs }: ScheduleTabsProps) => {
   const { activeTabs } = useScheduleTabs()
   return (
-    <div className="sticky top-[148px] mx-auto mb-8 mt-16 flex w-full items-center justify-center gap-10">
+    <div className="sticky top-0 mx-auto -mb-8 -mt-24 flex w-full items-center justify-center gap-10 bg-white pb-16 pt-[calc(96px+3rem)]">
       {tabs.map(({ id, title }) => (
         <TabItem
           key={id}
@@ -84,15 +84,15 @@ const ScheduleTabs = ({ tabs }: ScheduleTabsProps) => {
 }
 
 type TabContentProps = {
-  children: string
-  contentFor: string
+  contentFor?: string
   offset?: number
-}
+} & React.HTMLAttributes<HTMLDivElement>
 
 const TabContent = ({
   children,
   contentFor,
   offset = -450,
+  className,
 }: TabContentProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
   const { setActiveTabs } = useScheduleTabs()
@@ -100,7 +100,7 @@ const TabContent = ({
   useEffect(() => {
     const scrollSpyHandler = throttle(() => {
       const section = ref.current
-      if (!section) return
+      if (!section || !contentFor) return
       if (section.getBoundingClientRect().top + offset < 0) {
         setActiveTabs(contentFor)
       }
@@ -115,7 +115,11 @@ const TabContent = ({
   }, [])
 
   return (
-    <div ref={ref} data-st={contentFor} className="h-[800px] scroll-m-80">
+    <div
+      ref={ref}
+      data-st={contentFor}
+      className={cn("scroll-m-80", className)}
+    >
       {children}
     </div>
   )

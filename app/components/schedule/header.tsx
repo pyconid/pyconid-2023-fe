@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "~/libs"
 
 const headerVariants = cva(
-  "sticky top-[240px] mb-4 w-full rounded-2xl py-4 px-8 text-white h-[72px]",
+  "sticky top-[230px] mb-4 w-full rounded-2xl py-4 px-8 text-white h-[72px]",
   {
     variants: {
       variant: {
