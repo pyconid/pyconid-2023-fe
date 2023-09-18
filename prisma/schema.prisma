@@ -15,22 +15,21 @@ generator client {
 model User {
   id String @id @default(cuid())
 
-  email           String  @unique
-  firstName       String
-  lastName        String?
-  username        String  @unique
-  phone           String?
-  password        String?
-  token           String?
-  organisation    String?
-  jobTitle        String?
-  tShirtSize      String?
-  gender          String?
-  dateOfBirth     DateTime?
-  country         String?
-  state           String?
-  city            String?
-
+  email        String    @unique
+  firstName    String
+  lastName     String?
+  username     String    @unique
+  phone        String?
+  password     String?
+  token        String?
+  organisation String?
+  jobTitle     String?
+  tShirtSize   String?
+  gender       String?
+  dateOfBirth  DateTime?
+  country      String?
+  state        String?
+  city         String?
 
   role   UserRole? @relation(fields: [roleId], references: [id])
   roleId String?
@@ -92,12 +91,12 @@ model UserRole {
 model ParticipantType {
   id String @id @default(cuid())
 
-  symbol      String @unique // "NON_PARTICIPANT" | "IN_PERSON_PARTICIPANT" | "ONLINE_PARTICIPANT" | "COMMITEE" | "SPEAKER" | "SPONSOR" | "COMMUNITY" | "VOLUNTEER" | "PATRON"
-  name        String @unique // "Participant" | "In Person Participant" | "Online Participant" | "Commitee" | "Speaker" | "Sponsor" | "Community" | "Volunteer" | "Patron"
-  description String @db.Text // "Manage everything"
+  symbol      String  @unique // "NON_PARTICIPANT" | "IN_PERSON_PARTICIPANT" | "ONLINE_PARTICIPANT" | "COMMITEE" | "SPEAKER" | "SPONSOR" | "COMMUNITY" | "VOLUNTEER" | "PATRON"
+  name        String  @unique // "Participant" | "In Person Participant" | "Online Participant" | "Commitee" | "Speaker" | "Sponsor" | "Community" | "Volunteer" | "Patron"
+  description String? @db.Text // "Manage everything"
 
-  users User[]
-  tickets Ticket[]
+  users    User[]
+  tickets  Ticket[]
   vouchers Voucher[]
 
   createdAt DateTime @default(now())
@@ -107,9 +106,9 @@ model ParticipantType {
 model JobCategory {
   id String @id @default(cuid())
 
-  symbol      String @unique // EXAMPLE : "STUDENT" | "TECH_SPECIALIST"
-  name        String @unique // Example : "Student" | "Tech Specialist"
-  description String @db.Text // "Manage everything"
+  symbol      String  @unique // EXAMPLE : "STUDENT" | "TECH_SPECIALIST"
+  name        String  @unique // Example : "Student" | "Tech Specialist"
+  description String? @db.Text // "Manage everything"
 
   users User[]
 
@@ -150,9 +149,9 @@ model Speaker {
 model Ticket {
   id String @id @default(cuid())
 
-  name        String
-  quota       Int
-  price       Int  
+  name  String
+  quota Int
+  price Int
 
   participantType   ParticipantType? @relation(fields: [participantTypeId], references: [id])
   participantTypeId String?
@@ -241,7 +240,7 @@ model VoucherTransaction {
   description String
 
   ticketTransaction   TicketTransaction @relation(fields: [ticketTransactionId], references: [id])
-  ticketTransactionId String  @unique
+  ticketTransactionId String            @unique
 
   voucher   Voucher? @relation(fields: [voucherId], references: [id])
   voucherId String?

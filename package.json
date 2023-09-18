@@ -21,6 +21,8 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@conform-to/react": "^0.9.0",
+    "@conform-to/zod": "^0.9.0",
     "@fontsource/open-sans": "^5.0.8",
     "@fontsource/quicksand": "^5.0.8",
     "@prisma/client": "5.1.1",
@@ -28,6 +30,7 @@
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-collapsible": "^1.0.3",
     "@radix-ui/react-icons": "1.3.0",
+    "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-popover": "^1.0.6",
     "@radix-ui/react-select": "^1.2.2",
     "@radix-ui/react-slot": "1.0.2",
@@ -46,7 +49,8 @@
     "react-day-picker": "^8.8.2",
     "react-dom": "^18.2.0",
     "tailwind-merge": "1.14.0",
-    "tailwindcss-animate": "1.0.6"
+    "tailwindcss-animate": "1.0.6",
+    "zod": "^3.22.2"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.1.0",
