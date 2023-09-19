@@ -15,31 +15,31 @@ generator client {
 model User {
   id String @id @default(cuid())
 
-  email     String @unique
+  email     String  @unique
   firstName String
   lastName  String?
-  username  String @unique
+  username  String  @unique
   phone     String?
   password  String?
 
   role   UserRole? @relation(fields: [roleId], references: [id])
   roleId String?
 
-  participantType ParticipantType? @relation(fields: [participantTypeId], references: [id])
+  participantType   ParticipantType? @relation(fields: [participantTypeId], references: [id])
   participantTypeId String?
 
-  jobCategory jobCategory? @relation(fields: [jobCategoryId], references: [id])
+  jobCategory   jobCategory? @relation(fields: [jobCategoryId], references: [id])
   jobCategoryId String?
 
   ticketTransactions  TicketTransaction[]
   vouchers            Voucher[]
   voucherTransactions VoucherTransaction[]
 
-  speaker Speaker? // User can link as the Speaker
+  speaker    Speaker? // User can link as the Speaker
   userVerify UserVerify[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
   emailVerifiedAt DateTime? @db.Timestamp(0)
 
   @@index([roleId])
@@ -48,12 +48,12 @@ model User {
 }
 
 model UserVerify {
-  id      String @id @default(cuid())
+  id String @id @default(cuid())
 
-  token   String @unique
-  type    String // verify | reset-password
-  user    User  @relation(fields: [userId], references: [id])
-  userId  String
+  token  String @unique
+  type   String // verify | reset-password
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -125,11 +125,11 @@ model Ticket {
   quota Int
   price Int
 
-  earlyBird Boolean @default(false)
-  description String?
+  earlyBird   Boolean @default(false)
+  description String? @db.Text
 
   transactions TicketTransaction[]
-  features TicketFeature[]
+  features     TicketFeature[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -152,13 +152,13 @@ model TicketFeature {
 model TicketTransaction {
   id String @id @default(cuid())
 
-  status      String @default("pending")
+  status      String  @default("pending")
   description String?
 
-  ticket   Ticket? @relation(fields: [ticketId], references: [id])
-  ticketId String?
-  paymentId String
-  paymentLink String @default("https://pycon.id")
+  ticket        Ticket? @relation(fields: [ticketId], references: [id])
+  ticketId      String?
+  paymentId     String
+  paymentLink   String  @default("https://pycon.id")
   transactionId String
 
   user   User?   @relation(fields: [userId], references: [id])
@@ -174,16 +174,16 @@ model TicketTransaction {
 model Voucher {
   id String @id @default(cuid())
 
-  name  String
-  code  String
-  quota Int    @default(0)
+  name    String
+  code    String
+  quota   Int     @default(0)
   private Boolean @default(false)
 
   discount    Int
   description String
 
   transactions VoucherTransaction[]
-  whitelists VoucherWhitelist[]
+  whitelists   VoucherWhitelist[]
 
   requirement   VoucherRequirement? @relation(fields: [requirementId], references: [id])
   requirementId String?
