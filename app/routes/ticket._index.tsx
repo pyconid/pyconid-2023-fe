@@ -59,7 +59,7 @@ export default function Route() {
               <TicketCard key={ticket.id} data={ticket} index={i} />
             ))}
           </div>
-          <div className="flex flex-wrap justify-center gap-10">
+          <div className="mt-5 flex flex-wrap justify-center gap-10">
             {nonEarlyBirdsTicket.map((ticket, i) => (
               <TicketCard
                 key={ticket.id}
@@ -68,7 +68,7 @@ export default function Route() {
               />
             ))}
           </div>
-          <Button size="lg" className="mt-20 w-full max-w-md" disabled>
+          <Button size="lg" className="mt-20 w-full max-w-md text-lg" disabled>
             Buy Ticket
           </Button>
         </div>

@@ -53,6 +53,7 @@ function TicketCard({ index = 0, data, className }: TicketCardProps) {
           {features.map(({ id, feature }) => (
             <li className="flex gap-3" key={id}>
               <svg
+                className="flex-none"
                 width="25"
                 height="24"
                 viewBox="0 0 25 24"
