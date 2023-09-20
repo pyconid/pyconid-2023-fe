@@ -21,6 +21,7 @@ model User {
   username  String  @unique
   phone     String?
   password  String?
+  token String?
 
   role   UserRole? @relation(fields: [roleId], references: [id])
   roleId String?
