@@ -76,6 +76,13 @@ const userSigninSchema = z.object({
   password,
 })
 
+const userSignupSchema = z.object({
+  firstName,
+  lastName,
+  email,
+  password,
+})
+
 const userUpdateSchema = z.object({
   id,
   firstName,
@@ -107,4 +114,4 @@ const userUpdateSchema = z.object({
   publicFields,
 })
 
-export { userUpdateSchema, userSigninSchema }
+export { userUpdateSchema, userSigninSchema, userSignupSchema }
