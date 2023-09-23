@@ -15,13 +15,22 @@ generator client {
 model User {
   id String @id @default(cuid())
 
-  email     String  @unique
-  firstName String
-  lastName  String?
-  username  String  @unique
-  phone     String?
-  password  String?
-  token String?
+  email           String  @unique
+  firstName       String
+  lastName        String?
+  username        String  @unique
+  phone           String?
+  password        String?
+  token           String?
+  organisation    String?
+  jobTitle        String?
+  tShirtSize      String?
+  gender          String?
+  dateOfBirth     DateTime?
+  country         String?
+  state           String?
+  city            String?
+
 
   role   UserRole? @relation(fields: [roleId], references: [id])
   roleId String?
@@ -31,6 +40,9 @@ model User {
 
   jobCategory   jobCategory? @relation(fields: [jobCategoryId], references: [id])
   jobCategoryId String?
+
+  industryCategory   industryCategory? @relation(fields: [industryCategoryId], references: [id])
+  industryCategoryId String?
 
   ticketTransactions  TicketTransaction[]
   vouchers            Voucher[]
@@ -46,6 +58,7 @@ model User {
   @@index([roleId])
   @@index([participantTypeId])
   @@index([jobCategoryId])
+  @@index([industryCategoryId])
 }
 
 model UserVerify {
@@ -95,6 +108,19 @@ model jobCategory {
   symbol      String @unique // EXAMPLE : "STUDENT" | "TECH_SPECIALIST"
   name        String @unique // Example : "Student" | "Tech Specialist"
   description String @db.Text // "Manage everything"
+
+  users User[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model industryCategory {
+  id String @id @default(cuid())
+
+  symbol      String @unique // EXAMPLE : "HEALTH_CARE" | "AGRICULTURE"
+  name        String @unique // Example : "Health Care" | "Agriculture"
+  description String @db.Text // "Agriculture blablablah"
 
   users User[]
 
