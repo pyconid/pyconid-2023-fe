@@ -17,6 +17,11 @@ const email = z
   .min(1, "Email is required")
   .email("Invalid Email format")
 
+const password = z
+  .string()
+  .min(8, "Password require at least 8 characters")
+  .max(100, "Password max length limited to 100 characters")
+
 const company = z.string().optional()
 
 const industryCategorySymbol = z.string().optional()
@@ -66,6 +71,11 @@ const publicFields = z.object({
 const codeOfConduct = z.boolean()
 const termsOfService = z.boolean()
 
+const userSigninSchema = z.object({
+  email,
+  password,
+})
+
 const userUpdateSchema = z.object({
   id,
   firstName,
@@ -97,4 +107,4 @@ const userUpdateSchema = z.object({
   publicFields,
 })
 
-export { userUpdateSchema }
+export { userUpdateSchema, userSigninSchema }

@@ -8,7 +8,10 @@ type TextInputProps<T> = {
   label: string
   type?: React.HTMLInputTypeAttribute
   placeholder?: string
-  className?: string
+  classNames?: {
+    root?: string
+    input?: string
+  }
 }
 
 const TextInput = <T,>({
@@ -16,14 +19,22 @@ const TextInput = <T,>({
   label,
   type = "text",
   placeholder,
-  className,
+  classNames,
 }: TextInputProps<T>) => {
   return (
-    <FormField className={className}>
+    <FormField className={classNames?.root}>
       <FormLabel htmlFor={field.id}>
         {label} {field.required ? " *" : null}
       </FormLabel>
-      <Input {...conform.input(field)} type={type} placeholder={placeholder} />
+      <Input
+        className={classNames?.input}
+        {...conform.input(field)}
+        type={type}
+        placeholder={placeholder}
+      />
+      <p className="h-4 text-red-500" id={field.errorId}>
+        {field.error}
+      </p>
     </FormField>
   )
 }

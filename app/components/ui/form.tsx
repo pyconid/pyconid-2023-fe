@@ -52,20 +52,28 @@ const FormMessage = React.forwardRef<
 })
 FormMessage.displayName = "FormMessage"
 
-const FormFieldSet = React.forwardRef<
-  HTMLFieldSetElement,
-  React.FieldsetHTMLAttributes<HTMLFieldSetElement>
->(({ className, children, title, ...props }, ref) => {
-  return (
-    <fieldset ref={ref} className={cn("mt-10", className)} {...props}>
-      <legend className="mb-2 w-full text-4xl font-bold tracking-tight text-black">
-        {title}
-      </legend>
-      <div className="mb-10 h-1.5 rounded-full bg-primary" />
-      <div className="space-y-10">{children}</div>
-    </fieldset>
-  )
-})
+type FormFieldSetProps = React.FieldsetHTMLAttributes<HTMLFieldSetElement> & {
+  borderPosition?: "top" | "bottom"
+}
+
+const FormFieldSet = React.forwardRef<HTMLFieldSetElement, FormFieldSetProps>(
+  ({ className, children, title, borderPosition = "top", ...props }, ref) => {
+    return (
+      <fieldset ref={ref} className={cn("mt-10", className)} {...props}>
+        <legend className="mb-2 w-full text-4xl font-bold tracking-tight text-black">
+          {title}
+        </legend>
+        {borderPosition === "top" ? (
+          <div className="mb-10 h-1.5 rounded-full bg-primary" />
+        ) : null}
+        <div className="space-y-10">{children}</div>
+        {borderPosition === "bottom" ? (
+          <div className="mt-10 h-1.5 rounded-full bg-primary" />
+        ) : null}
+      </fieldset>
+    )
+  },
+)
 FormFieldSet.displayName = "FormFieldSet"
 
 export { FormLabel, FormDescription, FormMessage, FormField, FormFieldSet }
