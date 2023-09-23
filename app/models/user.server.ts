@@ -14,6 +14,17 @@ export const query = {
       },
     })
   },
+  getByToken({ token }: Pick<User, "token">) {
+    return prisma.user.findFirst({
+      where: { token },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+      },
+    })
+  },
 }
 
 export const mutation = {

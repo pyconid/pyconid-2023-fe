@@ -2,9 +2,13 @@ import { useEffect, useState } from "react"
 import { Link, useLocation } from "@remix-run/react"
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible"
 
+import { useRootLoader } from "~/hooks/useRootLoader"
+
 import { Button } from "../ui"
 
 export function Nav() {
+  const { userSession } = useRootLoader()
+
   const [isOpen, setIsOpen] = useState(false)
   const navLink = [
     {
@@ -126,9 +130,15 @@ export function Nav() {
             })}
           </div>
           <div className="pr-18 hidden items-center justify-end text-lg lg:mr-6 lg:flex lg:w-[15%] lg:space-x-8 lg:text-xs xl:mr-14 xl:w-[10%]">
-            <Button className="h-10 cursor-not-allowed bg-primary text-xs">
-              Sign Up(Soon)
-            </Button>
+            {userSession?.token ? (
+              <Button className="h-10 bg-primary text-xs" asChild>
+                <Link to="/logout">Logout</Link>
+              </Button>
+            ) : (
+              <Button className="h-10 cursor-not-allowed bg-primary text-xs">
+                Sign Up(Soon)
+              </Button>
+            )}
           </div>
         </div>
         <CollapsiblePrimitive.Content>
@@ -157,9 +167,15 @@ export function Nav() {
                 })}
               </div>
               <div className="flex items-center justify-center p-4">
-                <Button className="h-10 cursor-not-allowed bg-primary text-xs">
-                  Sign Up(Soon)
-                </Button>
+                {userSession?.token ? (
+                  <Button className="h-10 bg-primary text-xs" asChild>
+                    <Link to="/logout">Logout</Link>
+                  </Button>
+                ) : (
+                  <Button className="h-10 cursor-not-allowed bg-primary text-xs">
+                    Sign Up(Soon)
+                  </Button>
+                )}
               </div>
             </div>
           </div>

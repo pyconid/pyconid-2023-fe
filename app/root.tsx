@@ -1,4 +1,4 @@
-import type { LinksFunction } from "@remix-run/node"
+import { json, type LinksFunction, type LoaderArgs } from "@remix-run/node"
 import {
   isRouteErrorResponse,
   Links,
@@ -18,6 +18,8 @@ import stylesheet from "~/globals.css"
 
 import { Error, Layout } from "~/components"
 
+import { authenticator } from "./services/auth.server"
+
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
   { rel: "stylesheet", href: brandFontStyles },
@@ -25,6 +27,11 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: sansFontStyles },
   { rel: "stylesheet", href: sansFontStylesBold },
 ]
+
+export async function loader({ request }: LoaderArgs) {
+  const userSession = await authenticator.isAuthenticated(request)
+  return json({ userSession })
+}
 
 export function ErrorBoundary() {
   const error = useRouteError()
