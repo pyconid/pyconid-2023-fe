@@ -38,7 +38,7 @@ model User {
   participantType   ParticipantType? @relation(fields: [participantTypeId], references: [id])
   participantTypeId String?
 
-  JobCategory   jobCategory? @relation(fields: [JobCategoryId], references: [id])
+  JobCategory   JobCategory? @relation(fields: [JobCategoryId], references: [id])
   JobCategoryId String?
 
   industryCategory   industryCategory? @relation(fields: [industryCategoryId], references: [id])
