@@ -38,8 +38,8 @@ model User {
   participantType   ParticipantType? @relation(fields: [participantTypeId], references: [id])
   participantTypeId String?
 
-  jobCategory   jobCategory? @relation(fields: [jobCategoryId], references: [id])
-  jobCategoryId String?
+  JobCategory   jobCategory? @relation(fields: [JobCategoryId], references: [id])
+  JobCategoryId String?
 
   industryCategory   industryCategory? @relation(fields: [industryCategoryId], references: [id])
   industryCategoryId String?
@@ -57,7 +57,7 @@ model User {
 
   @@index([roleId])
   @@index([participantTypeId])
-  @@index([jobCategoryId])
+  @@index([JobCategoryId])
   @@index([industryCategoryId])
 }
 
@@ -102,7 +102,7 @@ model ParticipantType {
   updatedAt DateTime @updatedAt
 }
 
-model jobCategory {
+model JobCategory {
   id String @id @default(cuid())
 
   symbol      String @unique // EXAMPLE : "STUDENT" | "TECH_SPECIALIST"
@@ -148,9 +148,12 @@ model Speaker {
 model Ticket {
   id String @id @default(cuid())
 
-  name  String
-  quota Int
-  price Int
+  name        String
+  quota       Int
+  price       Int
+
+  participantType   ParticipantType? @relation(fields: [participantTypeId], references: [id])
+  participantTypeId String?
 
   earlyBird   Boolean @default(false)
   description String? @db.Text
@@ -160,6 +163,8 @@ model Ticket {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([participantTypeId])
 }
 
 model TicketFeature {
@@ -209,11 +214,11 @@ model Voucher {
   discount    Int
   description String
 
+  participantType   ParticipantType? @relation(fields: [participantTypeId], references: [id])
+  participantTypeId String?
+
   transactions VoucherTransaction[]
   whitelists   VoucherWhitelist[]
-
-  requirement   VoucherRequirement? @relation(fields: [requirementId], references: [id])
-  requirementId String?
 
   user   User?   @relation(fields: [userId], references: [id])
   userId String?
@@ -221,19 +226,8 @@ model Voucher {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([requirementId])
   @@index([userId])
-}
-
-model VoucherRequirement {
-  id String @id @default(cuid())
-
-  description String
-
-  vouchers Voucher[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@index([participantTypeId])
 }
 
 model VoucherTransaction {
