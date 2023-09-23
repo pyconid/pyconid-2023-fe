@@ -97,6 +97,8 @@ model ParticipantType {
   description String @db.Text // "Manage everything"
 
   users User[]
+  tickets Ticket[]
+  vouchers Voucher[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
