@@ -41,8 +41,8 @@ model User {
   JobCategory   JobCategory? @relation(fields: [JobCategoryId], references: [id])
   JobCategoryId String?
 
-  industryCategory   industryCategory? @relation(fields: [industryCategoryId], references: [id])
-  industryCategoryId String?
+  IndustryCategory   IndustryCategory? @relation(fields: [IndustryCategoryId], references: [id])
+  IndustryCategoryId String?
 
   ticketTransactions  TicketTransaction[]
   vouchers            Voucher[]
@@ -58,7 +58,7 @@ model User {
   @@index([roleId])
   @@index([participantTypeId])
   @@index([JobCategoryId])
-  @@index([industryCategoryId])
+  @@index([IndustryCategoryId])
 }
 
 model UserVerify {
@@ -117,7 +117,7 @@ model JobCategory {
   updatedAt DateTime @updatedAt
 }
 
-model industryCategory {
+model IndustryCategory {
   id String @id @default(cuid())
 
   symbol      String @unique // EXAMPLE : "HEALTH_CARE" | "AGRICULTURE"
