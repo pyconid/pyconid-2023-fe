@@ -152,9 +152,7 @@ model Ticket {
 
   name        String
   quota       Int
-  price       Int
-
-  voucherTransaction VoucherTransaction?
+  price       Int  
 
   participantType   ParticipantType? @relation(fields: [participantTypeId], references: [id])
   participantTypeId String?
@@ -196,6 +194,8 @@ model TicketTransaction {
   paymentId     String
   paymentLink   String  @default("https://pycon.id")
   transactionId String
+
+  voucherTransaction VoucherTransaction?
 
   user   User?   @relation(fields: [userId], references: [id])
   userId String?
@@ -241,7 +241,7 @@ model VoucherTransaction {
   description String
 
   ticketTransaction   TicketTransaction @relation(fields: [ticketTransactionId], references: [id])
-  ticketTransactionId string  @unique
+  ticketTransactionId String  @unique
 
   voucher   Voucher? @relation(fields: [voucherId], references: [id])
   voucherId String?
