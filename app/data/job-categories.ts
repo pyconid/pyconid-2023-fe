@@ -1,6 +1,6 @@
-import type { jobCategory } from "@prisma/client"
+import type { JobCategory } from "@prisma/client"
 
-export type DataJobCategories = Pick<jobCategory, "name" | "symbol">
+export type DataJobCategories = Pick<JobCategory, "name" | "symbol">
 
 export const dataJobCategories: DataJobCategories[] = [
   {
