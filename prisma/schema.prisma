@@ -38,11 +38,11 @@ model User {
   participantType   ParticipantType? @relation(fields: [participantTypeId], references: [id])
   participantTypeId String?
 
-  JobCategory   JobCategory? @relation(fields: [JobCategoryId], references: [id])
-  JobCategoryId String?
+  JobCategory   JobCategory? @relation(fields: [jobCategoryId], references: [id])
+  jobCategoryId String?
 
-  IndustryCategory   IndustryCategory? @relation(fields: [IndustryCategoryId], references: [id])
-  IndustryCategoryId String?
+  IndustryCategory   IndustryCategory? @relation(fields: [industryCategoryId], references: [id])
+  industryCategoryId String?
 
   ticketTransactions  TicketTransaction[]
   vouchers            Voucher[]
@@ -57,8 +57,8 @@ model User {
 
   @@index([roleId])
   @@index([participantTypeId])
-  @@index([JobCategoryId])
-  @@index([IndustryCategoryId])
+  @@index([jobCategoryId])
+  @@index([industryCategoryId])
 }
 
 model UserVerify {
@@ -154,6 +154,8 @@ model Ticket {
   quota       Int
   price       Int
 
+  voucherTransaction VoucherTransaction?
+
   participantType   ParticipantType? @relation(fields: [participantTypeId], references: [id])
   participantTypeId String?
 
@@ -237,6 +239,9 @@ model VoucherTransaction {
 
   status      Boolean
   description String
+
+  ticketTransaction   TicketTransaction @relation(fields: [ticketTransactionId], references: [id])
+  ticketTransactionId string  @unique
 
   voucher   Voucher? @relation(fields: [voucherId], references: [id])
   voucherId String?
