@@ -241,7 +241,7 @@ model VoucherTransaction {
   description String
 
   ticketTransaction   TicketTransaction @relation(fields: [ticketTransactionId], references: [id])
-  ticketTransactionId String  @unique
+  ticketTransactionId String  @unique @default(dbgenerated("gen_random_uuid()"))
 
   voucher   Voucher? @relation(fields: [voucherId], references: [id])
   voucherId String?
