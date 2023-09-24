@@ -19,13 +19,13 @@ export const meta: V2_MetaFunction = () => {
 export default function Index() {
   return (
     <Layout>
-      <div className="flex min-h-[300px] w-full items-center bg-primary-100 lg:min-h-[430px] 2xl:min-h-[550px] lg:px-5">
-        <div className="mx-auto my-10 flex w-full max-w-7xl flex-col items-center justify-between md:flex-col 2xl:flex-row lg:flex-row">
-          <div className="px-4 w-full lg:space-y-8 sm:px-8">
-            <p className="mb-6 text-4xl font-bold md:text-6xl sm:text-5xl">
+      <div className="flex min-h-[300px] w-full items-center bg-primary-100 lg:min-h-[430px] lg:px-5 2xl:min-h-[550px]">
+        <div className="mx-auto my-10 flex w-full max-w-7xl flex-col items-center justify-between md:flex-col lg:flex-row 2xl:flex-row">
+          <div className="w-full px-4 sm:px-8 lg:space-y-8">
+            <p className="mb-6 text-4xl font-bold sm:text-5xl md:text-6xl">
               Call For Proposals
             </p>
-            <p className="text-xl text-primary md:text-4xl lg:text-4xl sm:text-3xl">
+            <p className="text-xl text-primary sm:text-3xl md:text-4xl lg:text-4xl">
               Lets's talk at Pycon ID 2023. We are open for talks submission.
             </p>
 
@@ -42,9 +42,6 @@ export default function Index() {
                 Submit you proposal here
               </a>
             </Button>
-
-
-
           </div>
           <div className="p-6">
             <img src="cfp_hero.svg" alt="Call For Proposal Hero Illustration" />

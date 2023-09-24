@@ -1,5 +1,5 @@
 import { useId } from "react"
-import type { ActionArgs } from "@remix-run/node"
+import { json, type ActionArgs } from "@remix-run/node"
 import { Form, Link, useActionData } from "@remix-run/react"
 import { useForm } from "@conform-to/react"
 import { getFieldsetConstraint, parse } from "@conform-to/zod"
@@ -10,19 +10,21 @@ import { TextInput } from "~/components/shared"
 import { FormFieldSet } from "~/components/ui/form"
 
 export async function action({ request }: ActionArgs) {
-  const formData = await request.formData()
+  const clonedRequest = request.clone()
+  const formData = await clonedRequest.formData()
   const submission = parse(formData, { schema: userSignupSchema })
 
-  console.log({ submission })
   if (!submission.value || submission.intent !== "submit") {
     return submission
   }
+
+  // const result = await user
+
+  return submission
 }
 export default function Route() {
   const id = useId()
   const lastSubmission = useActionData<typeof action>()
-
-  console.log({ lastSubmission })
 
   const [form, { firstName, lastName, email, password }] = useForm({
     id,

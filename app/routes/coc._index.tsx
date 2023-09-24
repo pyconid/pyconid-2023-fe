@@ -132,22 +132,29 @@ export default function Index() {
             <div className="px-2">
               <ul>
                 <li>
-                  If you believe that someone is violating the code of conduct or have any other concerns, please contact a member of the event staff immediately.
-                </li> 
-                <li>
-                  They can be reached by emailing pycon@python.or.id or direct messages us on social media.
-                  Please give titles about Reporting Code of Conduct Violation so we can immediately respond.
+                  If you believe that someone is violating the code of conduct
+                  or have any other concerns, please contact a member of the
+                  event staff immediately.
                 </li>
                 <li>
-                  On the conference day, you can also reporting a code of conduct violation by directly approaching one of our staff in the venue.
+                  They can be reached by emailing pycon@python.or.id or direct
+                  messages us on social media. Please give titles about
+                  Reporting Code of Conduct Violation so we can immediately
+                  respond.
                 </li>
                 <li>
-                  We expect participants to respect each others and help us to keep the conference safe for everyone.
+                  On the conference day, you can also reporting a code of
+                  conduct violation by directly approaching one of our staff in
+                  the venue.
+                </li>
+                <li>
+                  We expect participants to respect each others and help us to
+                  keep the conference safe for everyone.
                 </li>
               </ul>
             </div>
           </div>
-          
+
           <div className="overflow-hidden rounded-2xl border-2 border-solid border-primary-orange">
             <div className="bg-primary-orange p-2">
               <h3 className="pl-3 text-2xl font-semibold text-white">
