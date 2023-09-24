@@ -30,7 +30,10 @@ export const links: LinksFunction = () => [
 
 export async function loader({ request }: LoaderArgs) {
   const userSession = await authenticator.isAuthenticated(request)
-  return json({ userSession })
+  if (userSession) {
+    return json({ userSession })
+  }
+  return null
 }
 
 export function ErrorBoundary() {

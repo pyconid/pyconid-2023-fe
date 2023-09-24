@@ -2,13 +2,17 @@ import { sessionStorage } from "~/services/session.server"
 import { Authenticator, AuthorizationError } from "remix-auth"
 import { FormStrategy } from "remix-auth-form"
 
+import { userService } from "./user.server"
+
 export type UserSession = {
   token: string
 }
 
 // Create an instance of the authenticator, pass a generic with what
 // strategies will return and will store in the session
-export let authenticator = new Authenticator<UserSession>(sessionStorage)
+export let authenticator = new Authenticator<UserSession>(sessionStorage, {
+  sessionErrorKey: "sessionError",
+})
 
 authenticator.use(
   new FormStrategy(async ({ form }) => {
@@ -18,11 +22,13 @@ authenticator.use(
       throw new AuthorizationError("User and password are required")
     }
 
-    const session: UserSession = { token: "testToken123" }
+    const response = await userService.login({ email, password })
 
-    // if (!user.id) {
-    //   throw new AuthorizationError("User is not found")
-    // }
+    if (response.error) {
+      throw new AuthorizationError(response.error)
+    }
+
+    const session: UserSession = { token: response.data.data.access_token }
 
     return session
   }),

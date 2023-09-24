@@ -130,7 +130,7 @@ export function Nav() {
             })}
           </div>
           <div className="pr-18 hidden items-center justify-end text-lg lg:mr-6 lg:flex lg:w-[15%] lg:space-x-8 lg:text-xs xl:mr-14 xl:w-[10%]">
-            {userSession?.token ? (
+            {userSession ? (
               <Button className="h-10 bg-primary text-xs" asChild>
                 <Link to="/logout">Logout</Link>
               </Button>
@@ -167,7 +167,7 @@ export function Nav() {
                 })}
               </div>
               <div className="flex items-center justify-center p-4">
-                {userSession?.token ? (
+                {userSession ? (
                   <Button className="h-10 bg-primary text-xs" asChild>
                     <Link to="/logout">Logout</Link>
                   </Button>

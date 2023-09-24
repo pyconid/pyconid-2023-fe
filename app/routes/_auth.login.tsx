@@ -1,10 +1,12 @@
 import { useId } from "react"
-import { type ActionArgs } from "@remix-run/node"
-import { Form, Link, useActionData } from "@remix-run/react"
+import { json } from "@remix-run/node"
+import type { ActionArgs, LoaderArgs } from "@remix-run/node"
+import { Form, Link, useActionData, useLoaderData } from "@remix-run/react"
 import { useForm } from "@conform-to/react"
 import { getFieldsetConstraint, parse } from "@conform-to/zod"
 import { userSigninSchema } from "~/schemas"
 import { authenticator } from "~/services/auth.server"
+import { commitSession, getSession } from "~/services/session.server"
 
 import { Button, Layout } from "~/components"
 import { TextInput } from "~/components/shared"
@@ -22,16 +24,30 @@ export async function action({ request }: ActionArgs) {
   await authenticator.authenticate("user-pass", request, {
     successRedirect: "/",
     failureRedirect: "/login",
+    throwOnError: true,
   })
+
+  return submission
+}
+
+export async function loader({ request }: LoaderArgs) {
+  const session = await getSession(request.headers.get("cookie"))
+  const error = session.get(authenticator.sessionErrorKey)
+  return json(
+    { error },
+    { headers: { "set-cookie": await commitSession(session) } },
+  )
 }
 
 export default function Route() {
   const id = useId()
   const lastSubmission = useActionData<typeof action>()
+  const { error } = useLoaderData<typeof loader>()
 
   const [form, { email, password }] = useForm({
     id,
     lastSubmission,
+    shouldValidate: "onInput",
     constraint: getFieldsetConstraint(userSigninSchema),
     onValidate({ formData }) {
       return parse(formData, { schema: userSigninSchema })
@@ -61,6 +77,9 @@ export default function Route() {
                     label="Password"
                     type="password"
                   />
+                  <p className=" text-red-500">
+                    {error ? error.message : null}
+                  </p>
                   <Button type="submit" className="ml-auto w-80" size="lg">
                     Login
                   </Button>

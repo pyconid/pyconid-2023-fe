@@ -1,11 +1,13 @@
-import type { SerializeFrom } from "@remix-run/node"
 import { useRouteLoaderData } from "@remix-run/react"
-import type { loader } from "~/root"
+import type { UserSession } from "~/services/auth.server"
+
+export type RootLoaderData = {
+  userSession: UserSession | undefined
+}
 
 export function useRootLoader() {
-  const rootLoaderData = useRouteLoaderData<typeof loader>(
-    "root",
-  ) as SerializeFrom<typeof loader>
-
-  return rootLoaderData
+  const data = useRouteLoaderData("root") as RootLoaderData
+  return {
+    userSession: data?.userSession,
+  }
 }

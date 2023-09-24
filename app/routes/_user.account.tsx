@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node"
 import type { ActionArgs, V2_MetaFunction } from "@remix-run/node"
 import { parse } from "@conform-to/zod"
-import { industryCategory, jobCategory, participantType } from "~/models"
+import { models } from "~/models"
 import { userUpdateSchema } from "~/schemas"
 
 import { Layout } from "~/components"
@@ -23,9 +23,9 @@ export async function action({ request }: ActionArgs) {
 export async function loader() {
   const [industryCategories, jobCategories, participantTypes] =
     await Promise.all([
-      industryCategory.query.getAll(),
-      jobCategory.query.getAll(),
-      participantType.query.getAll(),
+      models.industryCategory.query.getAll(),
+      models.jobCategory.query.getAll(),
+      models.participantType.query.getAll(),
     ])
 
   return json({ industryCategories, jobCategories, participantTypes })
