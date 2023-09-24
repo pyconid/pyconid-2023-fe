@@ -119,9 +119,9 @@ model JobCategory {
 model IndustryCategory {
   id String @id @default(cuid())
 
-  symbol      String @unique // EXAMPLE : "HEALTH_CARE" | "AGRICULTURE"
-  name        String @unique // Example : "Health Care" | "Agriculture"
-  description String @db.Text // "Agriculture blablablah"
+  symbol      String  @unique // EXAMPLE : "HEALTH_CARE" | "AGRICULTURE"
+  name        String  @unique // Example : "Health Care" | "Agriculture"
+  description String? @db.Text // "Agriculture blablablah"
 
   users User[]
 
