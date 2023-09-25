@@ -136,8 +136,18 @@ export function Nav() {
                   {/* <Button variant="outline" className="h-10 text-xs" asChild>
                     <Link to="/login">Sign In</Link>
                   </Button> */}
-                  <Button className="h-10 bg-primary text-xs" asChild disabled>
+                  {/* <Button
+                    className="h-10 cursor-not-allowed bg-primary text-xs"
+                    asChild
+                    disabled
+                  >
                     <Link to="/register">Sign Up (Soon)</Link>
+                  </Button> */}
+                  <Button
+                    className="h-10 cursor-not-allowed bg-primary text-xs"
+                    disabled
+                  >
+                    Sign Up (Soon)
                   </Button>
                 </>
               )}
@@ -182,12 +192,18 @@ export function Nav() {
                       >
                         <Link to="/login">Sign In</Link>
                       </Button> */}
-                      <Button
+                      {/* <Button
                         className="h-10 w-full bg-primary text-xs"
                         asChild
                         disabled
                       >
                         <Link to="/">Sign Up (Soon)</Link>
+                      </Button> */}
+                      <Button
+                        className="h-10 cursor-not-allowed bg-primary text-xs"
+                        disabled
+                      >
+                        Sign Up (Soon)
                       </Button>
                     </>
                   )}
