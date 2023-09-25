@@ -133,11 +133,11 @@ export function Nav() {
                 </Button>
               ) : (
                 <>
-                  <Button variant="outline" className="h-10 text-xs" asChild>
+                  {/* <Button variant="outline" className="h-10 text-xs" asChild>
                     <Link to="/login">Sign In</Link>
-                  </Button>
-                  <Button className="h-10 bg-primary text-xs" asChild>
-                    <Link to="/register">Sign Up</Link>
+                  </Button> */}
+                  <Button className="h-10 bg-primary text-xs" asChild disabled>
+                    <Link to="/register">Sign Up (Soon)</Link>
                   </Button>
                 </>
               )}
@@ -175,18 +175,19 @@ export function Nav() {
                     </Button>
                   ) : (
                     <>
-                      <Button
+                      {/* <Button
                         variant="outline"
                         className="h-10 w-full text-xs"
                         asChild
                       >
                         <Link to="/login">Sign In</Link>
-                      </Button>
+                      </Button> */}
                       <Button
                         className="h-10 w-full bg-primary text-xs"
                         asChild
+                        disabled
                       >
-                        <Link to="/register">Sign Up</Link>
+                        <Link to="/">Sign Up (Soon)</Link>
                       </Button>
                     </>
                   )}
