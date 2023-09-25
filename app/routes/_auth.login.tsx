@@ -1,6 +1,6 @@
 import { useEffect, useId } from "react"
 import { json } from "@remix-run/node"
-import type { ActionArgs, LoaderArgs } from "@remix-run/node"
+import type { ActionArgs, LoaderArgs, V2_MetaFunction } from "@remix-run/node"
 import {
   Form,
   Link,
@@ -18,6 +18,10 @@ import { Button, Layout } from "~/components"
 import { TextInput } from "~/components/shared"
 import { FormFieldSet } from "~/components/ui/form"
 import { useToast } from "~/components/ui/use-toast"
+
+export const meta: V2_MetaFunction = () => {
+  return [{ title: "Login - PyconID 2023" }]
+}
 
 export async function action({ request }: ActionArgs) {
   const clonedRequest = request.clone()

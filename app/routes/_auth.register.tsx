@@ -1,5 +1,6 @@
 import { useId } from "react"
-import { json, redirect, type ActionArgs } from "@remix-run/node"
+import { json, redirect} from "@remix-run/node";
+import type { V2_MetaFunction , type ActionArgs } from "@remix-run/node";
 import { Form, Link, useActionData, useNavigation } from "@remix-run/react"
 import { useForm } from "@conform-to/react"
 import { getFieldsetConstraint, parse } from "@conform-to/zod"
@@ -9,6 +10,10 @@ import { userService } from "~/services/user.server"
 import { Button, Layout } from "~/components"
 import { TextInput } from "~/components/shared"
 import { FormFieldSet } from "~/components/ui/form"
+
+export const meta: V2_MetaFunction = () => {
+  return [{ title: "Register - PyconID 2023" }]
+}
 
 export async function action({ request }: ActionArgs) {
   const clonedRequest = request.clone()
