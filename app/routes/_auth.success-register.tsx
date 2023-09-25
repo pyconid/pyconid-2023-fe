@@ -1,6 +1,11 @@
+import type { V2_MetaFunction } from "@remix-run/node"
 import { Link } from "@remix-run/react"
 
 import { Button, Layout } from "~/components"
+
+export const meta: V2_MetaFunction = () => {
+  return [{ title: "Success Register - PyconID 2023" }]
+}
 
 export default function Route() {
   return (
