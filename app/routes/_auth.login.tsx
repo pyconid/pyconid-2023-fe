@@ -1,7 +1,13 @@
 import { useId } from "react"
 import { json } from "@remix-run/node"
 import type { ActionArgs, LoaderArgs } from "@remix-run/node"
-import { Form, Link, useActionData, useLoaderData } from "@remix-run/react"
+import {
+  Form,
+  Link,
+  useActionData,
+  useLoaderData,
+  useNavigation,
+} from "@remix-run/react"
 import { useForm } from "@conform-to/react"
 import { getFieldsetConstraint, parse } from "@conform-to/zod"
 import { userSigninSchema } from "~/schemas"
@@ -43,6 +49,9 @@ export default function Route() {
   const id = useId()
   const lastSubmission = useActionData<typeof action>()
   const { error } = useLoaderData<typeof loader>()
+  const navigation = useNavigation()
+
+  const isSubmitting = navigation.state === "submitting"
 
   const [form, { email, password }] = useForm({
     id,
@@ -80,8 +89,13 @@ export default function Route() {
                   <p className=" text-red-500">
                     {error ? error.message : null}
                   </p>
-                  <Button type="submit" className="ml-auto w-80" size="lg">
-                    Login
+                  <Button
+                    type="submit"
+                    className="ml-auto w-80"
+                    size="lg"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Logging In..." : "Login"}
                   </Button>
                 </div>
               </FormFieldSet>

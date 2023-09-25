@@ -8,6 +8,7 @@ type TextInputProps<T> = {
   label: string
   type?: React.HTMLInputTypeAttribute
   placeholder?: string
+  disabled?: boolean
   classNames?: {
     root?: string
     input?: string
@@ -20,6 +21,7 @@ const TextInput = <T,>({
   type = "text",
   placeholder,
   classNames,
+  disabled,
 }: TextInputProps<T>) => {
   return (
     <FormField className={classNames?.root}>
@@ -31,6 +33,7 @@ const TextInput = <T,>({
         {...conform.input(field)}
         type={type}
         placeholder={placeholder}
+        disabled={disabled}
       />
       <p className="h-4 text-red-500" id={field.errorId}>
         {field.error}

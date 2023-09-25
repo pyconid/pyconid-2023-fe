@@ -31,8 +31,20 @@ export const userService = {
         }
       })
       .then((data) => ({ data, error: null }))
-      .catch((err) => {
-        return { data: null, error: err.message }
+      .catch((err) => ({ data: null, error: err.message }))
+  },
+  async register(
+    payload: Pick<User, "firstName" | "lastName" | "email" | "password">,
+  ) {
+    return fetch(`${API_SERVICE_URL}auth/signup`, {
+      ...DEFAULT_CONFIG,
+      body: JSON.stringify(payload),
+    })
+      .then((res) => {
+        if (!res.ok) throw res
+        return res.json()
       })
+      .then((data) => ({ data, error: null }))
+      .catch(async (err) => ({ data: null, error: await err.json() }))
   },
 }
