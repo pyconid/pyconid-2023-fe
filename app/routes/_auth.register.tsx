@@ -93,6 +93,7 @@ export default function Route() {
                     type="submit"
                     className="mt-4 w-full md:ml-auto md:w-80"
                     size="lg"
+                    disabled={isSubmitting}
                   >
                     {isSubmitting ? "Registering..." : "Register"}
                   </Button>
