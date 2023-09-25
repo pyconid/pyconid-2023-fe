@@ -1,5 +1,5 @@
 import { useId } from "react"
-import { json, type ActionArgs } from "@remix-run/node"
+import { json, redirect, type ActionArgs } from "@remix-run/node"
 import { Form, Link, useActionData, useNavigation } from "@remix-run/react"
 import { useForm } from "@conform-to/react"
 import { getFieldsetConstraint, parse } from "@conform-to/zod"
@@ -26,7 +26,7 @@ export async function action({ request }: ActionArgs) {
     return json({ ...submission, error })
   }
 
-  return json(submission)
+  return redirect("/success-register")
 }
 export default function Route() {
   const id = useId()
