@@ -168,7 +168,7 @@ export function Nav() {
                     )
                   })}
                 </div>
-                <div className="flex items-center justify-center p-4">
+                <div className="flex items-center justify-center gap-3 p-4">
                   {userSession ? (
                     <Button className="h-10 bg-primary text-xs" asChild>
                       <Link to="/logout">Logout</Link>
@@ -177,12 +177,15 @@ export function Nav() {
                     <>
                       <Button
                         variant="outline"
-                        className="h-10 text-xs"
+                        className="h-10 w-full text-xs"
                         asChild
                       >
                         <Link to="/login">Sign In</Link>
                       </Button>
-                      <Button className="h-10 bg-primary text-xs" asChild>
+                      <Button
+                        className="h-10 w-full bg-primary text-xs"
+                        asChild
+                      >
                         <Link to="/register">Sign Up</Link>
                       </Button>
                     </>

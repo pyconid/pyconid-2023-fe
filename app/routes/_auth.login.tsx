@@ -65,15 +65,15 @@ export default function Route() {
 
   return (
     <Layout>
-      <div className="mx-auto mb-20 mt-16 w-full max-w-7xl px-6">
+      <div className="mx-auto mb-20 mt-10 w-full max-w-7xl px-6 md:mt-16">
         <div className="flex items-center justify-between gap-12">
           <div className="w-full">
-            <h1 className="font-brand text-6xl font-bold text-primary">
+            <h1 className="font-brand text-5xl font-bold text-primary md:text-6xl">
               Login to your account
             </h1>
             <Form method="POST" {...form.props}>
               <FormFieldSet borderPosition="bottom">
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-4 md:gap-6">
                   <TextInput
                     classNames={{ input: "rounded-xl" }}
                     field={email}
@@ -91,7 +91,7 @@ export default function Route() {
                   </p>
                   <Button
                     type="submit"
-                    className="ml-auto w-80"
+                    className="w-full md:ml-auto md:w-80"
                     size="lg"
                     disabled={isSubmitting}
                   >
@@ -99,7 +99,7 @@ export default function Route() {
                   </Button>
                 </div>
               </FormFieldSet>
-              <p className="mt-10 text-xl font-semibold">
+              <p className="mt-10 text-base font-semibold md:text-xl">
                 Don’t have an account?{" "}
                 <Link to="/register" className="text-primary underline">
                   Register Here
@@ -107,7 +107,11 @@ export default function Route() {
               </p>
             </Form>
           </div>
-          <img src="pycon-auth.svg" alt="Signin Illustration" />
+          <img
+            className="hidden md:block"
+            src="pycon-auth.svg"
+            alt="Signin Illustration"
+          />
         </div>
       </div>
     </Layout>

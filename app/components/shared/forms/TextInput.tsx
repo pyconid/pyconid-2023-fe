@@ -35,7 +35,7 @@ const TextInput = <T,>({
         placeholder={placeholder}
         disabled={disabled}
       />
-      <p className="h-4 text-red-500" id={field.errorId}>
+      <p className="h-4 text-sm text-red-500 md:text-base" id={field.errorId}>
         {field.error}
       </p>
     </FormField>

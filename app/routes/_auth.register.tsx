@@ -47,16 +47,16 @@ export default function Route() {
 
   return (
     <Layout>
-      <div className="mx-auto mb-20 mt-16 w-full max-w-7xl px-6">
+      <div className="mx-auto mb-20 mt-10 w-full max-w-7xl px-6 md:mt-16">
         <div className="flex items-center justify-between gap-12">
           <div className="w-full">
-            <h1 className="font-brand text-6xl font-bold text-primary">
+            <h1 className="font-brand text-4xl font-bold text-primary md:text-6xl">
               Create an account
             </h1>
             <Form method="POST" {...form.props}>
               <FormFieldSet borderPosition="bottom">
-                <div className="flex flex-col gap-6">
-                  <div className="flex gap-6">
+                <div className="flex flex-col gap-2 md:gap-6">
+                  <div className="flex gap-4 md:gap-6">
                     <TextInput
                       classNames={{ input: "rounded-xl" }}
                       field={firstName}
@@ -84,12 +84,16 @@ export default function Route() {
                     type="password"
                     disabled={isSubmitting}
                   />
-                  <Button type="submit" className="ml-auto w-80" size="lg">
+                  <Button
+                    type="submit"
+                    className="mt-4 w-full md:ml-auto md:w-80"
+                    size="lg"
+                  >
                     {isSubmitting ? "Registering..." : "Register"}
                   </Button>
                 </div>
               </FormFieldSet>
-              <p className="mt-10 text-xl font-semibold">
+              <p className="mt-10 text-base font-semibold md:text-xl">
                 Already have an account?{" "}
                 <Link to="/login" className="text-primary underline">
                   Login Here
@@ -97,7 +101,11 @@ export default function Route() {
               </p>
             </Form>
           </div>
-          <img src="pycon-auth.svg" alt="Signin Illustration" />
+          <img
+            className="hidden md:block"
+            src="pycon-auth.svg"
+            alt="Signin Illustration"
+          />
         </div>
       </div>
     </Layout>
