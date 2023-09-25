@@ -10,7 +10,7 @@ export const query = {
       where: { id },
       include: {
         role: true,
-        industryCategory: true,
+        IndustryCategory: true,
       },
     })
   },
@@ -28,6 +28,22 @@ export const query = {
 }
 
 export const mutation = {
+  async createDefaultPublicFields(id: string) {
+    await prisma.user.update({
+      where: { id },
+      data: {
+        PublicFields: {
+          create: {
+            address: false,
+            company: false,
+            gender: false,
+            phone: false,
+            socials: false,
+          },
+        },
+      },
+    })
+  },
   async update({
     id,
     firstName,

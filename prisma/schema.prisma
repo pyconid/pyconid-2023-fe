@@ -43,6 +43,9 @@ model User {
   IndustryCategory   IndustryCategory? @relation(fields: [industryCategoryId], references: [id])
   industryCategoryId String?
 
+  PublicFields   PublicFields? @relation(fields: [publicFieldsId], references: [id])
+  publicFieldsId String?       @unique
+
   ticketTransactions  TicketTransaction[]
   vouchers            Voucher[]
   voucherTransactions VoucherTransaction[]
@@ -58,6 +61,7 @@ model User {
   @@index([participantTypeId])
   @@index([jobCategoryId])
   @@index([industryCategoryId])
+  @@index([publicFieldsId])
 }
 
 model UserVerify {
@@ -124,6 +128,21 @@ model IndustryCategory {
   description String? @db.Text // "Agriculture blablablah"
 
   users User[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PublicFields {
+  id String @id @default(cuid())
+
+  company Boolean @default(false)
+  gender  Boolean @default(false)
+  phone   Boolean @default(false)
+  address Boolean @default(false)
+  socials Boolean @default(false)
+
+  users User?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

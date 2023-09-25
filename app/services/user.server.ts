@@ -1,4 +1,5 @@
 import type { User } from "@prisma/client"
+import { models } from "~/models"
 
 import { getEnv } from "~/libs/env"
 
@@ -44,7 +45,11 @@ export const userService = {
         if (!res.ok) throw res
         return res.json()
       })
-      .then((data) => ({ data, error: null }))
+      .then(async (data) => {
+        const user = data.data
+        await models.user.mutation.createDefaultPublicFields(user.id)
+        return { data, error: null }
+      })
       .catch(async (err) => ({ data: null, error: await err.json() }))
   },
   async verify(token: string) {
