@@ -1,8 +1,9 @@
 import { json } from "@remix-run/node"
-import type { ActionArgs, V2_MetaFunction } from "@remix-run/node"
+import type { ActionArgs, LoaderArgs, V2_MetaFunction } from "@remix-run/node"
 import { parse } from "@conform-to/zod"
 import { models } from "~/models"
 import { userUpdateSchema } from "~/schemas"
+import { authenticator } from "~/services/auth.server"
 
 import { Layout } from "~/components"
 import { AccountForm } from "~/components/user"
@@ -20,7 +21,8 @@ export async function action({ request }: ActionArgs) {
   }
 }
 
-export async function loader() {
+export async function loader({ request }: LoaderArgs) {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/login" })
   const [industryCategories, jobCategories, participantTypes] =
     await Promise.all([
       models.industryCategory.query.getAll(),
