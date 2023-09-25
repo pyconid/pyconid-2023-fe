@@ -18,6 +18,7 @@ import stylesheet from "~/globals.css"
 
 import { Error, Layout } from "~/components"
 
+import { Toaster } from "./components/ui/toaster"
 import { authenticator } from "./services/auth.server"
 
 export const links: LinksFunction = () => [
@@ -93,6 +94,7 @@ export default function App() {
       </head>
       <body>
         <Outlet />
+        <Toaster />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

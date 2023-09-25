@@ -1,4 +1,4 @@
-import { useId } from "react"
+import { useEffect, useId } from "react"
 import { json } from "@remix-run/node"
 import type { ActionArgs, LoaderArgs } from "@remix-run/node"
 import {
@@ -17,6 +17,7 @@ import { commitSession, getSession } from "~/services/session.server"
 import { Button, Layout } from "~/components"
 import { TextInput } from "~/components/shared"
 import { FormFieldSet } from "~/components/ui/form"
+import { useToast } from "~/components/ui/use-toast"
 
 export async function action({ request }: ActionArgs) {
   const clonedRequest = request.clone()
@@ -39,8 +40,11 @@ export async function action({ request }: ActionArgs) {
 export async function loader({ request }: LoaderArgs) {
   const session = await getSession(request.headers.get("cookie"))
   const error = session.get(authenticator.sessionErrorKey)
+
+  const tokenMessage = session.get("tokenMessage") || null
+
   return json(
-    { error },
+    { error, tokenMessage },
     { headers: { "set-cookie": await commitSession(session) } },
   )
 }
@@ -48,8 +52,9 @@ export async function loader({ request }: LoaderArgs) {
 export default function Route() {
   const id = useId()
   const lastSubmission = useActionData<typeof action>()
-  const { error } = useLoaderData<typeof loader>()
+  const { error, tokenMessage } = useLoaderData<typeof loader>()
   const navigation = useNavigation()
+  const { toast } = useToast()
 
   const isSubmitting = navigation.state === "submitting"
 
@@ -62,6 +67,19 @@ export default function Route() {
       return parse(formData, { schema: userSigninSchema })
     },
   })
+
+  useEffect(() => {
+    if (tokenMessage) {
+      const { type, message } = JSON.parse(tokenMessage)
+      setTimeout(() => {
+        toast({
+          duration: 2000,
+          title: message,
+          variant: type === "error" ? "destructive" : "default",
+        })
+      }, 200)
+    }
+  }, [tokenMessage, toast])
 
   return (
     <Layout>

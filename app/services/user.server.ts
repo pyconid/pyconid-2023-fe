@@ -47,4 +47,20 @@ export const userService = {
       .then((data) => ({ data, error: null }))
       .catch(async (err) => ({ data: null, error: await err.json() }))
   },
+  async verify(token: string) {
+    return fetch(`${API_SERVICE_URL}auth/verify/${token}`)
+      .then((res) => {
+        if (res.ok) return res.json()
+        switch (res.status) {
+          case 400:
+            throw new Error("User is already verified")
+          case 404:
+            throw new Error("Invalid Token")
+          default:
+            throw new Error("Something's wrong")
+        }
+      })
+      .then((data) => ({ data, error: null }))
+      .catch(async (err) => ({ data: null, error: err.message }))
+  },
 }
