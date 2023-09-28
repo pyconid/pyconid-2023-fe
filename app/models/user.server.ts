@@ -51,6 +51,7 @@ export const query = {
         email: true,
         firstName: true,
         lastName: true,
+        displayName: true,
         organisation: true,
         industryCategoryId: true,
         jobCategoryId: true,

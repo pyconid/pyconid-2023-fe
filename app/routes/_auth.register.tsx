@@ -43,7 +43,7 @@ export default function Route() {
   const [form, { firstName, lastName, email, password }] = useForm({
     id,
     lastSubmission,
-    shouldValidate: "onInput",
+    shouldValidate: "onBlur",
     constraint: getFieldsetConstraint(userSignupSchema),
     onValidate({ formData }) {
       return parse(formData, { schema: userSignupSchema })

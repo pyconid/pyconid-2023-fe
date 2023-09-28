@@ -18,6 +18,7 @@ model User {
   email        String    @unique
   firstName    String
   lastName     String?
+  displayName  String?
   username     String    @unique
   phone        String?
   password     String?

@@ -12,6 +12,8 @@ const lastName = z
   .min(1, "Last name is required")
   .max(50, "Last name limited to 50 characters")
 
+const displayName = z.string()
+
 const email = z
   .string()
   .min(1, "Email is required")
@@ -95,6 +97,7 @@ const userUpdateSchema = z.object({
   id,
   firstName,
   lastName,
+  displayName,
   email: email.optional(),
   organisation,
   industryCategoryId,

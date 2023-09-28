@@ -33,7 +33,7 @@ export async function action({ request }: ActionArgs) {
   }
 
   await authenticator.authenticate("user-pass", request, {
-    successRedirect: "/",
+    successRedirect: "/account",
     failureRedirect: "/login",
     throwOnError: true,
   })
@@ -65,7 +65,7 @@ export default function Route() {
   const [form, { email, password }] = useForm({
     id,
     lastSubmission,
-    shouldValidate: "onInput",
+    shouldValidate: "onBlur",
     constraint: getFieldsetConstraint(userSigninSchema),
     onValidate({ formData }) {
       return parse(formData, { schema: userSigninSchema })

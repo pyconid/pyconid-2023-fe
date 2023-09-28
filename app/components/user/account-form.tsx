@@ -39,6 +39,7 @@ export const AccountForm = () => {
       id,
       firstName,
       lastName,
+      displayName,
       email,
       organisation,
       industryCategoryId,
@@ -118,6 +119,11 @@ export const AccountForm = () => {
               placeholder="Last Name"
             />
           </div>
+          <TextInput
+            field={displayName}
+            label="Display Name"
+            placeholder="Display Name"
+          />
           <TextInput
             field={email}
             label="Email *"
