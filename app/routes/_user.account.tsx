@@ -71,7 +71,7 @@ export default function Route() {
   return (
     <Layout>
       <div className="mx-auto mb-8 mt-16 w-full max-w-4xl px-6">
-        <h1 className="text-5xl font-bold">Account Dashboard</h1>
+        <h1 className="text-4xl font-bold">Account Dashboard</h1>
       </div>
       <AccountForm />
     </Layout>

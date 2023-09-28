@@ -38,12 +38,15 @@ const TextInput = <T,>({
         disabled={disabled}
       />
       {description ? (
-        <p className="h-4 text-sm text-muted-foreground md:text-base">
+        <p className="mb-4 text-sm text-muted-foreground md:h-4 md:text-base">
           {description}
         </p>
       ) : null}
       {field.error ? (
-        <p className="h-4 text-sm text-red-500 md:text-base" id={field.errorId}>
+        <p
+          className="text-sm text-red-500 md:h-4 md:text-base"
+          id={field.errorId}
+        >
           {field.error}
         </p>
       ) : null}

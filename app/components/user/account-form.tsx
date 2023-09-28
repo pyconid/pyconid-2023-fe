@@ -190,7 +190,7 @@ export const AccountForm = () => {
               </SelectInput.Option>
             ))}
           </SelectInput>
-          <div className="flex flex-col items-center justify-center gap-6 lg:flex-row">
+          <div className="flex flex-col items-center justify-center gap-1 md:gap-6 lg:flex-row">
             <SelectInput
               field={gender}
               label="Gender"
@@ -203,7 +203,7 @@ export const AccountForm = () => {
               ))}
             </SelectInput>
             <CheckboxInput
-              className="mt-7 flex w-48 flex-none items-center space-y-0"
+              className="mt-2 flex w-48 flex-none space-y-0 self-start md:mt-7 md:items-center md:self-center"
               field={isGenderPublic}
             >
               Share to public
@@ -257,7 +257,7 @@ export const AccountForm = () => {
                 </SelectInput.Option>
               ))}
             </SelectInput>
-            <div className="flex flex-col items-center gap-4 space-y-10 lg:flex-row lg:space-y-0">
+            <div className="flex flex-col items-center gap-4 space-y-2 lg:flex-row lg:space-y-0">
               <SelectInput
                 field={state}
                 label="State"

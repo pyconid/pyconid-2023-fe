@@ -60,7 +60,7 @@ const FormFieldSet = React.forwardRef<HTMLFieldSetElement, FormFieldSetProps>(
   ({ className, children, title, borderPosition = "top", ...props }, ref) => {
     return (
       <fieldset ref={ref} className={cn("mt-5 md:mt-10", className)} {...props}>
-        <legend className="mb-2 w-full text-4xl font-bold tracking-tight text-black">
+        <legend className="mb-2 w-full text-3xl font-bold tracking-tight text-black">
           {title}
         </legend>
         {borderPosition === "top" ? (
