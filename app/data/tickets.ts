@@ -75,7 +75,7 @@ export const dataFeatures: DataFeature[][] = [
       feature: "Exclusive PyCon ID Merchandise",
     },
     {
-      feature: "Lunch and Ice Breaking",
+      feature: "Lunch and Snacks",
     },
   ],
   [
@@ -86,7 +86,7 @@ export const dataFeatures: DataFeature[][] = [
       feature: "Exclusive PyCon ID Merchandise",
     },
     {
-      feature: "Lunch and Ice Breaking",
+      feature: "Lunch and Snacks",
     },
   ],
   [
@@ -97,7 +97,7 @@ export const dataFeatures: DataFeature[][] = [
       feature: "Exclusive PyCon ID Merchandise",
     },
     {
-      feature: "Lunch and Ice Breaking",
+      feature: "Lunch and Snacks",
     },
   ],
   [
@@ -108,7 +108,7 @@ export const dataFeatures: DataFeature[][] = [
       feature: "Exclusive PyCon ID Merchandise",
     },
     {
-      feature: "Lunch and Ice Breaking",
+      feature: "Lunch and Snacks",
     },
   ],
   [
@@ -119,7 +119,7 @@ export const dataFeatures: DataFeature[][] = [
       feature: "Exclusive PyCon ID Merchandise",
     },
     {
-      feature: "Lunch and Ice Breaking",
+      feature: "Lunch and Snacks",
     },
   ],
   [
