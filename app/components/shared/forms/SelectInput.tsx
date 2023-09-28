@@ -1,7 +1,7 @@
+import type { ComponentProps } from "react"
 import { conform, type FieldConfig } from "@conform-to/react"
 
 import {
-  Input,
   Select,
   SelectContent,
   SelectItem,
@@ -16,8 +16,7 @@ type SelectInputProps<T> = {
   placeholder?: string
   className?: string
   children: React.ReactNode
-  disabled?: boolean
-}
+} & ComponentProps<typeof Select>
 
 const SelectInput = <T,>({
   field,
@@ -25,14 +24,14 @@ const SelectInput = <T,>({
   placeholder,
   className,
   children,
-  disabled,
+  ...props
 }: SelectInputProps<T>) => {
   return (
     <FormField className={className}>
       <FormLabel htmlFor={field.id}>
         {label} {field.required ? " *" : null}
       </FormLabel>
-      <Select {...conform.input(field)} disabled={disabled}>
+      <Select {...conform.input(field)} {...props}>
         <SelectTrigger>
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>

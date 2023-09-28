@@ -1,8 +1,9 @@
-import type { jobCategory as JobCategory } from "@prisma/client"
+import type { JobCategory } from "@prisma/client"
 import { prisma } from "~/db.server"
 
 export const fields = {
   public: {
+    id: true,
     symbol: true,
     name: true,
   },

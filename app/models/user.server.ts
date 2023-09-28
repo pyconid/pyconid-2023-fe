@@ -1,8 +1,37 @@
 import type { User } from "@prisma/client"
 import { Prisma } from "@prisma/client"
 import { prisma } from "~/db.server"
-import type { userUpdateSchema } from "~/schemas"
-import type { z } from "zod"
+import { parseISO } from "date-fns"
+
+type UserUpdateParams = {
+  user: {
+    id: string
+    firstName: string
+    lastName?: string
+    email?: string
+    organisation?: string
+    tShirtSize?: string
+    gender?: string
+    dateOfBirth?: string
+    phone?: string
+    country?: string
+    state?: string
+    city?: string
+  }
+  industryCategoryId?: string
+  jobCategoryId?: string
+  compliance: {
+    codeOfConduct: boolean
+    termsOfService: boolean
+  }
+  publicFields?: {
+    company?: boolean
+    gender?: boolean
+    phone?: boolean
+    address?: boolean
+    socials?: boolean
+  }
+}
 
 export const query = {
   getById({ id }: Pick<User, "id">) {
@@ -14,16 +43,55 @@ export const query = {
       },
     })
   },
-  getByToken({ token }: Pick<User, "token">) {
-    return prisma.user.findFirst({
+  async getByToken({ token }: Pick<User, "token">) {
+    const user = await prisma.user.findFirst({
       where: { token },
       select: {
         id: true,
         email: true,
         firstName: true,
         lastName: true,
+        organisation: true,
+        industryCategoryId: true,
+        jobCategoryId: true,
+        participantTypeId: true,
+        jobTitle: true,
+        tShirtSize: true,
+        gender: true,
+        dateOfBirth: true,
+        phone: true,
+        bio: true,
+        interest: true,
+        lookingFor: true,
+        country: true,
+        state: true,
+        city: true,
+        address: true,
+        website: true,
+        github: true,
+        facebook: true,
+        instagram: true,
+        linkedin: true,
+        twitter: true,
+        PublicFields: {
+          select: {
+            address: true,
+            company: true,
+            gender: true,
+            phone: true,
+            socials: true,
+          },
+        },
+        compliance: {
+          select: {
+            codeOfConduct: true,
+            termsOfService: true,
+          },
+        },
       },
     })
+
+    return user
   },
 }
 
@@ -44,31 +112,68 @@ export const mutation = {
       },
     })
   },
+  async createDefaultCompliance(id: string) {
+    await prisma.user.update({
+      where: { id },
+      data: {
+        compliance: {
+          create: {
+            codeOfConduct: false,
+            termsOfService: false,
+          },
+        },
+      },
+    })
+  },
   async update({
-    id,
-    firstName,
-    lastName,
-    company,
-    email,
-  }: z.infer<typeof userUpdateSchema>) {
+    user,
+    industryCategoryId,
+    jobCategoryId,
+    compliance,
+    publicFields,
+  }: UserUpdateParams) {
     try {
-      const user = await prisma.user.update({
-        where: { id },
-        data: { firstName, lastName, email },
+      const updatedUser = await prisma.user.update({
+        where: { id: user.id },
+        select: {
+          id: true,
+        },
+        data: {
+          ...user,
+          dateOfBirth: user.dateOfBirth
+            ? parseISO(user.dateOfBirth)
+            : undefined,
+          compliance: {
+            update: compliance,
+          },
+          IndustryCategory: {
+            connect: { id: industryCategoryId },
+          },
+          JobCategory: {
+            connect: { id: jobCategoryId },
+          },
+          PublicFields: {
+            update: publicFields,
+          },
+        },
       })
 
+      console.log({ updatedUser })
+
       return {
-        user,
+        updatedUser,
         error: null,
       }
     } catch (error) {
+      console.log("USER SERVER", error)
+
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === "P2002"
       ) {
         return {
           error: {
-            email: `Email ${email} might already used`,
+            email: `Email ${user.email} might already used`,
           },
         }
       }

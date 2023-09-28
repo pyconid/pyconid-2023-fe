@@ -5,6 +5,7 @@ export const fields = {
   public: {
     symbol: true,
     name: true,
+    id: true,
   },
 }
 

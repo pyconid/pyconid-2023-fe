@@ -66,7 +66,7 @@ const FormFieldSet = React.forwardRef<HTMLFieldSetElement, FormFieldSetProps>(
         {borderPosition === "top" ? (
           <div className="mb-5 h-1.5 rounded-full bg-primary md:mb-10" />
         ) : null}
-        <div className="space-y-5 md:space-y-10">{children}</div>
+        <div className="space-y-3 md:space-y-6">{children}</div>
         {borderPosition === "bottom" ? (
           <div className="mt-5 h-1.5 rounded-full bg-primary md:mt-10" />
         ) : null}

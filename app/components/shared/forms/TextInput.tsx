@@ -13,6 +13,7 @@ type TextInputProps<T> = {
     root?: string
     input?: string
   }
+  description?: string
 }
 
 const TextInput = <T,>({
@@ -22,6 +23,7 @@ const TextInput = <T,>({
   placeholder,
   classNames,
   disabled,
+  description,
 }: TextInputProps<T>) => {
   return (
     <FormField className={classNames?.root}>
@@ -35,9 +37,16 @@ const TextInput = <T,>({
         placeholder={placeholder}
         disabled={disabled}
       />
-      <p className="h-4 text-sm text-red-500 md:text-base" id={field.errorId}>
-        {field.error}
-      </p>
+      {description ? (
+        <p className="h-4 text-sm text-muted-foreground md:text-base">
+          {description}
+        </p>
+      ) : null}
+      {field.error ? (
+        <p className="h-4 text-sm text-red-500 md:text-base" id={field.errorId}>
+          {field.error}
+        </p>
+      ) : null}
     </FormField>
   )
 }

@@ -48,6 +48,7 @@ export const userService = {
       .then(async (data) => {
         const user = data.data
         await models.user.mutation.createDefaultPublicFields(user.id)
+        await models.user.mutation.createDefaultCompliance(user.id)
         return { data, error: null }
       })
       .catch(async (err) => ({ data: null, error: await err.json() }))
