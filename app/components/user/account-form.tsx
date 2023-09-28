@@ -1,4 +1,4 @@
-import { useId } from "react"
+import { useId, useState } from "react"
 import {
   Form,
   Link,
@@ -21,22 +21,25 @@ import { genderData } from "~/data/gender"
 import { lookingForData } from "~/data/looking-for"
 import { tshirtSizeData } from "~/data/tshirt-size"
 
+import { AvatarUpload } from "../shared/avatar-upload"
 import { useToast } from "../ui/use-toast"
 
 export const AccountForm = () => {
+  const { toast } = useToast()
   const formId = useId()
   const { industryCategories, jobCategories, participantTypes, userProfile } =
     useLoaderData<typeof loader>()
   const lastSubmission = useActionData<typeof action>()
   const navigation = useNavigation()
-  const { toast } = useToast()
 
+  const [isUploading, setIsUploading] = useState<boolean>(false)
   const isSubmitting = navigation.state === "submitting"
 
   const [
     form,
     {
       id,
+      avatar,
       firstName,
       lastName,
       displayName,
@@ -103,9 +106,16 @@ export const AccountForm = () => {
   }, [navigation.state])
 
   return (
-    <Form method="POST" {...form.props}>
+    <Form encType="multipart/form-data" method="POST" {...form.props}>
       <input type="hidden" {...conform.input(id)} />
       <div className="mx-auto mb-8 mt-16 w-full max-w-4xl px-6">
+        <AvatarUpload
+          setUploading={setIsUploading}
+          userId={id.defaultValue as string}
+          firstName={firstName.defaultValue}
+          lastName={lastName.defaultValue}
+          field={avatar}
+        />
         <FormFieldSet title="Profile" disabled={isSubmitting}>
           <div className="flex gap-6">
             <TextInput
@@ -356,8 +366,12 @@ export const AccountForm = () => {
       </div>
       <div className="sticky bottom-10 mx-auto mb-10 mt-8 flex w-full max-w-5xl items-center justify-between gap-4 rounded-full bg-primary-100 px-10 py-5">
         <p>* Mandatory</p>
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Saving..." : "Save Changes"}
+        <Button type="submit" disabled={isSubmitting || isUploading}>
+          {isUploading
+            ? "Uploading..."
+            : isSubmitting
+            ? "Saving..."
+            : "Save Changes"}
         </Button>
       </div>
     </Form>

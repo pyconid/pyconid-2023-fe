@@ -2,6 +2,8 @@ import { z } from "zod"
 
 const id = z.string().min(1, "id is required")
 
+const avatar = z.string().optional()
+
 const firstName = z
   .string()
   .min(1, "First name is required")
@@ -95,6 +97,7 @@ const userSignupSchema = z.object({
 
 const userUpdateSchema = z.object({
   id,
+  avatar,
   firstName,
   lastName,
   displayName,

@@ -42,6 +42,8 @@ model User {
   twitter      String?
   instagram    String?
 
+  avatar String?
+
   role   UserRole? @relation(fields: [roleId], references: [id])
   roleId String?
 

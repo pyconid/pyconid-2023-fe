@@ -49,6 +49,7 @@ export const query = {
       select: {
         id: true,
         email: true,
+        avatar: true,
         firstName: true,
         lastName: true,
         displayName: true,
