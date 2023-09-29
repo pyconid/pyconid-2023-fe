@@ -38,7 +38,7 @@ export async function action({ request }: ActionArgs) {
     publicFields,
   })
 
-  return submission
+  return { ...submission, success: true }
 }
 
 export async function loader({ request }: LoaderArgs) {

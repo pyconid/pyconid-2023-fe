@@ -23,6 +23,7 @@ import { Error, Layout } from "~/components"
 import { Toaster } from "./components/ui/toaster"
 import { getEnv } from "./libs/env"
 import { imageKitAuth } from "./libs/imagekit-auth"
+import { models } from "./models"
 import { authenticator } from "./services/auth.server"
 
 export const links: LinksFunction = () => [
@@ -37,9 +38,20 @@ export async function loader({ request }: LoaderArgs) {
   const { IMAGEKIT_PUBLIC_API_KEY } = getEnv()
   const userSession = await authenticator.isAuthenticated(request)
   if (userSession) {
+    const userProfile = await models.user.query.getByToken({
+      token: userSession.token,
+    })
+
     return json({
       userSession,
       ENV: { IMAGEKIT_PUBLIC_API_KEY },
+      userProfile: {
+        email: userProfile?.email,
+        avatar: userProfile?.avatar,
+        firstName: userProfile?.firstName,
+        lastName: userProfile?.lastName,
+        displayName: userProfile?.displayName,
+      },
     })
   }
   return json({

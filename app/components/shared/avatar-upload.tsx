@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { conform, useInputEvent, type FieldConfig } from "@conform-to/react"
 import { IKUpload } from "imagekitio-react"
 
+import { getAvatarInitials } from "~/libs/getAvatarInitials"
 import { useImagePreview } from "~/hooks/useImagePreview"
 
 import { Button } from "../ui"
@@ -29,10 +30,7 @@ export function AvatarUpload<T>({
   const control = useInputEvent({ ref: shadowInputRef })
 
   const initials = useMemo(() => {
-    if (firstName && lastName) {
-      return `${firstName[0]}${lastName[0]}`.toUpperCase()
-    }
-    return ""
+    return getAvatarInitials(firstName, lastName)
   }, [firstName, lastName])
 
   return (

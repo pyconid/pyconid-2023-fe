@@ -29,7 +29,7 @@ export const AccountForm = () => {
   const formId = useId()
   const { industryCategories, jobCategories, participantTypes, userProfile } =
     useLoaderData<typeof loader>()
-  const lastSubmission = useActionData<typeof action>()
+  const lastSubmission = useActionData()
   const navigation = useNavigation()
 
   const [isUploading, setIsUploading] = useState<boolean>(false)
@@ -100,7 +100,7 @@ export const AccountForm = () => {
   )
 
   useUpdateEffect(() => {
-    if (navigation.state === "idle") {
+    if (navigation.state === "idle" && lastSubmission?.success) {
       toast({ title: "Profile updated successfully!", duration: 2000 })
     }
   }, [navigation.state])

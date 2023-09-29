@@ -5,6 +5,7 @@ import * as CollapsiblePrimitive from "@radix-ui/react-collapsible"
 import { useRootLoader } from "~/hooks/useRootLoader"
 
 import { Button } from "../ui"
+import { UserNav } from "./user-nav"
 
 export function Nav() {
   const { userSession } = useRootLoader()
@@ -64,7 +65,7 @@ export function Nav() {
           className={
             isOpen
               ? "fixed z-10 mx-auto block w-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:ml-10 2xl:mr-10 2xl:px-0"
-              : "fixed z-10 mx-auto mt-3 block w-[95%] max-w-7xl rounded-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:mt-6 lg:h-24 lg:w-[90%] lg:max-w-full lg:px-4 xl:px-0 2xl:px-0"
+              : "fixed z-10 mx-auto mt-3 block w-[95%] max-w-7xl rounded-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:mt-6 lg:h-24 lg:w-full lg:max-w-screen-2xl lg:px-4 xl:px-0 2xl:px-0"
           }
         >
           <div className="flex w-full justify-between lg:h-full lg:pl-14 ">
@@ -128,9 +129,7 @@ export function Nav() {
             </div>
             <div className="pr-18 hidden items-center justify-end gap-2 text-lg lg:mr-6 lg:flex lg:text-xs xl:mr-14">
               {userSession ? (
-                <Button className="h-10 bg-primary text-xs" asChild>
-                  <Link to="/logout">Logout</Link>
-                </Button>
+                <UserNav />
               ) : (
                 <>
                   {/* <Button variant="outline" className="h-10 text-xs" asChild>
@@ -180,9 +179,7 @@ export function Nav() {
                 </div>
                 <div className="flex items-center justify-center gap-3 p-4">
                   {userSession ? (
-                    <Button className="h-10 bg-primary text-xs" asChild>
-                      <Link to="/logout">Logout</Link>
-                    </Button>
+                    <UserNav />
                   ) : (
                     <>
                       {/* <Button
@@ -199,6 +196,7 @@ export function Nav() {
                       >
                         <Link to="/">Sign Up (Soon)</Link>
                       </Button> */}
+
                       <Button
                         className="h-10 cursor-not-allowed bg-primary text-xs"
                         disabled
