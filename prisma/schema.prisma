@@ -212,6 +212,7 @@ model TicketTransaction {
   paymentId     String
   paymentLink   String  @default("https://pycon.id")
   transactionId String
+  totalPrice Int @default(0)
 
   voucherTransaction VoucherTransaction?
 
