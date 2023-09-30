@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { json, type LinksFunction, type LoaderArgs } from "@remix-run/node"
 import {
   isRouteErrorResponse,
@@ -8,6 +9,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useNavigation,
   useRouteError,
 } from "@remix-run/react"
 import sansFontStylesBold from "@fontsource/open-sans/700.css"
@@ -16,15 +18,16 @@ import brandFontStylesBold from "@fontsource/quicksand/700.css"
 import brandFontStyles from "@fontsource/quicksand/index.css"
 import { Analytics } from "@vercel/analytics/react"
 import stylesheet from "~/globals.css"
+import { models } from "~/models"
+import { authenticator } from "~/services/auth.server"
 import { IKContext } from "imagekitio-react"
+import NProgress from "nprogress"
+import nProgressStyles from "nprogress/nprogress.css"
 
+import { getEnv } from "~/libs/env"
+import { imageKitAuth } from "~/libs/imagekit-auth"
 import { Error, Layout } from "~/components"
-
-import { Toaster } from "./components/ui/toaster"
-import { getEnv } from "./libs/env"
-import { imageKitAuth } from "./libs/imagekit-auth"
-import { models } from "./models"
-import { authenticator } from "./services/auth.server"
+import { Toaster } from "~/components/ui/toaster"
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -32,30 +35,34 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: brandFontStylesBold },
   { rel: "stylesheet", href: sansFontStyles },
   { rel: "stylesheet", href: sansFontStylesBold },
+  { rel: "stylesheet", href: nProgressStyles },
 ]
 
 export async function loader({ request }: LoaderArgs) {
   const { IMAGEKIT_PUBLIC_API_KEY } = getEnv()
-  const userSession = await authenticator.isAuthenticated(request)
-  if (userSession) {
-    const userProfile = await models.user.query.getByToken({
-      token: userSession.token,
-    })
 
+  const userSession = await authenticator.isAuthenticated(request)
+
+  if (!userSession) {
     return json({
-      userSession,
       ENV: { IMAGEKIT_PUBLIC_API_KEY },
-      userProfile: {
-        email: userProfile?.email,
-        avatar: userProfile?.avatar,
-        firstName: userProfile?.firstName,
-        lastName: userProfile?.lastName,
-        displayName: userProfile?.displayName,
-      },
     })
   }
+
+  const userProfile = await models.user.query.getByToken({
+    token: userSession.token,
+  })
+
   return json({
+    userSession,
     ENV: { IMAGEKIT_PUBLIC_API_KEY },
+    userProfile: {
+      email: userProfile?.email,
+      avatar: userProfile?.avatar,
+      firstName: userProfile?.firstName,
+      lastName: userProfile?.lastName,
+      displayName: userProfile?.displayName,
+    },
   })
 }
 
@@ -84,8 +91,6 @@ export function ErrorBoundary() {
     )
   }
 
-  console.log({ error })
-
   return (
     <html lang="en">
       <head>
@@ -96,7 +101,7 @@ export function ErrorBoundary() {
       </head>
       <body>
         <Layout>
-          <Error status="unknown" />
+          <Error status="Unknown" />
         </Layout>
         <ScrollRestoration />
         <Scripts />
@@ -111,6 +116,13 @@ const IMAGEKIT_ENDPOINT = "https://ik.imagekit.io/pyconid2023"
 
 export default function App() {
   const { ENV } = useLoaderData<typeof loader>()
+  const navigation = useNavigation()
+
+  useEffect(() => {
+    if (navigation.state === "idle") NProgress.done()
+    else NProgress.start()
+  }, [navigation.state])
+
   return (
     <html lang="en">
       <head>

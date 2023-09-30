@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useLocation } from "@remix-run/react"
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible"
 
+import { cn } from "~/libs"
 import { useRootLoader } from "~/hooks/useRootLoader"
 
 import { Button } from "../ui"
@@ -64,16 +65,25 @@ export function Nav() {
 
   return (
     <CollapsiblePrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
-      <div className="flex justify-center">
+      <div
+        className={cn(
+          "fixed z-10 flex w-full justify-center px-4 lg:px-6",
+          isOpen && "px-0",
+        )}
+      >
         <nav
-          className={
-            isOpen
-              ? "fixed z-10 mx-auto block w-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:ml-10 2xl:mr-10 2xl:px-0"
-              : "fixed z-10 mx-auto mt-3 block w-[95%] max-w-screen-2xl rounded-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:mt-6 lg:h-24 lg:w-full lg:max-w-[95%] lg:px-4 xl:px-0 2xl:px-0"
-          }
+          className={cn(
+            "mt-3 block w-full max-w-screen-2xl rounded-full bg-primary-100 px-10 lg:mt-6 lg:h-24 lg:px-4 xl:px-0 2xl:px-5",
+            isOpen && "mt-0 w-full rounded-none px-5",
+          )}
         >
-          <div className="flex w-full justify-between lg:h-full lg:pl-14 ">
-            <div className="h-[60px] w-full lg:h-[100px] lg:w-[10%] lg:pl-0 xl:w-[15%] xl:pl-0 2xl:pl-0">
+          <div
+            className={cn(
+              "flex h-[60px] w-full justify-between lg:h-full lg:pl-14",
+              isOpen && "mt-2",
+            )}
+          >
+            <div className="h-full flex-none">
               <Link to="/">
                 <img src="/logo.png" className="h-full" alt="PyCon ID 2023" />
               </Link>
@@ -86,7 +96,6 @@ export function Nav() {
                 aria-expanded="false"
               >
                 <span className="sr-only">Open main menu</span>
-
                 {isOpen ? (
                   <img
                     src="/close-icon.svg"
@@ -103,35 +112,28 @@ export function Nav() {
               </button>
             </CollapsiblePrimitive.Trigger>
 
-            <div
-              className={`hidden md:ml-6 md:space-x-8 lg:flex lg:w-[60%] lg:space-x-5 xl:ml-0 xl:w-[60%] xl:space-x-8  ${
-                screenWidth >= 1536 && screenWidth <= 1564
-                  ? "2xl:w-[65%] "
-                  : "2xl:ml-6 2xl:w-[60%] "
-              }`}
-            >
+            <ul className={cn("hidden lg:flex lg:gap-6")}>
               {navLink.map((item, index) => {
                 return (
-                  <div key={index} className="item-center flex">
-                    <Link
-                      to={item.to}
-                      className="xl:text-md inline-flex items-center px-1 pt-1 text-center text-xs font-medium 2xl:text-lg"
+                  <Link
+                    key={index}
+                    to={item.to}
+                    className="flex items-center px-1 pt-1 text-center text-xs font-medium xl:text-base"
+                  >
+                    <span
+                      className={`flex w-full items-center text-[#757575] ${
+                        pathName === item.to
+                          ? "font-semibold text-primary"
+                          : "font-normal"
+                      }  hover:text-primary`}
                     >
-                      <span
-                        className={`flex h-full w-full items-center text-[#757575] ${
-                          pathName === item.to
-                            ? "font-semibold text-primary"
-                            : "font-normal"
-                        }  hover:text-primary`}
-                      >
-                        {item.label}
-                      </span>
-                    </Link>
-                  </div>
+                      {item.label}
+                    </span>
+                  </Link>
                 )
               })}
-            </div>
-            <div className="pr-18 hidden items-center justify-end gap-2 text-lg lg:mr-6 lg:flex lg:text-xs xl:mr-14">
+            </ul>
+            <div className="pr-18 hidden flex-none items-center justify-end gap-2 text-lg lg:mr-6 lg:flex lg:text-xs xl:mr-14">
               {userSession ? (
                 <UserNav />
               ) : (

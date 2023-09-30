@@ -60,7 +60,7 @@ export default function Route() {
   const navigation = useNavigation()
   const { toast } = useToast()
 
-  const isSubmitting = navigation.state === "submitting"
+  const isSubmitting = navigation.state !== "idle"
 
   const [form, { email, password }] = useForm({
     id,
