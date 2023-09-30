@@ -84,6 +84,8 @@ export function ErrorBoundary() {
     )
   }
 
+  console.log({ error })
+
   return (
     <html lang="en">
       <head>

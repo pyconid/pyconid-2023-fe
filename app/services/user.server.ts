@@ -51,7 +51,10 @@ export const userService = {
         await models.user.mutation.createDefaultCompliance(user.id)
         return { data, error: null }
       })
-      .catch(async (err) => ({ data: null, error: await err.json() }))
+      .catch(async (err) => {
+        console.log(err)
+        return { data: null, error: await err.json() }
+      })
   },
   async verify(token: string) {
     return fetch(`${API_SERVICE_URL}auth/verify/${token}`)
