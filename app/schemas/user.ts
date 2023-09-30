@@ -26,52 +26,49 @@ const password = z
   .min(8, "Password require at least 8 characters")
   .max(100, "Password max length limited to 100 characters")
 
-const organisation = z.string().optional()
-const jobTitle = z.string()
-
-const industryCategoryId = z.string().optional()
-
+const organisation = z.string().min(1, "Company is required")
+const jobTitle = z.string().min(1, "Job title is required")
+const industryCategoryId = z.string().min(1, "Industry categories is required")
 const jobCategoryId = z.string().min(1, "Job category is required")
-
 const tShirtSize = z.string().min(1, "TShirt Size is required")
+const gender = z.string().min(1, "Genders is required")
+const dateOfBirth = z.string().min(1, "Date of birth is required")
 
-const gender = z.string().optional()
+const phoneRegex = new RegExp(/^\+[1-9]\d{1,14}$/)
 
-const dateOfBirth = z.string().optional()
+const phone = z
+  .string()
+  .regex(phoneRegex, "Phone number must include country code (e.g +62)")
 
-const phoneRegex = new RegExp(
-  /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
-)
+const bio = z.string()
+const interest = z.string().optional().nullable().default(null)
+const offeringSearching = z.string().optional().nullable().default(null)
 
-const phone = z.string().regex(phoneRegex, "Invalid phone number")
+const lookingFor = z.string().optional().nullable().default(null)
 
-const bio = z.string().optional()
+const country = z.string().optional().nullable().default(null)
+const state = z.string().optional().nullable().default(null)
+const city = z.string().optional().nullable().default(null)
+const address = z.string().optional().nullable().default(null)
 
-const interest = z.string().optional()
-
-const lookingFor = z.string().optional()
-
-const country = z.string().optional()
-const state = z.string().optional()
-const city = z.string().optional()
-const address = z.string().optional()
-
-const website = z.string().optional()
-const github = z.string().optional()
-const facebook = z.string().optional()
-const linkedin = z.string().optional()
-const twitter = z.string().optional()
-const instagram = z.string().optional()
+const website = z.string().optional().nullable().default(null)
+const github = z.string().optional().nullable().default(null)
+const facebook = z.string().optional().nullable().default(null)
+const linkedin = z.string().optional().nullable().default(null)
+const twitter = z.string().optional().nullable().default(null)
+const instagram = z.string().optional().nullable().default(null)
 
 const participantTypeSymbol = z.string().optional()
 
 const publicFields = z
   .object({
-    company: z.boolean().optional(),
-    gender: z.boolean().optional(),
-    phone: z.boolean().optional(),
-    address: z.boolean().optional(),
-    socials: z.boolean().optional(),
+    email: z.boolean().optional().default(false),
+    company: z.boolean().optional().default(false),
+    gender: z.boolean().optional().default(false),
+    phone: z.boolean().optional().default(false),
+    lookingFor: z.boolean().optional().default(false),
+    address: z.boolean().optional().default(false),
+    socials: z.boolean().optional().default(false),
   })
   .optional()
 
@@ -113,6 +110,7 @@ const userUpdateSchema = z.object({
   bio,
   interest,
   lookingFor,
+  offeringSearching,
   country,
   state,
   city,

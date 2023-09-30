@@ -15,32 +15,33 @@ generator client {
 model User {
   id String @id @default(cuid())
 
-  email        String    @unique
-  firstName    String
-  lastName     String?
-  displayName  String?
-  username     String    @unique
-  phone        String?
-  password     String?
-  token        String?
-  organisation String?
-  jobTitle     String?
-  tShirtSize   String?
-  gender       String?
-  dateOfBirth  DateTime?
-  bio          String?   @db.Text
-  interest     String?
-  lookingFor   String?
-  country      String?
-  state        String?
-  city         String?
-  address      String?
-  website      String?
-  github       String?
-  facebook     String?
-  linkedin     String?
-  twitter      String?
-  instagram    String?
+  email             String    @unique
+  firstName         String
+  lastName          String?
+  displayName       String?
+  username          String    @unique
+  phone             String?
+  password          String?
+  token             String?
+  organisation      String?
+  jobTitle          String?
+  tShirtSize        String?
+  gender            String?
+  dateOfBirth       DateTime?
+  bio               String?   @db.Text
+  interest          String?
+  lookingFor        String?
+  offeringSearching String?
+  country           String?
+  state             String?
+  city              String?
+  address           String?
+  website           String?
+  github            String?
+  facebook          String?
+  linkedin          String?
+  twitter           String?
+  instagram         String?
 
   avatar String?
 
@@ -164,11 +165,13 @@ model UserCompliance {
 model PublicFields {
   id String @id @default(cuid())
 
-  company Boolean @default(false)
-  gender  Boolean @default(false)
-  phone   Boolean @default(false)
-  address Boolean @default(false)
-  socials Boolean @default(false)
+  company    Boolean @default(false)
+  email      Boolean @default(false)
+  gender     Boolean @default(false)
+  phone      Boolean @default(false)
+  lookingFor Boolean @default(false)
+  address    Boolean @default(false)
+  socials    Boolean @default(false)
 
   users User?
 

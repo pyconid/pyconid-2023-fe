@@ -3,20 +3,22 @@ import { Prisma } from "@prisma/client"
 import { prisma } from "~/db.server"
 import { parseISO } from "date-fns"
 
+import { lookingForData } from "~/data/looking-for"
+
 type UserUpdateParams = {
   user: {
     id: string
     firstName: string
-    lastName?: string
+    lastName?: string | null
     email?: string
-    organisation?: string
-    tShirtSize?: string
-    gender?: string
+    organisation?: string | null
+    tShirtSize?: string | null
+    gender?: string | null
     dateOfBirth?: string
-    phone?: string
-    country?: string
-    state?: string
-    city?: string
+    phone?: string | null
+    country?: string | null
+    state?: string | null
+    city?: string | null
   }
   industryCategoryId?: string
   jobCategoryId?: string
@@ -26,11 +28,65 @@ type UserUpdateParams = {
   }
   publicFields?: {
     company?: boolean
+    email?: boolean
+    lookingFor?: boolean
     gender?: boolean
     phone?: boolean
     address?: boolean
     socials?: boolean
   }
+}
+
+const publicFields = {
+  id: true,
+  email: true,
+  avatar: true,
+  firstName: true,
+  lastName: true,
+  displayName: true,
+  organisation: true,
+  industryCategoryId: true,
+  jobCategoryId: true,
+  participantTypeId: true,
+  jobTitle: true,
+  gender: true,
+  phone: true,
+  bio: true,
+  interest: true,
+  lookingFor: true,
+  offeringSearching: true,
+  country: true,
+  state: true,
+  city: true,
+  address: true,
+  website: true,
+  github: true,
+  facebook: true,
+  instagram: true,
+  linkedin: true,
+  twitter: true,
+  PublicFields: {
+    select: {
+      email: true,
+      address: true,
+      company: true,
+      gender: true,
+      phone: true,
+      lookingFor: true,
+      socials: true,
+    },
+  },
+}
+
+const privateFields = {
+  tShirtSize: true,
+  dateOfBirth: true,
+  compliance: {
+    select: {
+      codeOfConduct: true,
+      termsOfService: true,
+    },
+  },
 }
 
 export const query = {
@@ -44,56 +100,65 @@ export const query = {
     })
   },
   async getByToken({ token }: Pick<User, "token">) {
+    return prisma.user.findFirst({
+      where: { token },
+      select: { ...publicFields, ...privateFields },
+    })
+  },
+  async getPublicProfileByToken({ token }: Pick<User, "token">) {
     const user = await prisma.user.findFirst({
       where: { token },
       select: {
-        id: true,
-        email: true,
-        avatar: true,
-        firstName: true,
-        lastName: true,
-        displayName: true,
-        organisation: true,
-        industryCategoryId: true,
-        jobCategoryId: true,
-        participantTypeId: true,
-        jobTitle: true,
-        tShirtSize: true,
-        gender: true,
-        dateOfBirth: true,
-        phone: true,
-        bio: true,
-        interest: true,
-        lookingFor: true,
-        country: true,
-        state: true,
-        city: true,
-        address: true,
-        website: true,
-        github: true,
-        facebook: true,
-        instagram: true,
-        linkedin: true,
-        twitter: true,
-        PublicFields: {
-          select: {
-            address: true,
-            company: true,
-            gender: true,
-            phone: true,
-            socials: true,
-          },
-        },
-        compliance: {
-          select: {
-            codeOfConduct: true,
-            termsOfService: true,
-          },
-        },
+        ...publicFields,
+        IndustryCategory: { select: { name: true } },
+        JobCategory: { select: { name: true } },
+        participantType: { select: { name: true } },
       },
     })
 
-    return user
+    if (!user) return null
+
+    if (!user.PublicFields?.socials) {
+      user.website = null
+      user.facebook = null
+      user.github = null
+      user.twitter = null
+      user.linkedin = null
+    }
+
+    if (!user.PublicFields?.address) {
+      user.address = null
+      user.city = null
+      user.state = null
+      user.country = null
+    }
+
+    if (!user.PublicFields?.company) {
+      user.organisation = null
+      user.IndustryCategory = null
+    }
+
+    if (!user.PublicFields?.email) {
+      user.email = ""
+    }
+
+    if (!user.PublicFields?.gender) {
+      user.gender = null
+    }
+
+    if (!user.PublicFields?.phone) {
+      user.phone = null
+    }
+
+    user.lookingFor =
+      lookingForData.find((lf) => lf.symbol === user.lookingFor)?.name || null
+
+    return {
+      ...user,
+      participantType: user.participantType?.name ?? "Non Participant",
+      industryCategory: user.IndustryCategory?.name,
+      isSocialsPublic: user.PublicFields?.socials,
+    }
   },
 }
 
@@ -104,11 +169,13 @@ export const mutation = {
       data: {
         PublicFields: {
           create: {
+            email: false,
             address: false,
             company: false,
             gender: false,
             phone: false,
             socials: false,
+            lookingFor: false,
           },
         },
       },
@@ -155,7 +222,15 @@ export const mutation = {
             connect: { id: jobCategoryId },
           },
           PublicFields: {
-            update: publicFields,
+            update: publicFields || {
+              address: false,
+              company: false,
+              email: false,
+              gender: false,
+              phone: false,
+              socials: false,
+              lookingFor: false,
+            },
           },
         },
       })

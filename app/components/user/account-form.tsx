@@ -8,7 +8,7 @@ import {
 } from "@remix-run/react"
 import { conform, useFieldset, useForm } from "@conform-to/react"
 import { getFieldsetConstraint, parse } from "@conform-to/zod"
-import type { action, loader } from "~/routes/_user.account"
+import type { loader } from "~/routes/_user.account"
 import { userUpdateSchema } from "~/schemas"
 
 import { transformCheckboxFields } from "~/libs/transform-checkbox"
@@ -55,6 +55,7 @@ export const AccountForm = () => {
       bio,
       interest,
       lookingFor,
+      offeringSearching,
       country,
       state,
       city,
@@ -85,10 +86,12 @@ export const AccountForm = () => {
   })
 
   const {
+    email: isEmailPublic,
     company: isCompanyPublic,
     gender: isGenderPublic,
     phone: isPhonePublic,
     address: isAddressPublic,
+    lookingFor: isLookingForPublic,
     socials: isSocialsPublic,
   } = useFieldset(form.ref, publicFields)
 
@@ -134,13 +137,18 @@ export const AccountForm = () => {
             label="Display Name"
             placeholder="Display Name"
           />
-          <TextInput
-            field={email}
-            label="Email *"
-            placeholder="Email"
-            type="email"
-            disabled
-          />
+          <div className="space-y-5 rounded-lg bg-primary/5 px-5 py-4">
+            <TextInput
+              field={email}
+              label="Email *"
+              placeholder="Email"
+              type="email"
+              disabled
+            />
+            <CheckboxInput field={isEmailPublic}>
+              Share my email to public
+            </CheckboxInput>
+          </div>
           <div className="space-y-5 rounded-lg bg-primary/5 px-5 py-4">
             <TextInput
               field={organisation}
@@ -213,17 +221,27 @@ export const AccountForm = () => {
             <FormLabel htmlFor={dateOfBirth.id}>Date of Birth</FormLabel>
             <DatePicker field={dateOfBirth} />
           </FormField>
-          <TextInput
-            field={phone}
-            label="Mobile Number"
-            placeholder="e.g. +628222"
-          />
-          <CheckboxInput field={isPhonePublic}>
-            Share my phone number to public
-          </CheckboxInput>
+          <div className="space-y-5 rounded-lg bg-primary/5 px-5 py-4">
+            <TextInput
+              field={phone}
+              label="Mobile Number"
+              placeholder="e.g. +628222"
+            />
+            <CheckboxInput field={isPhonePublic}>
+              Share my phone number to public
+            </CheckboxInput>
+          </div>
           <FormField>
-            <FormLabel htmlFor={bio.id}>About</FormLabel>
+            <FormLabel htmlFor={bio.id}>About *</FormLabel>
             <Textarea {...conform.input(bio)} placeholder="Hi, I am ..." />
+            {bio.error ? (
+              <p
+                className="text-sm text-red-500 md:h-4 md:text-base"
+                id={bio.errorId}
+              >
+                {bio.error}
+              </p>
+            ) : null}
           </FormField>
           <TextInput
             field={interest}
@@ -231,17 +249,28 @@ export const AccountForm = () => {
             placeholder="Enter you interests"
             description="Write your interest and separate it by comma (e.g. Data, NLP)"
           />
-          <SelectInput
-            field={lookingFor}
-            label="Looking for"
-            placeholder="Choose what you want"
-          >
-            {lookingForData.map(({ name, symbol }) => (
-              <SelectInput.Option key={symbol} value={symbol}>
-                {name}
-              </SelectInput.Option>
-            ))}
-          </SelectInput>
+          <div className="space-y-5 rounded-lg bg-primary/5 px-5 py-4">
+            <SelectInput
+              field={lookingFor}
+              label="Looking for"
+              placeholder="Choose what you want"
+            >
+              {lookingForData.map(({ name, symbol }) => (
+                <SelectInput.Option key={symbol} value={symbol}>
+                  {name}
+                </SelectInput.Option>
+              ))}
+            </SelectInput>
+            <TextInput
+              field={offeringSearching}
+              label="Offering / Searching Expertise"
+              placeholder="Enter you searching expertise"
+              description="Write your offering / searching expertise and separate it by comma (e.g. Data, NLP)"
+            />
+            <CheckboxInput field={isLookingForPublic}>
+              Share your offering / searching expertise to public
+            </CheckboxInput>
+          </div>
         </FormFieldSet>
         <FormFieldSet title="Address" disabled={isSubmitting}>
           <div className="space-y-5 rounded-lg bg-primary/5 px-5 py-4">

@@ -16,10 +16,11 @@ export async function action({ request }: ActionArgs) {
   const formData = await request.formData()
   const submission = parse(formData, { schema: userUpdateSchema })
 
+  console.log(submission)
+
   if (!submission.value || submission.intent !== "submit") {
     return submission
   }
-
   const {
     value: {
       industryCategoryId,

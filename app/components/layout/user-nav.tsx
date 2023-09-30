@@ -50,7 +50,7 @@ export function UserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link to="/profle">Profile</Link>
+            <Link to="/profile">Profile</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link to="/account">Account Dashboard</Link>
