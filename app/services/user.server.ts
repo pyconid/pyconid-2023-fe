@@ -52,7 +52,8 @@ export const userService = {
         return { data, error: null }
       })
       .catch(async (err) => {
-        return { data: null, error: await err.json() }
+        console.log({ err })
+        return { data: null, error: err }
       })
   },
   async verify(token: string) {
