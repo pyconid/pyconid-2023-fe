@@ -82,7 +82,7 @@ export default function Route() {
               />
             ))}
           </div>
-          <Button size="lg" className="mt-20 w-full max-w-md text-lg">
+          <Button size="lg" className="mt-20 w-full max-w-md text-lg" asChild>
             {userId ? (
               <a
                 href={`https://cicakrebus.pycon.id/${userId}`}
