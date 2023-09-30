@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "app/routes/**": {
+      "maxDuration": 60
+    }
+  }
+}
