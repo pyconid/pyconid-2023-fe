@@ -25,6 +25,10 @@ export function Nav() {
       label: "Call for Proposal",
     },
     {
+      to: "/tickets",
+      label: "Tickets",
+    },
+    {
       to: "/coc",
       label: "Code of Conduct",
     },
@@ -65,7 +69,7 @@ export function Nav() {
           className={
             isOpen
               ? "fixed z-10 mx-auto block w-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:h-24 lg:px-4 xl:px-0 2xl:ml-10 2xl:mr-10 2xl:px-0"
-              : "fixed z-10 mx-auto mt-3 block w-[95%] max-w-7xl rounded-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:mt-6 lg:h-24 lg:w-full lg:max-w-screen-2xl lg:px-4 xl:px-0 2xl:px-0"
+              : "fixed z-10 mx-auto mt-3 block w-[95%] max-w-screen-2xl rounded-full bg-primary-100 px-6 sm:px-14 md:px-14 lg:mt-6 lg:h-24 lg:w-full lg:max-w-[95%] lg:px-4 xl:px-0 2xl:px-0"
           }
         >
           <div className="flex w-full justify-between lg:h-full lg:pl-14 ">
@@ -132,21 +136,11 @@ export function Nav() {
                 <UserNav />
               ) : (
                 <>
-                  {/* <Button variant="outline" className="h-10 text-xs" asChild>
+                  <Button className="h-10 text-xs" asChild>
                     <Link to="/login">Sign In</Link>
-                  </Button> */}
-                  {/* <Button
-                    className="h-10 cursor-not-allowed bg-primary text-xs"
-                    asChild
-                    disabled
-                  >
-                    <Link to="/register">Sign Up (Soon)</Link>
-                  </Button> */}
-                  <Button
-                    className="h-10 cursor-not-allowed bg-primary text-xs"
-                    disabled
-                  >
-                    Sign Up (Soon)
+                  </Button>
+                  <Button className="h-10 text-xs" variant="outline" asChild>
+                    <Link to="/register">Sign Up</Link>
                   </Button>
                 </>
               )}
@@ -182,26 +176,15 @@ export function Nav() {
                     <UserNav />
                   ) : (
                     <>
-                      {/* <Button
-                        variant="outline"
-                        className="h-10 w-full text-xs"
-                        asChild
-                      >
+                      <Button className="h-10 text-xs" asChild>
                         <Link to="/login">Sign In</Link>
-                      </Button> */}
-                      {/* <Button
-                        className="h-10 w-full bg-primary text-xs"
-                        asChild
-                        disabled
-                      >
-                        <Link to="/">Sign Up (Soon)</Link>
-                      </Button> */}
-
+                      </Button>
                       <Button
-                        className="h-10 cursor-not-allowed bg-primary text-xs"
-                        disabled
+                        className="h-10 text-xs"
+                        variant="outline"
+                        asChild
                       >
-                        Sign Up (Soon)
+                        <Link to="/register">Sign Up</Link>
                       </Button>
                     </>
                   )}
