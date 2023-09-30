@@ -52,7 +52,6 @@ export const userService = {
         return { data, error: null }
       })
       .catch(async (err) => {
-        console.log(err)
         return { data: null, error: await err.json() }
       })
   },
