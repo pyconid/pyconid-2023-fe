@@ -55,6 +55,9 @@ export function UserNav() {
           <DropdownMenuItem asChild>
             <Link to="/account">Account Dashboard</Link>
           </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link to="/account/ticket">My Ticket</Link>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>

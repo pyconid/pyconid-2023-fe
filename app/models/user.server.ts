@@ -160,6 +160,31 @@ export const query = {
       isSocialsPublic: user.PublicFields?.socials,
     }
   },
+  async getTicketTransactions({ token }: { token: string }) {
+    return await prisma.user.findFirst({
+      where: { token },
+      select: {
+        firstName: true,
+        lastName: true,
+        displayName: true,
+        avatar: true,
+        ticketTransactions: {
+          select: {
+            id: true,
+            createdAt: true,
+            status: true,
+            transactionId: true,
+            ticket: {
+              select: {
+                name: true,
+                price: true,
+              },
+            },
+          },
+        },
+      },
+    })
+  },
 }
 
 export const mutation = {

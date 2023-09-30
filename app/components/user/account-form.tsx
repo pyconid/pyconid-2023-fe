@@ -8,7 +8,7 @@ import {
 } from "@remix-run/react"
 import { conform, useFieldset, useForm } from "@conform-to/react"
 import { getFieldsetConstraint, parse } from "@conform-to/zod"
-import type { loader } from "~/routes/_user.account"
+import type { loader } from "~/routes/_user.account._index"
 import { userUpdateSchema } from "~/schemas"
 
 import { transformCheckboxFields } from "~/libs/transform-checkbox"
