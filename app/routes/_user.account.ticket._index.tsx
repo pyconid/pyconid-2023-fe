@@ -18,7 +18,7 @@ import {
 } from "~/components/ui/table"
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "My Ticket" }]
+  return [{ title: "My Ticket - PyCon ID 2023" }]
 }
 
 export async function loader({ request }: LoaderArgs) {
@@ -42,7 +42,7 @@ export async function loader({ request }: LoaderArgs) {
 export default function Route() {
   const data = useLoaderData<typeof loader>()
 
-  if (!data.transactions || !data.completedTicketId) return
+  if (!data.transactions) return
 
   const {
     transactions: { ticketTransactions },
@@ -51,8 +51,10 @@ export default function Route() {
 
   return (
     <Layout>
-      <div className="mx-auto mb-20 mt-16 w-full max-w-3xl px-6">
-        <h1 className="text-center text-4xl font-bold">My Ticket</h1>
+      <div className="mx-auto mb-16 mt-10 w-full max-w-3xl px-6">
+        <h1 className="text-center font-brand text-2xl font-bold text-primary md:text-5xl">
+          My Ticket
+        </h1>
         <div className="mb-20 mt-8">
           {completedTicketId ? (
             <div className="mx-auto max-w-[300px]">
@@ -86,7 +88,7 @@ export default function Route() {
           <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[200px]">Order ID</TableHead>
+              <TableHead className="max-w-[200px]">Order ID</TableHead>
               <TableHead>Date</TableHead>
               <TableHead>Ticket Type</TableHead>
               <TableHead>Status</TableHead>
