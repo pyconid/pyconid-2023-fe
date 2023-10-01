@@ -9,14 +9,12 @@ import { Layout } from "~/components"
 import { AccountForm } from "~/components/user"
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Account" }]
+  return [{ title: "Account - PyCon ID 2023" }]
 }
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData()
   const submission = parse(formData, { schema: userUpdateSchema })
-
-  console.log(submission)
 
   if (!submission.value || submission.intent !== "submit") {
     return submission

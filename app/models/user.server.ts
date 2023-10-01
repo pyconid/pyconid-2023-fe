@@ -24,7 +24,7 @@ type UserUpdateParams = {
   jobCategoryId?: string
   compliance: {
     codeOfConduct: boolean
-    termsOfService: boolean
+    // termsOfService: boolean
   }
   publicFields?: {
     company?: boolean
