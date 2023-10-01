@@ -60,34 +60,34 @@ export default function Route() {
             </h1>
             <Form method="POST" {...form.props}>
               <FormFieldSet borderPosition="bottom">
-                <div className="flex flex-col gap-2 md:gap-6">
-                  <div className="flex gap-4 md:gap-6">
+                <div className="flex flex-col gap-4 md:gap-6">
+                  <div className="flex flex-col gap-4 md:flex-row md:gap-6">
                     <TextInput
-                      classNames={{ input: "rounded-xl" }}
                       field={firstName}
                       label="First Name"
                       disabled={isSubmitting}
+                      placeholder="Enter your first name"
                     />
                     <TextInput
-                      classNames={{ input: "rounded-xl" }}
                       field={lastName}
                       label="Last Name"
                       disabled={isSubmitting}
+                      placeholder="Enter your last name"
                     />
                   </div>
                   <TextInput
-                    classNames={{ input: "rounded-xl" }}
                     field={email}
                     type="email"
                     label="Email"
                     disabled={isSubmitting}
+                    placeholder="Enter your email address"
                   />
                   <TextInput
-                    classNames={{ input: "rounded-xl" }}
                     field={password}
                     label="Password"
                     type="password"
                     disabled={isSubmitting}
+                    placeholder="Enter your password"
                   />
                   <Button
                     type="submit"

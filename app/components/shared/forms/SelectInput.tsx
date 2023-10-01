@@ -26,7 +26,6 @@ const SelectInput = <T,>({
   children,
   ...props
 }: SelectInputProps<T>) => {
-  console.log({ field })
   return (
     <FormField className={className}>
       <FormLabel htmlFor={field.id}>

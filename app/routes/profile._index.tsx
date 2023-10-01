@@ -23,7 +23,7 @@ const ProfileItem = ({
       <p className="text-md ml-1 flex items-center font-bold">
         <span className="mr-2">{icon}</span> {name}
       </p>
-      <p className="mt-2 text-xl">{value ?? "No Data"}</p>
+      <p className="mt-2 text-xl">{value ?? "Not Published"}</p>
     </div>
   )
 }

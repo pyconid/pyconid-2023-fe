@@ -67,6 +67,7 @@ const publicFields = z
     gender: z.boolean().optional().default(false),
     phone: z.boolean().optional().default(false),
     lookingFor: z.boolean().optional().default(false),
+    jobCategories: z.boolean().optional().default(false),
     address: z.boolean().optional().default(false),
     socials: z.boolean().optional().default(false),
   })
@@ -75,10 +76,13 @@ const publicFields = z
 const codeOfConduct = z.boolean()
 const termsOfService = z.boolean()
 
-const compliance = z.object({
-  codeOfConduct,
-  termsOfService,
-})
+const compliance = z.object(
+  {
+    codeOfConduct,
+    // termsOfService,
+  },
+  { required_error: "You must comply to the Code of Conduct" },
+)
 
 const userSigninSchema = z.object({
   email,

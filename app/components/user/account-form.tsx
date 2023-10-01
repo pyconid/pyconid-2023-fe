@@ -1,4 +1,4 @@
-import { useId, useState } from "react"
+import { useEffect, useId, useRef, useState } from "react"
 import {
   Form,
   Link,
@@ -34,6 +34,8 @@ export const AccountForm = () => {
 
   const [isUploading, setIsUploading] = useState<boolean>(false)
   const isSubmitting = navigation.state === "submitting"
+
+  const complianceErrorRef = useRef<HTMLParagraphElement>(null)
 
   const [
     form,
@@ -74,9 +76,9 @@ export const AccountForm = () => {
     id: formId,
     lastSubmission,
     constraint: getFieldsetConstraint(userUpdateSchema),
-    shouldRevalidate: "onBlur",
     onValidate({ formData }) {
-      return parse(formData, { schema: userUpdateSchema })
+      const submission = parse(formData, { schema: userUpdateSchema })
+      return submission
     },
     defaultValue: {
       ...userProfile,
@@ -93,9 +95,10 @@ export const AccountForm = () => {
     address: isAddressPublic,
     lookingFor: isLookingForPublic,
     socials: isSocialsPublic,
+    jobCategories: isJobCategoriesPublic,
   } = useFieldset(form.ref, publicFields)
 
-  const { codeOfConduct, termsOfService } = useFieldset(form.ref, compliance)
+  const { codeOfConduct } = useFieldset(form.ref, compliance)
 
   const { countries, states, cities, setCiso, setSiso } = useCountryStateCity(
     country.defaultValue,
@@ -107,6 +110,12 @@ export const AccountForm = () => {
       toast({ title: "Profile updated successfully!", duration: 2000 })
     }
   }, [navigation.state])
+
+  useEffect(() => {
+    if (compliance.error) {
+      complianceErrorRef.current?.scrollIntoView({ behavior: "smooth" })
+    }
+  }, [compliance.error])
 
   return (
     <Form encType="multipart/form-data" method="POST" {...form.props}>
@@ -171,22 +180,27 @@ export const AccountForm = () => {
               Share my company to public
             </CheckboxInput>
           </div>
-          <TextInput
-            field={jobTitle}
-            label="Job Title"
-            placeholder="e.g. Web Developer"
-          />
-          <SelectInput
-            field={jobCategoryId}
-            label="Job Categories"
-            placeholder="Choose Job Categoires"
-          >
-            {jobCategories.map(({ name, id }) => (
-              <SelectInput.Option key={id} value={id}>
-                {name}
-              </SelectInput.Option>
-            ))}
-          </SelectInput>
+          <div className="space-y-5 rounded-lg bg-primary/5 px-5 py-4">
+            <TextInput
+              field={jobTitle}
+              label="Job Title"
+              placeholder="e.g. Web Developer"
+            />
+            <SelectInput
+              field={jobCategoryId}
+              label="Job Categories"
+              placeholder="Choose Job Categoires"
+            >
+              {jobCategories.map(({ name, id }) => (
+                <SelectInput.Option key={id} value={id}>
+                  {name}
+                </SelectInput.Option>
+              ))}
+            </SelectInput>
+            <CheckboxInput field={isJobCategoriesPublic}>
+              Share my Job Title & Categories to public
+            </CheckboxInput>
+          </div>
           <SelectInput
             field={tShirtSize}
             label="T-Shirt Size"
@@ -387,7 +401,7 @@ export const AccountForm = () => {
               <Link to="/coc">Click here to read the full version</Link>
             </span>
           </CheckboxInput>
-          <CheckboxInput
+          {/* <CheckboxInput
             label="Terms of Service Knowledge"
             field={termsOfService}
             disabled={isSubmitting}
@@ -398,7 +412,16 @@ export const AccountForm = () => {
             <span className="font-bold underline">
               <Link to="/coc">Click here to read the full version</Link>
             </span>
-          </CheckboxInput>
+          </CheckboxInput> */}
+          {compliance.error ? (
+            <p
+              ref={complianceErrorRef}
+              className="text-sm text-red-500 md:h-4 md:text-base"
+              id={compliance.errorId}
+            >
+              {compliance.error}
+            </p>
+          ) : null}
         </FormFieldSet>
       </div>
       <div className="sticky bottom-10 mx-auto mb-10 mt-8 flex w-full max-w-5xl items-center justify-between gap-4 rounded-full bg-primary-100 px-10 py-5">

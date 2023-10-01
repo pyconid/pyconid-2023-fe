@@ -165,13 +165,14 @@ model UserCompliance {
 model PublicFields {
   id String @id @default(cuid())
 
-  company    Boolean @default(false)
-  email      Boolean @default(false)
-  gender     Boolean @default(false)
-  phone      Boolean @default(false)
-  lookingFor Boolean @default(false)
-  address    Boolean @default(false)
-  socials    Boolean @default(false)
+  company       Boolean @default(false)
+  email         Boolean @default(false)
+  gender        Boolean @default(false)
+  phone         Boolean @default(false)
+  jobCategories Boolean @default(false)
+  lookingFor    Boolean @default(false)
+  address       Boolean @default(false)
+  socials       Boolean @default(false)
 
   users User?
 
@@ -243,7 +244,7 @@ model TicketTransaction {
   paymentId     String
   paymentLink   String  @default("https://pycon.id")
   transactionId String
-  totalPrice Int @default(0)
+  totalPrice    Int     @default(0)
 
   voucherTransaction VoucherTransaction?
 

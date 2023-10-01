@@ -34,6 +34,7 @@ type UserUpdateParams = {
     phone?: boolean
     address?: boolean
     socials?: boolean
+    jobCategories?: boolean
   }
 }
 
@@ -74,6 +75,7 @@ const publicFields = {
       phone: true,
       lookingFor: true,
       socials: true,
+      jobCategories: true,
     },
   },
 }
@@ -136,6 +138,11 @@ export const query = {
     if (!user.PublicFields?.company) {
       user.organisation = null
       user.IndustryCategory = null
+    }
+
+    if (!user.PublicFields?.jobCategories) {
+      user.JobCategory = null
+      user.jobTitle = null
     }
 
     if (!user.PublicFields?.email) {
@@ -201,6 +208,7 @@ export const mutation = {
             phone: false,
             socials: false,
             lookingFor: false,
+            jobCategories: false,
           },
         },
       },
