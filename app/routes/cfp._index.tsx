@@ -39,7 +39,7 @@ export default function Index() {
                 rel="noopener noreferrer"
                 href="https://papercall.io/pyconid2023"
               >
-                Submit you proposal here
+                Submit your proposal here
               </a>
             </Button>
           </div>
