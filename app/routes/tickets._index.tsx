@@ -9,7 +9,7 @@ import { Button, Layout } from "~/components"
 import { TicketCard } from "~/components/ticket/card"
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Schedule" }]
+  return [{ title: "Buy Tickets - PyCon ID 2023" }]
 }
 
 export async function loader({ request }: LoaderArgs) {
