@@ -2,7 +2,8 @@ import type { LoaderArgs, V2_MetaFunction } from "@remix-run/node"
 import { Link, useLoaderData } from "@remix-run/react"
 import { models } from "~/models"
 import { authenticator } from "~/services/auth.server"
-import { format, parseISO } from "date-fns"
+import { parseISO } from "date-fns"
+import { formatInTimeZone } from "date-fns-tz"
 import QRCode from "react-qr-code"
 
 import { Button, Layout } from "~/components"
@@ -101,7 +102,11 @@ export default function Route() {
                   {trx.transactionId}
                 </TableCell>
                 <TableCell>
-                  {format(parseISO(trx.createdAt as string), "dd MMM yy HH:MM")}
+                  {formatInTimeZone(
+                    parseISO(trx.createdAt as string),
+                    "UTC",
+                    "dd MMM yy HH:MM",
+                  )}
                 </TableCell>
                 <TableCell>{trx.ticket?.name}</TableCell>
                 <TableCell>

@@ -417,9 +417,8 @@ export const AccountForm = () => {
             field={codeOfConduct}
             disabled={isSubmitting}
           >
-            Lorem ipsum dolor sit amet consectetur. Mi in tortor gravida tortor
-            mi id ut. Egestas lobortis neque elit gravida ac nec pellentesque
-            pellentesque.{" "}
+            By checking this box, I confirm that I have read and agree to the
+            code of conduct.
             <span className="font-bold underline">
               <Link to="/coc">Click here to read the full version</Link>
             </span>

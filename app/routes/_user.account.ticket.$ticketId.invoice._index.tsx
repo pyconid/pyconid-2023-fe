@@ -3,7 +3,8 @@ import type { LoaderArgs, V2_MetaFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { models } from "~/models"
 import { authenticator } from "~/services/auth.server"
-import { format, parseISO } from "date-fns"
+import { parseISO } from "date-fns"
+import { formatInTimeZone } from "date-fns-tz"
 import QRCode from "react-qr-code"
 
 import { currencyFormatter } from "~/libs"
@@ -21,6 +22,8 @@ export async function loader({ request, params }: LoaderArgs) {
     id: params.ticketId as string,
   })
 
+  console.log({ ticket })
+
   if (!ticket) {
     return redirect("/account/ticket")
   }
@@ -32,6 +35,8 @@ export default function Route() {
   const data = useLoaderData<typeof loader>()
 
   if (!data) return null
+
+  console.log(parseISO(data.createdAt as string))
 
   return (
     <div className="mx-auto mb-20 mt-16 w-full max-w-6xl px-6">
@@ -45,7 +50,7 @@ export default function Route() {
           <p>18 - 19 November 2023</p>
         </div>
       </div>
-      <div className="mt-20 flex flex-col-reverse justify-between lg:flex-row">
+      <div className="mt-20 flex flex-col-reverse justify-between sm:flex-row">
         <div className="flex flex-col justify-between pr-12">
           <div className="mt-16">
             <h1 className="font-bold">Python Conference Indonesia 2023 </h1>
@@ -58,25 +63,26 @@ export default function Route() {
           <div>
             <p className="mt-8 text-4xl text-primary">
               {currencyFormatter.format(data.totalPrice as number)}
-              <span className="text-lg text-muted-foreground">
-                {" "}
-                (*Tax not included)
-              </span>
+              <span className="text-lg text-muted-foreground" />
             </p>
             <p className="mt-4 text-lg">
               Order Date:{" "}
-              {format(parseISO(data.createdAt as string), "dd MMM yy HH:MM")}
+              {formatInTimeZone(
+                parseISO(data.createdAt as string),
+                "UTC",
+                "dd MMM yy HH:MM",
+              )}
             </p>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center gap-6 border-slate-600 lg:border-l lg:pl-12">
+        <div className="flex flex-col items-center justify-center gap-6 border-slate-600 sm:border-l sm:pl-12">
           <p>
             <span className="text-muted-foreground">Ticket ID:</span> {data.id}
           </p>
           <QRCode value={data.id} />
         </div>
       </div>
-      <img className="mt-12 w-full" src="/invoice-banner.svg" alt="" />
+      <img className="mt-8 w-full sm:mt-12" src="/invoice-banner.jpg" alt="" />
       <div className="mt-10">
         <h3 className="text-lg font-bold">Order Detail</h3>
         <div className="mt-4 grid grid-cols-2 gap-6">
