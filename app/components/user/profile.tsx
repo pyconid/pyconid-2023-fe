@@ -1,10 +1,11 @@
-import { useLoaderData } from "@remix-run/react"
+import { Form, useLoaderData, useNavigation } from "@remix-run/react"
 import type { loader } from "~/routes/_user.profile.$id._index"
 
 import { cn } from "~/libs"
 import { getAvatarInitials } from "~/libs/getAvatarInitials"
 
 import { Layout } from "../layout"
+import { Button } from "../ui"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 
 const ProfileItem = ({
@@ -62,9 +63,14 @@ const SocialsItem = ({
 }
 
 export function UserProfile() {
-  const data = useLoaderData<typeof loader>()
+  const { profile, shouldShowConnection, isConnected } =
+    useLoaderData<typeof loader>()
 
-  if (!data) return null
+  const navigation = useNavigation()
+
+  const isConnecting = navigation.state !== "idle"
+
+  if (!profile) return null
 
   const {
     avatar,
@@ -88,7 +94,7 @@ export function UserProfile() {
     participantType,
     industryCategory,
     isSocialsPublic,
-  } = data
+  } = profile
 
   return (
     <Layout>
@@ -107,7 +113,7 @@ export function UserProfile() {
               </AvatarFallback>
             </Avatar>
             <div className="flex flex-col justify-between gap-2 text-center lg:mb-0 lg:ml-10 lg:text-left">
-              <h3 className="text-2xl font-bold lg:text-3xl">
+              <h3 className="w-full text-2xl font-bold md:w-96 lg:text-3xl">
                 {displayName ?? `${firstName} ${lastName}`}
               </h3>
               <p>{email}</p>
@@ -129,9 +135,20 @@ export function UserProfile() {
                 </div>
               ) : null}
             </div>
-            {/* <Button className="h-auto w-48 bg-black px-6 py-2 lg:ml-16  lg:py-4">
-                Connect
-              </Button> */}
+            {shouldShowConnection ? (
+              <Form method="post">
+                <Button
+                  variant={isConnected ? "default" : "outline"}
+                  disabled={isConnecting}
+                  type="submit"
+                  name="_action"
+                  value={isConnected ? "disconnect" : "connect"}
+                  className="h-auto w-48 px-6 py-2 lg:ml-16  lg:py-4"
+                >
+                  {isConnected ? "Remove connection" : "Connect"}
+                </Button>
+              </Form>
+            ) : null}
           </div>
           <div className="space-y-10 border-t-2 border-primary px-5 py-5 lg:px-28 lg:pb-16 lg:pt-10">
             <h3 className="pb-3 text-3xl font-bold text-primary">Profile</h3>

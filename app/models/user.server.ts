@@ -268,8 +268,6 @@ export const mutation = {
         },
       })
 
-      console.log({ updatedUser })
-
       return {
         updatedUser,
         error: null,
