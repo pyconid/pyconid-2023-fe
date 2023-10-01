@@ -22,6 +22,13 @@ import { lookingForData } from "~/data/looking-for"
 import { tshirtSizeData } from "~/data/tshirt-size"
 
 import { AvatarUpload } from "../shared/avatar-upload"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog"
 import { useToast } from "../ui/use-toast"
 
 export const AccountForm = () => {
@@ -205,6 +212,21 @@ export const AccountForm = () => {
             field={tShirtSize}
             label="T-Shirt Size"
             placeholder="Choose T-Shirt Size"
+            extra={
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="link" className="underline">
+                    Size chart
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>PyCon ID T-Shirt Size Chart</DialogTitle>
+                  </DialogHeader>
+                  <img src="/size-chart.jpg" alt="Chart Size" />
+                </DialogContent>
+              </Dialog>
+            }
           >
             {tshirtSizeData.map(({ name, symbol }) => (
               <SelectInput.Option key={symbol} value={symbol}>
@@ -212,6 +234,7 @@ export const AccountForm = () => {
               </SelectInput.Option>
             ))}
           </SelectInput>
+
           <div className="flex flex-col items-center justify-center gap-1 md:gap-6 lg:flex-row">
             <SelectInput
               field={gender}

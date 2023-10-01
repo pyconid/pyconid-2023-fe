@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react"
 import { conform, type FieldConfig } from "@conform-to/react"
 
+import { cn } from "~/libs"
 import {
   Select,
   SelectContent,
@@ -16,6 +17,7 @@ type SelectInputProps<T> = {
   placeholder?: string
   className?: string
   children: React.ReactNode
+  extra?: React.ReactNode
 } & ComponentProps<typeof Select>
 
 const SelectInput = <T,>({
@@ -24,12 +26,23 @@ const SelectInput = <T,>({
   placeholder,
   className,
   children,
+  extra,
   ...props
 }: SelectInputProps<T>) => {
   return (
     <FormField className={className}>
-      <FormLabel htmlFor={field.id}>
-        {label} {field.required ? " *" : null}
+      <FormLabel
+        className={cn(extra && "flex items-center gap-3")}
+        htmlFor={field.id}
+      >
+        <span>
+          {label} {field.required ? " *" : null}
+        </span>
+        {extra ? (
+          <div className="text-sm text-muted-foreground md:text-base">
+            {extra}
+          </div>
+        ) : null}
       </FormLabel>
       <Select {...conform.input(field)} {...props}>
         <SelectTrigger>
