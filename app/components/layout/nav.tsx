@@ -64,17 +64,20 @@ export function Nav() {
   const pathName = location.pathname
 
   return (
-    <CollapsiblePrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
-      <div
-        className={cn(
-          "fixed z-10 flex w-full justify-center px-4 lg:px-6",
-          isOpen && "px-0",
-        )}
-      >
+    <CollapsiblePrimitive.Root
+      className={cn(
+        "sticky top-0 z-10 flex w-full justify-center px-4 lg:px-6",
+        isOpen && "px-0",
+      )}
+      open={isOpen}
+      onOpenChange={setIsOpen}
+      asChild
+    >
+      <header>
         <nav
           className={cn(
-            "mt-3 block w-full max-w-screen-2xl rounded-full bg-primary-100 px-10 lg:mt-6 lg:h-24 lg:px-4 xl:px-0 2xl:px-5",
-            isOpen && "mt-0 w-full rounded-none px-5",
+            "my-3 block w-full max-w-screen-2xl rounded-full bg-primary-100 px-10 lg:my-6 lg:h-24 lg:px-4",
+            isOpen && "my-0 rounded-none px-5",
           )}
         >
           <div
@@ -88,6 +91,7 @@ export function Nav() {
                 <img src="/logo.png" className="h-full" alt="PyCon ID 2023" />
               </Link>
             </div>
+
             <CollapsiblePrimitive.Trigger asChild>
               <button
                 type="button"
@@ -111,7 +115,6 @@ export function Nav() {
                 )}
               </button>
             </CollapsiblePrimitive.Trigger>
-
             <ul className={cn("hidden lg:flex lg:gap-6")}>
               {navLink.map((item, index) => {
                 return (
@@ -195,7 +198,7 @@ export function Nav() {
             </div>
           </CollapsiblePrimitive.Content>
         </nav>
-      </div>
+      </header>
     </CollapsiblePrimitive.Root>
   )
 }

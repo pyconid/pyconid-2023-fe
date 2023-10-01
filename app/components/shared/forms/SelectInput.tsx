@@ -26,6 +26,7 @@ const SelectInput = <T,>({
   children,
   ...props
 }: SelectInputProps<T>) => {
+  console.log({ field })
   return (
     <FormField className={className}>
       <FormLabel htmlFor={field.id}>
@@ -37,6 +38,14 @@ const SelectInput = <T,>({
         </SelectTrigger>
         <SelectContent position="popper">{children}</SelectContent>
       </Select>
+      {field.error ? (
+        <p
+          className="text-sm text-red-500 md:h-4 md:text-base"
+          id={field.errorId}
+        >
+          {field.error}
+        </p>
+      ) : null}
     </FormField>
   )
 }

@@ -218,8 +218,16 @@ export const AccountForm = () => {
             </CheckboxInput>
           </div>
           <FormField>
-            <FormLabel htmlFor={dateOfBirth.id}>Date of Birth</FormLabel>
+            <FormLabel htmlFor={dateOfBirth.id}>Date of Birth *</FormLabel>
             <DatePicker field={dateOfBirth} />
+            {dateOfBirth.error ? (
+              <p
+                className="text-sm text-red-500 md:h-4 md:text-base"
+                id={dateOfBirth.errorId}
+              >
+                {dateOfBirth.error}
+              </p>
+            ) : null}
           </FormField>
           <div className="space-y-5 rounded-lg bg-primary/5 px-5 py-4">
             <TextInput

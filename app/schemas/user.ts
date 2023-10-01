@@ -46,9 +46,9 @@ const offeringSearching = z.string().optional().nullable().default(null)
 
 const lookingFor = z.string().optional().nullable().default(null)
 
-const country = z.string().optional().nullable().default(null)
-const state = z.string().optional().nullable().default(null)
-const city = z.string().optional().nullable().default(null)
+const country = z.string().min(1, "Country is required")
+const state = z.string().min(1, "State is required")
+const city = z.string().min(1, "City is required")
 const address = z.string().optional().nullable().default(null)
 
 const website = z.string().optional().nullable().default(null)
