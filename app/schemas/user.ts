@@ -2,6 +2,8 @@ import { z } from "zod"
 
 const id = z.string().min(1, "id is required")
 
+const avatar = z.string().optional()
+
 const firstName = z
   .string()
   .min(1, "First name is required")
@@ -11,6 +13,8 @@ const lastName = z
   .string()
   .min(1, "Last name is required")
   .max(50, "Last name limited to 50 characters")
+
+const displayName = z.string()
 
 const email = z
   .string()
@@ -22,54 +26,63 @@ const password = z
   .min(8, "Password require at least 8 characters")
   .max(100, "Password max length limited to 100 characters")
 
-const company = z.string().optional()
+const organisation = z.string().min(1, "Company is required")
+const jobTitle = z.string().min(1, "Job title is required")
+const industryCategoryId = z.string().min(1, "Industry categories is required")
+const jobCategoryId = z.string().min(1, "Job category is required")
+const tShirtSize = z.string().min(1, "TShirt Size is required")
+const gender = z.string().min(1, "Genders is required")
+const dateOfBirth = z.string().min(1, "Date of birth is required")
 
-const industryCategorySymbol = z.string().optional()
+const phoneRegex = new RegExp(/^\+[1-9]\d{1,14}$/)
 
-const jobCategorySymbol = z.string().min(1, "Job category is required")
+const phone = z
+  .string()
+  .regex(phoneRegex, "Phone number must include country code (e.g +62)")
 
-const tShirtSize = z.string().optional()
+const bio = z.string()
+const interest = z.string().optional().nullable().default(null)
+const offeringSearching = z.string().optional().nullable().default(null)
 
-const gender = z.string().optional()
+const lookingFor = z.string().optional().nullable().default(null)
 
-const dateOfBirth = z.string().optional()
+const country = z.string().min(1, "Country is required")
+const state = z.string().min(1, "State is required")
+const city = z.string().min(1, "City is required")
+const address = z.string().optional().nullable().default(null)
 
-const phoneRegex = new RegExp(
-  /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
-)
+const website = z.string().optional().nullable().default(null)
+const github = z.string().optional().nullable().default(null)
+const facebook = z.string().optional().nullable().default(null)
+const linkedin = z.string().optional().nullable().default(null)
+const twitter = z.string().optional().nullable().default(null)
+const instagram = z.string().optional().nullable().default(null)
 
-const phone = z.string().regex(phoneRegex, "Invalid phone number")
+const participantTypeSymbol = z.string().optional()
 
-const bio = z.string().optional()
-
-const interest = z.string().optional()
-
-const lookingFor = z.string().optional()
-
-const country = z.string().optional()
-const state = z.string().optional()
-const city = z.string().optional()
-const address = z.string().optional()
-
-const website = z.string().optional()
-const github = z.string().optional()
-const facebook = z.string().optional()
-const linkedin = z.string().optional()
-const twitter = z.string().optional()
-const instagram = z.string().optional()
-
-const participantTypeSymbol = z.string().min(1, "Participant type is required")
-
-const publicFields = z.object({
-  company: z.boolean().optional(),
-  gender: z.boolean().optional(),
-  phone: z.boolean().optional(),
-  address: z.boolean().optional(),
-  socials: z.boolean().optional(),
-})
+const publicFields = z
+  .object({
+    email: z.boolean().optional().default(false),
+    company: z.boolean().optional().default(false),
+    gender: z.boolean().optional().default(false),
+    phone: z.boolean().optional().default(false),
+    lookingFor: z.boolean().optional().default(false),
+    jobCategories: z.boolean().optional().default(false),
+    address: z.boolean().optional().default(false),
+    socials: z.boolean().optional().default(false),
+  })
+  .optional()
 
 const codeOfConduct = z.boolean()
 const termsOfService = z.boolean()
+
+const compliance = z.object(
+  {
+    codeOfConduct,
+    // termsOfService,
+  },
+  { required_error: "You must comply to the Code of Conduct" },
+)
 
 const userSigninSchema = z.object({
   email,
@@ -85,19 +98,23 @@ const userSignupSchema = z.object({
 
 const userUpdateSchema = z.object({
   id,
+  avatar,
   firstName,
   lastName,
-  email,
-  company,
-  industryCategorySymbol,
-  jobCategorySymbol,
+  displayName,
+  email: email.optional(),
+  organisation,
+  industryCategoryId,
+  jobCategoryId,
   tShirtSize,
   gender,
   dateOfBirth,
   phone,
+  jobTitle,
   bio,
   interest,
   lookingFor,
+  offeringSearching,
   country,
   state,
   city,
@@ -109,8 +126,7 @@ const userUpdateSchema = z.object({
   twitter,
   instagram,
   participantTypeSymbol,
-  codeOfConduct,
-  termsOfService,
+  compliance,
   publicFields,
 })
 

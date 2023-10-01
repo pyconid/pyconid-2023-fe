@@ -1,17 +1,17 @@
 const socials = [
   {
     handle: "pythonid",
-    logo: "icons/instagram.svg",
+    logo: "/icons/instagram.svg",
     href: "https://www.instagram.com/pythonid/",
   },
   {
     handle: "id_python",
-    logo: "icons/twitter.svg",
+    logo: "/icons/twitter.svg",
     href: "https://twitter.com/id_python",
   },
   {
     handle: "pycon@python.or.id",
-    logo: "icons/mail.svg",
+    logo: "/icons/mail.svg",
     href: "mailto:pycon@python.or.id",
   },
 ]

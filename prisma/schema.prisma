@@ -15,21 +15,35 @@ generator client {
 model User {
   id String @id @default(cuid())
 
-  email        String    @unique
-  firstName    String
-  lastName     String?
-  username     String    @unique
-  phone        String?
-  password     String?
-  token        String?
-  organisation String?
-  jobTitle     String?
-  tShirtSize   String?
-  gender       String?
-  dateOfBirth  DateTime?
-  country      String?
-  state        String?
-  city         String?
+  email             String    @unique
+  firstName         String
+  lastName          String?
+  displayName       String?
+  username          String    @unique
+  phone             String?
+  password          String?
+  token             String?
+  organisation      String?
+  jobTitle          String?
+  tShirtSize        String?
+  gender            String?
+  dateOfBirth       DateTime?
+  bio               String?   @db.Text
+  interest          String?
+  lookingFor        String?
+  offeringSearching String?
+  country           String?
+  state             String?
+  city              String?
+  address           String?
+  website           String?
+  github            String?
+  facebook          String?
+  linkedin          String?
+  twitter           String?
+  instagram         String?
+
+  avatar String?
 
   role   UserRole? @relation(fields: [roleId], references: [id])
   roleId String?
@@ -46,12 +60,18 @@ model User {
   PublicFields   PublicFields? @relation(fields: [publicFieldsId], references: [id])
   publicFieldsId String?       @unique
 
+  compliance       UserCompliance? @relation(fields: [userComplianceId], references: [id])
+  userComplianceId String?         @unique
+
   ticketTransactions  TicketTransaction[]
   vouchers            Voucher[]
   voucherTransactions VoucherTransaction[]
 
   speaker    Speaker? // User can link as the Speaker
   userVerify UserVerify[]
+
+  connectedBy User[] @relation("UserConnection")
+  connecting  User[] @relation("UserConnection")
 
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
@@ -133,14 +153,29 @@ model IndustryCategory {
   updatedAt DateTime @updatedAt
 }
 
+model UserCompliance {
+  id String @id @default(cuid())
+
+  codeOfConduct  Boolean @default(false)
+  termsOfService Boolean @default(false)
+
+  user User?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model PublicFields {
   id String @id @default(cuid())
 
-  company Boolean @default(false)
-  gender  Boolean @default(false)
-  phone   Boolean @default(false)
-  address Boolean @default(false)
-  socials Boolean @default(false)
+  company       Boolean @default(false)
+  email         Boolean @default(false)
+  gender        Boolean @default(false)
+  phone         Boolean @default(false)
+  jobCategories Boolean @default(false)
+  lookingFor    Boolean @default(false)
+  address       Boolean @default(false)
+  socials       Boolean @default(false)
 
   users User?
 
@@ -212,7 +247,7 @@ model TicketTransaction {
   paymentId     String
   paymentLink   String  @default("https://pycon.id")
   transactionId String
-  totalPrice Int @default(0)
+  totalPrice    Int     @default(0)
 
   voucherTransaction VoucherTransaction?
 

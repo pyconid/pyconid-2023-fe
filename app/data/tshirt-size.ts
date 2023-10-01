@@ -1,5 +1,9 @@
 export const tshirtSizeData = [
   {
+    symbol: "XS",
+    name: "XS",
+  },
+  {
     symbol: "S",
     name: "S",
   },
@@ -16,15 +20,11 @@ export const tshirtSizeData = [
     name: "XL",
   },
   {
-    symbol: "2XL",
-    name: "2XL",
+    symbol: "XXL",
+    name: "XXL",
   },
   {
     symbol: "3XL",
     name: "3XL",
-  },
-  {
-    symbol: "4XL",
-    name: "4XL",
   },
 ]

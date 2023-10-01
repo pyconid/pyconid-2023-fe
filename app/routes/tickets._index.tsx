@@ -1,15 +1,23 @@
-import { json, type V2_MetaFunction } from "@remix-run/node"
-import { useLoaderData } from "@remix-run/react"
+import { json } from "@remix-run/node"
+import type { LoaderArgs, V2_MetaFunction } from "@remix-run/node"
+import { Link, useLoaderData } from "@remix-run/react"
 import { prisma } from "~/db.server"
+import { models } from "~/models"
+import { authenticator } from "~/services/auth.server"
 
+import { getEnv } from "~/libs/env"
 import { Button, Layout } from "~/components"
 import { TicketCard } from "~/components/ticket/card"
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Schedule" }]
+  return [{ title: "Buy Tickets - PyCon ID 2023" }]
 }
 
-export async function loader() {
+export async function loader({ request }: LoaderArgs) {
+  let userId = null
+
+  const { TICKET_SERVICE_URL } = getEnv()
+
   const tickets = await prisma.ticket.findMany({
     select: {
       id: true,
@@ -27,21 +35,35 @@ export async function loader() {
     orderBy: { createdAt: "asc" },
   })
 
+  const userSession = await authenticator.isAuthenticated(request)
+
+  if (userSession) {
+    const userProfile = await models.user.query.getByToken({
+      token: userSession.token,
+    })
+    userId = userProfile?.id
+  }
+
   const earlyBirdsTicket = tickets.filter((ticket) => ticket.earlyBird)
   const nonEarlyBirdsTicket = tickets.filter((ticket) => !ticket.earlyBird)
 
-  return json({ nonEarlyBirdsTicket, earlyBirdsTicket })
+  return json({
+    nonEarlyBirdsTicket,
+    earlyBirdsTicket,
+    userId,
+    ENV: { TICKET_SERVICE_URL },
+  })
 }
 
 export default function Route() {
-  const { earlyBirdsTicket, nonEarlyBirdsTicket } =
+  const { earlyBirdsTicket, nonEarlyBirdsTicket, userId, ENV } =
     useLoaderData<typeof loader>()
 
   return (
     <Layout>
       <div className="relative z-[3] mt-20 bg-white px-4 pt-5 text-center">
         <h1 className="mb-6 font-brand text-5xl font-semibold text-primary lg:text-6xl">
-          Ticket
+          Tickets
         </h1>
         <p className="mx-auto w-full text-xl tracking-tight text-primary lg:w-[420px] lg:text-2xl">
           Secure your spot! Explore and select your preferred ticket category
@@ -68,8 +90,18 @@ export default function Route() {
               />
             ))}
           </div>
-          <Button size="lg" className="mt-20 w-full max-w-md text-lg" disabled>
-            Buy Ticket
+          <Button size="lg" className="mt-20 w-full max-w-md text-lg" asChild>
+            {userId ? (
+              <a
+                href={`${ENV.TICKET_SERVICE_URL}${userId}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Buy Ticket
+              </a>
+            ) : (
+              <Link to="/login">Buy Ticket</Link>
+            )}
           </Button>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import type { V2_MetaFunction } from "@remix-run/node"
+import { Link } from "@remix-run/react"
 
 import { cn } from "~/libs"
 import { Button, Layout } from "~/components"
@@ -21,8 +22,7 @@ export const meta: V2_MetaFunction = () => {
 const Heading = ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => (
   <h1
     className={cn(
-      "mt-2 font-brand text-2xl font-bold text-primary md:mt-0",
-      "md:text-3xl",
+      "mt-2 font-brand text-3xl font-bold text-primary md:mt-0",
       "lg:mt-4 lg:text-4xl",
       "xl:text-5xl",
       "2xl:text-6xl",
@@ -54,7 +54,6 @@ export default function Index() {
                   alt="maps"
                 />
                 <span>
-                  Venue,{" "}
                   <a
                     href="https://goo.gl/maps/ZdesfzswxdeJfiSm7"
                     target="_blank"
@@ -65,8 +64,8 @@ export default function Index() {
                 </span>
               </p>
             </div>
-            <Button className="font-bold" size="lg" disabled>
-              Buy Ticket (Soon)
+            <Button className="font-bold" size="lg" asChild>
+              <Link to="/tickets">Buy Ticket</Link>
             </Button>
           </div>
           <div className="ml-0 w-full self-start md:w-1/2 xl:ml-12">
@@ -76,9 +75,9 @@ export default function Index() {
       </div>
       <article
         className={cn(
-          "mx-auto mb-6 mt-16 max-w-4xl px-8 lg:mb-12 lg:mt-32",
+          "mx-auto mb-20 mt-16 max-w-4xl px-8 lg:mb-32 lg:mt-32",
           "prose lg:prose-xl",
-          "prose-h1:text-center prose-h1:font-brand prose-h1:text-4xl lg:prose-h1:text-5xl",
+          "prose-h1:text-center prose-h1:font-brand prose-h1:text-3xl lg:prose-h1:text-5xl",
         )}
       >
         <h1>

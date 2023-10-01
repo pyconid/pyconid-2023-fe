@@ -1,7 +1,8 @@
+import type { ComponentProps } from "react"
 import { conform, type FieldConfig } from "@conform-to/react"
 
+import { cn } from "~/libs"
 import {
-  Input,
   Select,
   SelectContent,
   SelectItem,
@@ -16,8 +17,8 @@ type SelectInputProps<T> = {
   placeholder?: string
   className?: string
   children: React.ReactNode
-  disabled?: boolean
-}
+  extra?: React.ReactNode
+} & ComponentProps<typeof Select>
 
 const SelectInput = <T,>({
   field,
@@ -25,19 +26,38 @@ const SelectInput = <T,>({
   placeholder,
   className,
   children,
-  disabled,
+  extra,
+  ...props
 }: SelectInputProps<T>) => {
   return (
     <FormField className={className}>
-      <FormLabel htmlFor={field.id}>
-        {label} {field.required ? " *" : null}
+      <FormLabel
+        className={cn(extra && "flex items-center gap-3")}
+        htmlFor={field.id}
+      >
+        <span>
+          {label} {field.required ? " *" : null}
+        </span>
+        {extra ? (
+          <div className="text-sm text-muted-foreground md:text-base">
+            {extra}
+          </div>
+        ) : null}
       </FormLabel>
-      <Select {...conform.input(field)} disabled={disabled}>
+      <Select {...conform.input(field)} {...props}>
         <SelectTrigger>
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent position="popper">{children}</SelectContent>
       </Select>
+      {field.error ? (
+        <p
+          className="text-sm text-red-500 md:h-4 md:text-base"
+          id={field.errorId}
+        >
+          {field.error}
+        </p>
+      ) : null}
     </FormField>
   )
 }

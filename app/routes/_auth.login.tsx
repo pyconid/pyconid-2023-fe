@@ -33,7 +33,7 @@ export async function action({ request }: ActionArgs) {
   }
 
   await authenticator.authenticate("user-pass", request, {
-    successRedirect: "/",
+    successRedirect: "/account",
     failureRedirect: "/login",
     throwOnError: true,
   })
@@ -60,12 +60,12 @@ export default function Route() {
   const navigation = useNavigation()
   const { toast } = useToast()
 
-  const isSubmitting = navigation.state === "submitting"
+  const isSubmitting = navigation.state !== "idle"
 
   const [form, { email, password }] = useForm({
     id,
     lastSubmission,
-    shouldValidate: "onInput",
+    shouldValidate: "onBlur",
     constraint: getFieldsetConstraint(userSigninSchema),
     onValidate({ formData }) {
       return parse(formData, { schema: userSigninSchema })
@@ -87,26 +87,26 @@ export default function Route() {
 
   return (
     <Layout>
-      <div className="mx-auto mb-20 mt-10 w-full max-w-7xl px-6 md:mt-16">
+      <div className="mx-auto mb-10 mt-10 w-full max-w-7xl px-6 md:mt-16">
         <div className="flex items-center justify-between gap-12">
           <div className="w-full">
-            <h1 className="font-brand text-5xl font-bold text-primary md:text-6xl">
+            <h1 className="font-brand text-4xl font-bold text-primary md:text-6xl">
               Login to your account
             </h1>
             <Form method="POST" {...form.props}>
               <FormFieldSet borderPosition="bottom">
                 <div className="flex flex-col gap-4 md:gap-6">
                   <TextInput
-                    classNames={{ input: "rounded-xl" }}
                     field={email}
                     type="email"
                     label="Email"
+                    placeholder="Enter your email address"
                   />
                   <TextInput
-                    classNames={{ input: "rounded-xl" }}
                     field={password}
                     label="Password"
                     type="password"
+                    placeholder="Enter your password"
                   />
                   <p className=" text-red-500">
                     {error ? error.message : null}

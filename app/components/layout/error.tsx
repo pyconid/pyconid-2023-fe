@@ -22,7 +22,9 @@ export function Error({
           </div>
           <div className="flex flex-col items-center justify-center gap-8 text-center">
             <h1 className="text-4xl text-primary">
-              Oh Snakes! You've Found a 404 Page
+              {status === "404"
+                ? "Oh Snakes! You've Found a 404 Page"
+                : "  Oh Snakes! 500 - Internal Server Error"}
             </h1>
             <Button asChild className="w-36">
               <Link to="/">Back to Home</Link>
