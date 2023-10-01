@@ -58,6 +58,9 @@ export function UserNav() {
           <DropdownMenuItem asChild>
             <Link to="/account/ticket">My Ticket</Link>
           </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link to="/account/connections">Connections</Link>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>

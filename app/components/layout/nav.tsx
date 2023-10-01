@@ -66,7 +66,7 @@ export function Nav() {
   return (
     <CollapsiblePrimitive.Root
       className={cn(
-        "sticky top-0 z-10 flex w-full justify-center px-4 lg:px-6",
+        "sticky top-0 z-50 flex w-full justify-center px-4 lg:px-6",
         isOpen && "px-0",
       )}
       open={isOpen}

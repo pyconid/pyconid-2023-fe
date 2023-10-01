@@ -1,5 +1,9 @@
-import type { User } from "@prisma/client"
+import type { Prisma, User } from "@prisma/client"
 import { prisma } from "~/db.server"
+
+export type Connections = Prisma.PromiseReturnType<
+  typeof query.getConnectionByUserId
+>
 
 export const query = {
   getConnectionByUserId({ id }: Pick<User, "id">) {
@@ -11,6 +15,8 @@ export const query = {
             id: true,
             firstName: true,
             lastName: true,
+            avatar: true,
+            displayName: true,
           },
         },
       },
