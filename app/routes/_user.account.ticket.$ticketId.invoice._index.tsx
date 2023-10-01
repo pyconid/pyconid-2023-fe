@@ -1,4 +1,5 @@
-import { json, redirect, type LoaderArgs } from "@remix-run/node"
+import { json, redirect } from "@remix-run/node"
+import type { LoaderArgs, V2_MetaFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { models } from "~/models"
 import { authenticator } from "~/services/auth.server"
@@ -6,6 +7,10 @@ import { format, parseISO } from "date-fns"
 import QRCode from "react-qr-code"
 
 import { currencyFormatter } from "~/libs"
+
+export const meta: V2_MetaFunction = () => {
+  return [{ title: "Invoice - PyCon ID 2023" }]
+}
 
 export async function loader({ request, params }: LoaderArgs) {
   await authenticator.isAuthenticated(request, {
@@ -40,9 +45,9 @@ export default function Route() {
           <p>18 - 19 November 2023</p>
         </div>
       </div>
-      <div className="mt-20 flex justify-between">
+      <div className="mt-20 flex flex-col-reverse justify-between lg:flex-row">
         <div className="flex flex-col justify-between pr-12">
-          <div>
+          <div className="mt-16">
             <h1 className="font-bold">Python Conference Indonesia 2023 </h1>
             <h2>{data.ticket?.name}</h2>
             <p className="max-w-[55ch]">
@@ -51,8 +56,8 @@ export default function Route() {
             </p>
           </div>
           <div>
-            <p className="text-4xl text-primary">
-              {currencyFormatter.format(data.ticket?.price as number)}
+            <p className="mt-8 text-4xl text-primary">
+              {currencyFormatter.format(data.totalPrice as number)}
               <span className="text-lg text-muted-foreground">
                 {" "}
                 (*Tax not included)
@@ -64,7 +69,7 @@ export default function Route() {
             </p>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center gap-6 border-l border-slate-600 pl-12">
+        <div className="flex flex-col items-center justify-center gap-6 border-slate-600 lg:border-l lg:pl-12">
           <p>
             <span className="text-muted-foreground">Ticket ID:</span> {data.id}
           </p>
@@ -82,6 +87,41 @@ export default function Route() {
           <p>Phone number</p>
           <p>{data.user?.phone}</p>
         </div>
+      </div>
+      <div className="prose mt-10">
+        <h3>Ticket Exchange Guidelines for a Great Time:</h3>
+        <ol>
+          <li>
+            Make sure you've got your ticket and your E-ticket with the groovy
+            QR code.
+          </li>
+          <li>
+            If you're joining us in person, head on over to the venue and hit up
+            our awesome registration desk.
+          </li>
+          <li>
+            Show off that E-ticket with the cool QR code and give it a scan.
+          </li>
+          <li>
+            Once you've scanned it, you'll score yourself an ID card, just like
+            a backstage pass!
+          </li>
+          <li>
+            With that ID card, you're all set to dive into the PyCon ID 2023
+            event and have a blast!
+          </li>
+        </ol>
+        <h3>Exciting Updates:</h3>
+        <ol>
+          <li>
+            Don't forget to showcase that groovy QR code on your E-ticket,
+            whether it's in print or digital form!
+          </li>
+          <li>
+            As for our online attendees, you can jump right into the action by
+            logging in at pycon.id. Let's have some fun!
+          </li>
+        </ol>
       </div>
     </div>
   )

@@ -10,6 +10,7 @@ export const query = {
         createdAt: true,
         status: true,
         transactionId: true,
+        totalPrice: true,
         ticket: {
           select: {
             name: true,
