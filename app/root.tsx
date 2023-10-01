@@ -39,13 +39,13 @@ export const links: LinksFunction = () => [
 ]
 
 export async function loader({ request }: LoaderArgs) {
-  const { IMAGEKIT_PUBLIC_API_KEY } = getEnv()
+  const { IMAGEKIT_PUBLIC_API_KEY, TICKET_SERVICE_URL } = getEnv()
 
   const userSession = await authenticator.isAuthenticated(request)
 
   if (!userSession) {
     return json({
-      ENV: { IMAGEKIT_PUBLIC_API_KEY },
+      ENV: { IMAGEKIT_PUBLIC_API_KEY, TICKET_SERVICE_URL },
     })
   }
 
@@ -55,7 +55,7 @@ export async function loader({ request }: LoaderArgs) {
 
   return json({
     userSession,
-    ENV: { IMAGEKIT_PUBLIC_API_KEY },
+    ENV: { IMAGEKIT_PUBLIC_API_KEY, TICKET_SERVICE_URL },
     userProfile: {
       id: userProfile?.id,
       email: userProfile?.email,

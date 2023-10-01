@@ -5,6 +5,7 @@ import { prisma } from "~/db.server"
 import { models } from "~/models"
 import { authenticator } from "~/services/auth.server"
 
+import { getEnv } from "~/libs/env"
 import { Button, Layout } from "~/components"
 import { TicketCard } from "~/components/ticket/card"
 
@@ -14,6 +15,8 @@ export const meta: V2_MetaFunction = () => {
 
 export async function loader({ request }: LoaderArgs) {
   let userId = null
+
+  const { TICKET_SERVICE_URL } = getEnv()
 
   const tickets = await prisma.ticket.findMany({
     select: {
@@ -44,11 +47,16 @@ export async function loader({ request }: LoaderArgs) {
   const earlyBirdsTicket = tickets.filter((ticket) => ticket.earlyBird)
   const nonEarlyBirdsTicket = tickets.filter((ticket) => !ticket.earlyBird)
 
-  return json({ nonEarlyBirdsTicket, earlyBirdsTicket, userId })
+  return json({
+    nonEarlyBirdsTicket,
+    earlyBirdsTicket,
+    userId,
+    ENV: { TICKET_SERVICE_URL },
+  })
 }
 
 export default function Route() {
-  const { earlyBirdsTicket, nonEarlyBirdsTicket, userId } =
+  const { earlyBirdsTicket, nonEarlyBirdsTicket, userId, ENV } =
     useLoaderData<typeof loader>()
 
   return (
@@ -85,7 +93,7 @@ export default function Route() {
           <Button size="lg" className="mt-20 w-full max-w-md text-lg" asChild>
             {userId ? (
               <a
-                href={`https://cicakrebus.pycon.id/${userId}`}
+                href={`${ENV.TICKET_SERVICE_URL}${userId}`}
                 target="_blank"
                 rel="noreferrer"
               >
