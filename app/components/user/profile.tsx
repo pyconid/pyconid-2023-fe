@@ -114,10 +114,12 @@ export function UserProfile() {
             </Avatar>
             <div className="flex flex-col justify-between gap-2 text-center lg:mb-0 lg:ml-10 lg:text-left">
               <h3 className="w-full text-2xl font-bold md:w-[28rem] lg:text-3xl">
-                {`${firstName} ${lastName}`}
+                {displayName ?? `${firstName} ${lastName}`}
               </h3>
               {displayName ? (
-                <span className="text-muted-foreground">{displayName}</span>
+                <span className="text-muted-foreground">
+                  {firstName} {lastName}
+                </span>
               ) : null}
               <p>{email}</p>
               {city ? (

@@ -32,7 +32,7 @@ type UserCardProps = React.HTMLAttributes<HTMLDivElement> & {
 function UserCard({ data, index = 0, children, className }: UserCardProps) {
   // Cycle through the color map
   const color = COLOR_BORDERS[index % COLOR_BORDERS.length]
-  const { id, firstName, lastName, avatar, displayName } = data
+  const { id, firstName, lastName, avatar, displayName, jobTitle } = data
   const initials = getAvatarInitials(firstName, lastName)
   return (
     <div className="pb-4 lg:pb-20">
@@ -51,10 +51,15 @@ function UserCard({ data, index = 0, children, className }: UserCardProps) {
             <AvatarImage src={avatar ?? undefined} alt={firstName} />
             <AvatarFallback>{initials}</AvatarFallback>
           </Avatar>
-          <h4 className="w-full truncate text-center font-bold tracking-tight">
-            {firstName} {lastName}
+          <h4 className="w-full truncate text-center text-lg font-bold tracking-tight">
+            {displayName ?? `${firstName} ${lastName}`}
           </h4>
-          <span className="h-10 text-muted-foreground">{displayName}</span>
+          {displayName ? (
+            <span className="h-6 text-sm text-muted-foreground">
+              {firstName} {lastName}
+            </span>
+          ) : null}
+          <span className="h-10 text-muted-foreground">{jobTitle}</span>
           <Button variant="outline">
             <Link to={`/profile/${id}`}>See Profile</Link>
           </Button>

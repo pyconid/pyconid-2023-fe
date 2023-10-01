@@ -27,13 +27,13 @@ export default function Route() {
   return (
     <Layout>
       <div className="mx-auto mb-16 mt-10 w-full max-w-3xl px-6">
-        <h1 className="text-center font-brand text-2xl font-bold text-primary md:text-5xl">
+        <h1 className="text-center font-brand text-4xl font-bold text-primary md:text-5xl">
           Connections
         </h1>
       </div>
-      <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <div className="mx-auto mb-20 max-w-7xl px-6 md:px-6">
         {connections && connections.length ? (
-          <div className="mt-2 grid gap-4 md:grid-cols-2 md:gap-10 lg:grid-cols-5">
+          <div className="mt-2 grid gap-4 md:grid-cols-2 md:gap-10 lg:grid-cols-4">
             {connections.map((data, i) => (
               <UserCard key={data.id} data={data} index={i} />
             ))}

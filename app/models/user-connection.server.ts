@@ -17,6 +17,7 @@ export const query = {
             lastName: true,
             avatar: true,
             displayName: true,
+            jobTitle: true,
           },
         },
       },
