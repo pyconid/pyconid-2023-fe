@@ -107,9 +107,9 @@ export const query = {
       select: { ...publicFields, ...privateFields },
     })
   },
-  async getPublicProfileByToken({ token }: Pick<User, "token">) {
-    const user = await prisma.user.findFirst({
-      where: { token },
+  async getPublicProfile({ id }: Partial<Pick<User, "id">>) {
+    const user = await prisma.user.findUnique({
+      where: { id },
       select: {
         ...publicFields,
         IndustryCategory: { select: { name: true } },

@@ -57,6 +57,7 @@ export async function loader({ request }: LoaderArgs) {
     userSession,
     ENV: { IMAGEKIT_PUBLIC_API_KEY },
     userProfile: {
+      id: userProfile?.id,
       email: userProfile?.email,
       avatar: userProfile?.avatar,
       firstName: userProfile?.firstName,

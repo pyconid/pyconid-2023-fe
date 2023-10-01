@@ -1,13 +1,11 @@
-import type { LoaderArgs } from "@remix-run/node"
-import { json } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
-import { models } from "~/models"
-import { authenticator } from "~/services/auth.server"
+import type { loader } from "~/routes/_user.profile.$id._index"
 
 import { cn } from "~/libs"
 import { getAvatarInitials } from "~/libs/getAvatarInitials"
-import { Layout } from "~/components"
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
+
+import { Layout } from "../layout"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 
 const ProfileItem = ({
   icon,
@@ -63,21 +61,7 @@ const SocialsItem = ({
   )
 }
 
-export async function loader({ request }: LoaderArgs) {
-  const userSession = await authenticator.isAuthenticated(request, {
-    failureRedirect: "/login",
-  })
-
-  const profile = await models.user.query.getPublicProfileByToken({
-    token: userSession.token,
-  })
-
-  if (!profile) return json(null)
-
-  return json(profile)
-}
-
-export default function Route() {
+export function UserProfile() {
   const data = useLoaderData<typeof loader>()
 
   if (!data) return null
@@ -146,8 +130,8 @@ export default function Route() {
               ) : null}
             </div>
             {/* <Button className="h-auto w-48 bg-black px-6 py-2 lg:ml-16  lg:py-4">
-              Connect
-            </Button> */}
+                Connect
+              </Button> */}
           </div>
           <div className="space-y-10 border-t-2 border-primary px-5 py-5 lg:px-28 lg:pb-16 lg:pt-10">
             <h3 className="pb-3 text-3xl font-bold text-primary">Profile</h3>

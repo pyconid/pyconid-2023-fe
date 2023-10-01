@@ -5,6 +5,7 @@ export type RootLoaderData = {
   userSession: UserSession | undefined
   userProfile:
     | {
+        id?: string
         email?: string
         avatar?: string
         firstName?: string
