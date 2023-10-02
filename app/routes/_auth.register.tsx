@@ -65,13 +65,11 @@ export default function Route() {
                     <TextInput
                       field={firstName}
                       label="First Name"
-                      disabled={isSubmitting}
                       placeholder="Enter your first name"
                     />
                     <TextInput
                       field={lastName}
                       label="Last Name"
-                      disabled={isSubmitting}
                       placeholder="Enter your last name"
                     />
                   </div>
@@ -79,21 +77,18 @@ export default function Route() {
                     field={email}
                     type="email"
                     label="Email"
-                    disabled={isSubmitting}
                     placeholder="Enter your email address"
                   />
                   <TextInput
                     field={password}
                     label="Password"
                     type="password"
-                    disabled={isSubmitting}
                     placeholder="Enter your password"
                   />
                   <Button
                     type="submit"
                     className="mt-4 w-full md:ml-auto md:w-80"
                     size="lg"
-                    disabled={isSubmitting}
                   >
                     {isSubmitting ? "Registering..." : "Register"}
                   </Button>

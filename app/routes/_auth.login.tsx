@@ -107,7 +107,19 @@ export default function Route() {
                     label="Password"
                     type="password"
                     placeholder="Enter your password"
+                    description={
+                      <>
+                        Forgot Password?{" "}
+                        <Link
+                          to="/forgot-password"
+                          className="text-primary underline"
+                        >
+                          Reset your password
+                        </Link>{" "}
+                      </>
+                    }
                   />
+
                   <p className=" text-red-500">
                     {error ? error.message : null}
                   </p>
