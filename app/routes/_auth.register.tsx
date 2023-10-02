@@ -38,7 +38,7 @@ export default function Route() {
   const lastSubmission = useActionData<typeof action>()
   const navigation = useNavigation()
 
-  const isSubmitting = navigation.state !== "idle"
+  const isSubmitting = navigation.state === "submitting"
 
   const [form, { firstName, lastName, email, password }] = useForm({
     id,

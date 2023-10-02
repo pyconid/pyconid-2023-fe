@@ -13,7 +13,7 @@ type TextInputProps<T> = {
     root?: string
     input?: string
   }
-  description?: string
+  description?: React.ReactNode
 }
 
 const TextInput = <T,>({
@@ -37,17 +37,17 @@ const TextInput = <T,>({
         placeholder={placeholder}
         disabled={disabled}
       />
-      {description ? (
-        <p className="mb-4 text-sm text-muted-foreground md:h-4 md:text-base">
-          {description}
-        </p>
-      ) : null}
       {field.error ? (
         <p
           className="text-sm text-red-500 md:h-4 md:text-base"
           id={field.errorId}
         >
           {field.error}
+        </p>
+      ) : null}
+      {description ? (
+        <p className="mb-4 text-sm text-muted-foreground md:h-4 md:text-base">
+          {description}
         </p>
       ) : null}
     </FormField>

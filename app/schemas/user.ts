@@ -96,6 +96,25 @@ const userSignupSchema = z.object({
   password,
 })
 
+const userForgotPasswordSchema = z.object({
+  email,
+})
+
+export const userResetPasswordSchema = z
+  .object({
+    password,
+    confirmPassword: password,
+  })
+  .superRefine(({ password, confirmPassword }, ctx) => {
+    if (password !== confirmPassword) {
+      ctx.addIssue({
+        path: ["confirmPassword"],
+        code: "custom",
+        message: "The password did not match",
+      })
+    }
+  })
+
 const userUpdateSchema = z.object({
   id,
   avatar,
@@ -130,4 +149,9 @@ const userUpdateSchema = z.object({
   publicFields,
 })
 
-export { userUpdateSchema, userSigninSchema, userSignupSchema }
+export {
+  userUpdateSchema,
+  userSigninSchema,
+  userSignupSchema,
+  userForgotPasswordSchema,
+}

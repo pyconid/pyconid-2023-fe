@@ -51,10 +51,7 @@ export const userService = {
         await models.user.mutation.createDefaultCompliance(user.id)
         return { data, error: null }
       })
-      .catch(async (err) => {
-        console.log({ err })
-        return { data: null, error: err }
-      })
+      .catch(async (err) => ({ data: null, error: await err.json() }))
   },
   async verify(token: string) {
     return fetch(`${API_SERVICE_URL}auth/verify/${token}`)
@@ -71,5 +68,29 @@ export const userService = {
       })
       .then((data) => ({ data, error: null }))
       .catch(async (err) => ({ data: null, error: err.message }))
+  },
+  async forgotPassword(payload: { email: string }) {
+    return fetch(`${API_SERVICE_URL}auth/forgot-password`, {
+      ...DEFAULT_CONFIG,
+      body: JSON.stringify(payload),
+    })
+      .then((res) => {
+        if (!res.ok) throw res
+        return res.json()
+      })
+      .then((data) => ({ data, error: null }))
+      .catch(async (err) => ({ data: null, error: await err.json() }))
+  },
+  async resetPassword(password: string, token: string) {
+    return fetch(`${API_SERVICE_URL}auth/reset-password/${token}`, {
+      ...DEFAULT_CONFIG,
+      body: JSON.stringify({ password }),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Invalid reset password token")
+        return res.json()
+      })
+      .then((data) => ({ data, error: null }))
+      .catch(async (err) => ({ data: null, error: err.message as string }))
   },
 }

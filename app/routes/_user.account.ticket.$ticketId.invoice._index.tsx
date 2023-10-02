@@ -22,8 +22,6 @@ export async function loader({ request, params }: LoaderArgs) {
     id: params.ticketId as string,
   })
 
-  console.log({ ticket })
-
   if (!ticket) {
     return redirect("/account/ticket")
   }
@@ -35,8 +33,6 @@ export default function Route() {
   const data = useLoaderData<typeof loader>()
 
   if (!data) return null
-
-  console.log(parseISO(data.createdAt as string))
 
   return (
     <div className="mx-auto mb-20 mt-16 w-full max-w-6xl px-6">
