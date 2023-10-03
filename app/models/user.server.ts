@@ -3,6 +3,7 @@ import { Prisma } from "@prisma/client"
 import { prisma } from "~/db.server"
 import { parseISO } from "date-fns"
 
+import { sanitizeSocials } from "~/libs/sanitize-socials"
 import { lookingForData } from "~/data/looking-for"
 
 type UserUpdateParams = {
@@ -126,6 +127,7 @@ export const query = {
       user.github = null
       user.twitter = null
       user.linkedin = null
+      user.instagram = null
     }
 
     if (!user.PublicFields?.address) {
@@ -160,8 +162,20 @@ export const query = {
     user.lookingFor =
       lookingForData.find((lf) => lf.symbol === user.lookingFor)?.name || null
 
+    const { website, facebook, linkedin, twitter, instagram, github } = user
+
+    const socials = sanitizeSocials({
+      website,
+      facebook,
+      github,
+      instagram,
+      linkedin,
+      twitter,
+    })
+
     return {
       ...user,
+      ...socials,
       participantType: user.participantType?.name ?? "Non Participant",
       industryCategory: user.IndustryCategory?.name,
       isSocialsPublic: user.PublicFields?.socials,
