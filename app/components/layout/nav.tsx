@@ -178,7 +178,7 @@ export function Nav() {
                 </div>
                 <div className="flex items-center justify-center gap-3 p-4">
                   {userSession ? (
-                    <UserNav />
+                    <UserNav contentClassname="w-full" align="center" />
                   ) : (
                     <>
                       <Button className="h-10 text-xs" asChild>
