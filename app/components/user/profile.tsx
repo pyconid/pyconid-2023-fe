@@ -19,10 +19,10 @@ const ProfileItem = ({
 }) => {
   return (
     <div className="space-x-1 lg:py-0">
-      <p className="text-md ml-1 flex items-center font-bold">
+      <p className="ml-1 flex items-center text-sm text-slate-600">
         <span className="mr-2">{icon}</span> {name}
       </p>
-      <p className="mt-2 text-xl">{value ?? "Not Published"}</p>
+      <p className="mt-2">{value ?? "Not Published"}</p>
     </div>
   )
 }
@@ -30,29 +30,30 @@ const ProfileItem = ({
 const SocialsItem = ({
   icon,
   name,
-  baseUrl,
   value,
 }: {
   icon: React.ReactNode
   name: string
-  baseUrl: string
-  value?: string | null
+  value?: {
+    username: string | null
+    url: string | null
+  }
 }) => {
   return (
     <div className="space-x-1 lg:py-0">
-      <p className="text-md ml-1 flex items-center gap-4">
+      <p className="ml-1 flex items-center gap-4 text-sm">
         {icon}
         <span>{name}</span>
       </p>
-      <p className="mt-2 text-xl">
-        {value ? (
+      <p className="mt-2">
+        {value && value.url ? (
           <a
             className="underline"
             target="_blank"
             rel="noreferrer"
-            href={`${baseUrl}/${value}`}
+            href={value.url}
           >
-            {value}
+            {value.username}
           </a>
         ) : (
           "No Data"
@@ -121,19 +122,19 @@ export function UserProfile() {
                   {firstName} {lastName}
                 </span>
               ) : null}
-              <p>{email}</p>
+              <p className="text-sm">{email}</p>
               {city ? (
-                <div className="flex items-center justify-center gap-2 lg:justify-start">
+                <div className="flex items-center justify-center gap-2 text-sm lg:justify-start">
                   <svg
-                    width="24"
-                    height="24"
+                    width="18"
+                    height="18"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
                       d="M12 11.5C11.337 11.5 10.7011 11.2366 10.2322 10.7678C9.76339 10.2989 9.5 9.66304 9.5 9C9.5 8.33696 9.76339 7.70107 10.2322 7.23223C10.7011 6.76339 11.337 6.5 12 6.5C12.663 6.5 13.2989 6.76339 13.7678 7.23223C14.2366 7.70107 14.5 8.33696 14.5 9C14.5 9.3283 14.4353 9.65339 14.3097 9.95671C14.1841 10.26 13.9999 10.5356 13.7678 10.7678C13.5356 10.9999 13.26 11.1841 12.9567 11.3097C12.6534 11.4353 12.3283 11.5 12 11.5ZM12 2C10.1435 2 8.36301 2.7375 7.05025 4.05025C5.7375 5.36301 5 7.14348 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 7.14348 18.2625 5.36301 16.9497 4.05025C15.637 2.7375 13.8565 2 12 2Z"
-                      fill="black"
+                      fill="currentcolor"
                     />
                   </svg>
                   <span>{city}</span>
@@ -155,8 +156,8 @@ export function UserProfile() {
               </Form>
             ) : null}
           </div>
-          <div className="space-y-10 border-t-2 border-primary px-5 py-5 lg:px-28 lg:pb-16 lg:pt-10">
-            <h3 className="pb-3 text-3xl font-bold text-primary">Profile</h3>
+          <div className="space-y-5 border-t-2 border-primary px-5 py-5 lg:px-28 lg:pb-16 lg:pt-10">
+            <h3 className="pb-3 text-2xl font-bold text-primary">Profile</h3>
             <div className="grid grid-cols-1 gap-y-6 md:grid-cols-3">
               <ProfileItem
                 icon={
@@ -286,13 +287,12 @@ export function UserProfile() {
               />
             </div>
             <div className="space-y-3">
-              <h1 className="text-xl font-bold">About</h1>
-              <p className="text-xl">{bio ?? "No bio"}</p>
+              <h1 className="text-lg font-bold">About</h1>
+              <p className="">{bio ?? "No bio"}</p>
             </div>
           </div>
           {isSocialsPublic ? (
             <>
-              {" "}
               <div className="w-full space-y-16 pb-5">
                 <div className="overflow-hidden  border-2 border-solid border-primary-purple">
                   <div className="h-10 bg-primary-purple p-2">
@@ -301,15 +301,13 @@ export function UserProfile() {
                 </div>
               </div>
               <div className="space-y-10 px-5 py-5 lg:mb-16 lg:px-28 lg:pt-10">
-                <h3 className="pb-3 text-3xl font-bold text-[#282828]">
-                  Socials
-                </h3>
+                <h3 className="text-2xl font-bold text-primary">Socials</h3>
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
                   <SocialsItem
                     icon={
                       <svg
-                        width="32"
-                        height="32"
+                        width="24"
+                        height="24"
                         viewBox="0 0 32 32"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -320,15 +318,14 @@ export function UserProfile() {
                         />
                       </svg>
                     }
-                    baseUrl="https://twitter.com"
                     name="Twitter"
                     value={twitter}
                   />
                   <SocialsItem
                     icon={
                       <svg
-                        width="32"
-                        height="32"
+                        width="24"
+                        height="24"
                         viewBox="0 0 32 32"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -339,15 +336,14 @@ export function UserProfile() {
                         />
                       </svg>
                     }
-                    baseUrl="https://instagram.com"
                     name="Instagram"
                     value={instagram}
                   />
                   <SocialsItem
                     icon={
                       <svg
-                        width="32"
-                        height="32"
+                        width="24"
+                        height="24"
                         viewBox="0 0 32 32"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -358,15 +354,14 @@ export function UserProfile() {
                         />
                       </svg>
                     }
-                    baseUrl="https://facebook.com"
                     name="Facebook"
                     value={facebook}
                   />
                   <SocialsItem
                     icon={
                       <svg
-                        width="32"
-                        height="32"
+                        width="24"
+                        height="24"
                         viewBox="0 0 32 32"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -377,15 +372,14 @@ export function UserProfile() {
                         />
                       </svg>
                     }
-                    baseUrl="https://www.linkedin.com/in"
                     name="LinkedIn"
                     value={linkedin}
                   />
                   <SocialsItem
                     icon={
                       <svg
-                        width="32"
-                        height="32"
+                        width="24"
+                        height="24"
                         viewBox="0 0 32 32"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -396,15 +390,14 @@ export function UserProfile() {
                         />
                       </svg>
                     }
-                    baseUrl=""
                     name="Portfolio"
                     value={website}
                   />
                   <SocialsItem
                     icon={
                       <svg
-                        width="32"
-                        height="32"
+                        width="24"
+                        height="24"
                         viewBox="0 0 32 32"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -422,7 +415,6 @@ export function UserProfile() {
                         </defs>
                       </svg>
                     }
-                    baseUrl="https://github.com"
                     name="Github"
                     value={github}
                   />

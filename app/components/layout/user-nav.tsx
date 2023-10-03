@@ -1,5 +1,7 @@
+import type { ComponentProps } from "react"
 import { Link } from "@remix-run/react"
 
+import { cn } from "~/libs"
 import { getAvatarInitials } from "~/libs/getAvatarInitials"
 import { useRootLoader } from "~/hooks/useRootLoader"
 
@@ -15,7 +17,13 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
 
-export function UserNav() {
+export function UserNav({
+  contentClassname,
+  align = "end",
+}: { contentClassname?: string } & Pick<
+  ComponentProps<typeof DropdownMenuContent>,
+  "align"
+>) {
   const { userProfile } = useRootLoader()
   const initials = getAvatarInitials(
     userProfile?.firstName,
@@ -35,7 +43,11 @@ export function UserNav() {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent
+        className={cn("w-56", contentClassname)}
+        align={align}
+        forceMount
+      >
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
