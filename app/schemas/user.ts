@@ -58,7 +58,7 @@ const linkedin = z.string().optional().nullable().default(null)
 const twitter = z.string().optional().nullable().default(null)
 const instagram = z.string().optional().nullable().default(null)
 
-const participantTypeSymbol = z.string().optional()
+const participantTypeId = z.string().optional()
 
 const publicFields = z
   .object({
@@ -144,7 +144,7 @@ const userUpdateSchema = z.object({
   linkedin,
   twitter,
   instagram,
-  participantTypeSymbol,
+  participantTypeId,
   compliance,
   publicFields,
 })
