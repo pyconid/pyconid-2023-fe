@@ -75,7 +75,7 @@ export const AccountForm = () => {
       linkedin,
       twitter,
       instagram,
-      participantTypeSymbol,
+      participantTypeId,
       compliance,
       publicFields,
     },
@@ -401,13 +401,13 @@ export const AccountForm = () => {
         </FormFieldSet>
         <FormFieldSet title="Participant">
           <SelectInput
-            field={participantTypeSymbol}
+            field={participantTypeId}
             label="Participant Type"
             placeholder="Non Participant"
             disabled
           >
-            {participantTypes.map(({ name, symbol }) => (
-              <SelectInput.Option key={symbol} value={symbol}>
+            {participantTypes.map(({ name, id }) => (
+              <SelectInput.Option key={id} value={id}>
                 {name}
               </SelectInput.Option>
             ))}
