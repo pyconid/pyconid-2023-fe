@@ -324,7 +324,3 @@ model VoucherWhitelist {
 
   @@index([voucherId])
 }
-
-model Test {
-  id String @id @default(cuid)
-}
