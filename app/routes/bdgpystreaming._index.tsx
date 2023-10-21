@@ -13,7 +13,7 @@ export const meta: V2_MetaFunction = () => {
 }
 
 export default function Index() {
-  const studioID = "8biqBKFN7RwP"
+  const studioID = "ezPwFFFKBd6u"
   return (
     <Layout>
       <div className="flex min-h-[300px] w-full items-center bg-primary-100 lg:min-h-[430px] lg:px-5 2xl:min-h-[550px]">
