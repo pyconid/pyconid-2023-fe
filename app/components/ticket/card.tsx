@@ -26,12 +26,13 @@ const COLOR_BORDERS = Object.keys(colorMap) as Array<keyof typeof colorMap>
 type TicketCardProps = React.HTMLAttributes<HTMLDivElement> & {
   data: Pick<Ticket, "id" | "name" | "price" | "description" | "earlyBird"> & {
     features: Pick<TicketFeature, "feature" | "id">[]
+    sold_out: number
   }
   index?: number
 }
 
 function TicketCard({ index = 0, data, className }: TicketCardProps) {
-  const { description, name, features, price, earlyBird } = data
+  const { description, name, features, price, earlyBird, sold_out } = data
 
   // Cycle through the color map
   const color = COLOR_BORDERS[index % COLOR_BORDERS.length]
@@ -40,11 +41,18 @@ function TicketCard({ index = 0, data, className }: TicketCardProps) {
     <div className={cn("relative w-full max-w-[416px]")}>
       <div
         className={cn(
-          "relative -z-10 flex h-full flex-col items-center gap-6 rounded-xl border-2 bg-white p-6",
+          "relative -z-10 flex h-full flex-col items-center gap-6 rounded-xl border-2  p-6",
           colorMap[color].card,
+          sold_out ? "bg-white text-gray-500" : "bg-white",
           className,
         )}
       >
+        {sold_out ? (
+          <div className="absolute left-1/2 top-1/2 grid aspect-square -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-neutral-700 p-8 font-bold text-white">
+            <p>Sold Out!</p>
+          </div>
+        ) : null}
+
         <h4 className="text-3xl">{name}</h4>
         <p className="text-3xl font-bold">{currencyFormatter.format(price)}</p>
         <p>{description}</p>
