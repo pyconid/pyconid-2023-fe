@@ -9,14 +9,14 @@ import { CATEGORIES_DISPLAY, type Categories } from "./constant"
 type ScheduleCardKeynote = {
   type: "keynote"
   title: string
-  description: string
-  time: string
+  description?: string
+  time?: string
   url: string
 }
 
 type ScheduleCardPodium = {
   type: "podium"
-  podiumNo: number
+  podiumName: string
   description: string
   tags: string[]
   categories: Categories[]
@@ -26,13 +26,13 @@ type ScheduleCardPodium = {
 
 type PodiumSectionProps = {
   tags: ScheduleCardPodium["tags"]
-  podiumNo: ScheduleCardPodium["podiumNo"]
+  podiumName: ScheduleCardPodium["podiumName"]
 }
 
-const PodiumSection = ({ tags, podiumNo }: PodiumSectionProps) => {
+const PodiumSection = ({ tags, podiumName }: PodiumSectionProps) => {
   return (
     <div className="flex items-center gap-4">
-      <span className="text-xl">Podium {podiumNo}</span>
+      <span className="text-lg">{podiumName}</span>
       <ul className="flex gap-4">
         {tags.map((tag) => (
           <li key={tag} className="rounded-2xl border border-primary px-4 py-2">
@@ -52,10 +52,13 @@ const PodiumCategories = ({ categories }: PodiumCategoriesProps) => {
   return (
     <ul className="flex flex-wrap gap-2">
       {categories.map((key) => (
-        <li key={key} className="flex items-center gap-3 p-2">
+        <li
+          key={key}
+          className="flex items-center gap-3 p-2 text-sm first-of-type:pl-0"
+        >
           <span
             className={cn(
-              "h-3 w-3 rounded-full",
+              "h-2 w-2 rounded-full",
               CATEGORIES_DISPLAY[key].color,
             )}
           />
@@ -72,7 +75,7 @@ const scheduleCardVariants = cva(
     variants: {
       type: {
         keynote: "border border-primary bg-primary/10 p-6 lg:p-10",
-        podium: "border border-primary p-6 lg:px-10 lg:py-16",
+        podium: "border border-primary p-6 lg:px-8 lg:py-12",
       },
     },
     defaultVariants: {
@@ -86,23 +89,30 @@ type ScheduleCardTypes = ScheduleCardKeynote | ScheduleCardPodium
 type ScheduleCardProps = ScheduleCardTypes &
   React.HTMLAttributes<HTMLDivElement>
 
+const showStreamingLink = false
+
 const ScheduleCard = (props: ScheduleCardProps) => {
   const { title, url, type, description, className } = props
 
   return (
     <div className={cn(scheduleCardVariants({ type, className }))}>
       {type === "podium" && (
-        <PodiumSection podiumNo={props.podiumNo} tags={props.tags} />
+        <PodiumSection podiumName={props.podiumName} tags={props.tags} />
       )}
-      <h1 className="text-xl font-bold lg:text-3xl">{title}</h1>
-      <p className="text-lg lg:text-xl">{description}</p>
-      {type === "keynote" && (
+      <h1 className="text-xl font-bold lg:text-2xl">{title}</h1>
+      {description ? (
+        <p className="text-sm lg:text-base">{description}</p>
+      ) : null}
+
+      {type === "keynote" && props.time && (
         <span className="text-lg lg:text-xl">{props.time}</span>
       )}
       {type === "podium" && <PodiumCategories categories={props.categories} />}
-      <Button size="lg" className="flex-shrink-0" asChild>
-        <Link to={url}>Watch Now</Link>
-      </Button>
+      {showStreamingLink ? (
+        <Button size="lg" className="flex-shrink-0" asChild>
+          <Link to={url}>Watch Now</Link>
+        </Button>
+      ) : null}
     </div>
   )
 }
