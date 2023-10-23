@@ -35,6 +35,34 @@ export async function loader({ request }: LoaderArgs) {
     orderBy: { createdAt: "asc" },
   })
 
+  const ticketSoldOutStatus = (await prisma.$queryRaw`
+    SELECT 
+      id,
+      IF(quota <= (
+        SELECT COUNT(*) 
+          FROM TicketTransaction
+         WHERE TicketTransaction.status = 'completed' 
+          AND TicketTransaction.ticketId = Ticket.id), 
+          TRUE, FALSE
+        ) as sold_out 
+      FROM Ticket;
+  `) as { id: string; sold_out: number }[]
+
+  const ticketSoldOutMap = ticketSoldOutStatus.reduce(
+    (acc, curr) => {
+      acc[curr.id] = Number(curr.sold_out)
+      return acc
+    },
+    {} as { [key: string]: number },
+  )
+
+  const combinedTickets = tickets
+    .map((ticket, i) => ({
+      ...ticket,
+      sold_out: ticketSoldOutMap[ticket.id],
+    }))
+    .sort((a, b) => a.sold_out - b.sold_out)
+
   const userSession = await authenticator.isAuthenticated(request)
 
   if (userSession) {
@@ -44,19 +72,19 @@ export async function loader({ request }: LoaderArgs) {
     userId = userProfile?.id
   }
 
-  const earlyBirdsTicket = tickets.filter((ticket) => ticket.earlyBird)
-  const nonEarlyBirdsTicket = tickets.filter((ticket) => !ticket.earlyBird)
+  const topTickets = combinedTickets.slice(0, 2)
+  const bottomTickets = combinedTickets.slice(2)
 
   return json({
-    nonEarlyBirdsTicket,
-    earlyBirdsTicket,
+    topTickets,
+    bottomTickets,
     userId,
     ENV: { TICKET_SERVICE_URL },
   })
 }
 
 export default function Route() {
-  const { earlyBirdsTicket, nonEarlyBirdsTicket, userId, ENV } =
+  const { topTickets, bottomTickets, userId, ENV } =
     useLoaderData<typeof loader>()
 
   return (
@@ -77,16 +105,16 @@ export default function Route() {
         </p>
         <div className="my-20 flex flex-col items-center">
           <div className="mb-6 flex flex-wrap justify-center gap-10">
-            {earlyBirdsTicket.map((ticket, i) => (
+            {topTickets.map((ticket, i) => (
               <TicketCard key={ticket.id} data={ticket} index={i} />
             ))}
           </div>
           <div className="mt-5 flex flex-wrap justify-center gap-10">
-            {nonEarlyBirdsTicket.map((ticket, i) => (
+            {bottomTickets.map((ticket, i) => (
               <TicketCard
                 key={ticket.id}
                 data={ticket}
-                index={i + earlyBirdsTicket.length}
+                index={i + bottomTickets.length}
               />
             ))}
           </div>
