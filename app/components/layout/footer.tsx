@@ -63,16 +63,16 @@ export function Footer() {
 
   return (
     <footer className="bg-primary px-4 py-6 lg:p-16">
-      <div className=" rounded-3xl bg-white p-4 lg:p-12">
-        <div className="mx-auto grid text-center lg:grid-cols-3 lg:text-left">
+      <div className=" rounded-3xl bg-white p-8 lg:p-12">
+        <div className="mx-auto grid space-y-16 text-center lg:grid-cols-3 lg:space-y-0 lg:text-left">
           <div>
             <h4 className="text-xl font-bold md:text-2xl">Organized by</h4>
-            <div className="my-4 flex justify-center gap-4  lg:gap-12 xl:justify-start ">
-              {organizers.map((organizer) => (
-                <img src={organizer.logo} alt={organizer.alt} />
+            <div className="my-4 flex justify-center gap-4  lg:justify-start lg:gap-12 ">
+              {organizers.map((organizer, index) => (
+                <img key={index} src={organizer.logo} alt={organizer.alt} />
               ))}
             </div>
-            <div className="text-left text-sm lg:mt-16 ">
+            <div className="text-left text-sm lg:mt-16 lg:w-3/4">
               <p>
                 PyCon ID 2023 is organized by volunteers, so it may take a week
                 for us to reply to inquiries.
@@ -82,9 +82,9 @@ export function Footer() {
           </div>
           <div>
             <h4 className="text-xl font-bold md:text-2xl">Supported by</h4>
-            <div className="mt-4 flex justify-center xl:justify-start">
-              {supporters.map((supporter) => (
-                <img src={supporter.logo} alt={supporter.alt} />
+            <div className="mt-4 flex justify-center lg:justify-start">
+              {supporters.map((supporter, index) => (
+                <img key={index} src={supporter.logo} alt={supporter.alt} />
               ))}
             </div>
           </div>
@@ -92,17 +92,12 @@ export function Footer() {
             <h4 className="text-xl font-bold md:text-2xl">Sponsored by</h4>
             <div className="mt-4 flex flex-col items-center justify-center lg:items-start">
               <div className="flex space-x-4">
-                {sponsors.map((sponsor) => {
+                {sponsors.map((sponsor, index) => {
                   if (sponsor.category === "platinum") {
                     return (
-                      <img
-                        key={sponsor.alt}
-                        src={sponsor.logo}
-                        alt={sponsor.alt}
-                      />
+                      <img key={index} src={sponsor.logo} alt={sponsor.alt} />
                     )
                   }
-                  return null
                 })}
               </div>
               <div className="flex space-x-4">
@@ -147,7 +142,7 @@ export function Footer() {
             role="separator"
           />
           <div>
-            <div className="flex justify-between">
+            <div className="flex flex-col-reverse items-center justify-center lg:flex-row lg:justify-between">
               <div></div>
               <div className="flex items-center">
                 <p>
