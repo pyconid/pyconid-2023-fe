@@ -35,7 +35,7 @@ export function Nav() {
     },
     {
       to: "/sponsor",
-      label: "Sponsorship",
+      label: "Sponsors",
     },
     {
       to: "/org",
