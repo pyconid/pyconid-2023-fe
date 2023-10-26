@@ -72,13 +72,6 @@ export function Footer() {
                 <img key={index} src={organizer.logo} alt={organizer.alt} />
               ))}
             </div>
-            <div className="text-left text-sm lg:mt-16 lg:w-3/4">
-              <p>
-                PyCon ID 2023 is organized by volunteers, so it may take a week
-                for us to reply to inquiries.
-              </p>
-              <p>Thank you for your patience</p>
-            </div>
           </div>
           <div>
             <h4 className="text-xl font-bold md:text-2xl">Supported by</h4>
@@ -101,39 +94,31 @@ export function Footer() {
                 })}
               </div>
               <div className="flex space-x-4">
-                {sponsors.map((sponsor) => {
+                {sponsors.map((sponsor, index) => {
                   if (sponsor.category === "gold") {
                     return (
-                      <img
-                        key={sponsor.alt}
-                        src={sponsor.logo}
-                        alt={sponsor.alt}
-                      />
+                      <img key={index} src={sponsor.logo} alt={sponsor.alt} />
                     )
                   }
-                  return null
                 })}
               </div>
               <div className="flex space-x-4">
-                {sponsors.map((sponsor) => {
+                {sponsors.map((sponsor, index) => {
                   if (sponsor.category === "silver") {
                     return (
-                      <img
-                        key={sponsor.alt}
-                        src={sponsor.logo}
-                        alt={sponsor.alt}
-                      />
+                      <img key={index} src={sponsor.logo} alt={sponsor.alt} />
                     )
                   }
-                  return null
                 })}
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-16 flex items-center justify-center lg:justify-start">
-          <img src="pycon-logo.svg" alt="logo_pycon" />
+        <div className="mt-8 space-y-8">
+          <div className="flex items-center justify-center lg:justify-start">
+            <img src="pycon-logo.svg" alt="logo_pycon" />
+          </div>
         </div>
 
         <div className="mx-auto  text-center text-xs md:text-base">
@@ -142,19 +127,26 @@ export function Footer() {
             role="separator"
           />
           <div>
-            <div className="flex flex-col-reverse items-center justify-center lg:flex-row lg:justify-between">
-              <div></div>
-              <div className="flex items-center">
+            <div className="flex flex-col items-center justify-center space-y-3 lg:grid lg:grid-cols-3 lg:flex-row lg:space-y-0">
+              <div className="order-1 text-left lg:w-4/5 lg:text-sm">
+                <p>
+                  PyCon ID 2023 is organized by volunteers, so it may take a
+                  week for us to reply to inquiries.
+                </p>
+                <p>Thank you for your patience.</p>
+              </div>
+
+              <div className="order-last flex items-center justify-center lg:order-2 ">
                 <p>
                   &copy; PyCon ID {today.getFullYear()}. All Rights Reserved.
                 </p>
               </div>
 
-              <ul className="flex flex-row md:flex-row md:gap-7 lg:gap-4">
+              <ul className="order-2 flex flex-row md:flex-row md:gap-7 lg:order-last lg:justify-end lg:gap-4">
                 {socials.map((social) => (
                   <li
                     key={social.href}
-                    className="md:text-md text-base hover:underline"
+                    className="md:text-md text-base hover:underline "
                   >
                     <a
                       href={social.href}
