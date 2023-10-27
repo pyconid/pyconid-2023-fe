@@ -454,7 +454,11 @@ export default function Route() {
               podiumName="Main Hall - Online"
               title="More than Visual Novel: Renpy & Python Game Development"
               description="Louis Krishna Putera Suryapranata"
-              //categories=""
+              categories={[
+                CATEGORIES.RENPY,
+                CATEGORIES.VISUAL_NOVEL,
+                CATEGORIES.GAME,
+              ]}
               tags={["All", "ID"]}
               url="/"
             />
@@ -463,7 +467,10 @@ export default function Route() {
               podiumName="Room 1"
               title="Kesalahan Umum dalam Pengamanan Aplikasi Web"
               description="Iskandar Setiadi"
-              //categories={[CATEGORIES.HOME_AUTOMATION, CATEGORIES.MICROPYTHON]}
+              categories={[
+                CATEGORIES.SECURITY,
+                CATEGORIES.WEB_DEVELOPMENT,
+              ]}
               tags={["All", "ID"]}
               url="/"
             />
@@ -472,7 +479,11 @@ export default function Route() {
               podiumName="Room 2"
               title="Pengolahan Data Spasial dengan menggunakan Flask, PostgreSQL dan Leaflet"
               description="Akhmad Sofwan"
-              //categories={[CATEGORIES.HOME_AUTOMATION, CATEGORIES.MICROPYTHON]}
+              categories={[
+                CATEGORIES.FLASK,
+                CATEGORIES.LEAFLET,
+                CATEGORIES.SPATIAL_DATA,
+              ]}
               tags={["Intermediate", "ID"]}
               url="/"
             />
@@ -481,7 +492,10 @@ export default function Route() {
               podiumName="Room 3"
               title="Elasticsearch: Building a Learning-to-Rank Autocomplete for Online Travel Agency"
               description="Elsafina Siswanto"
-              //categories={[CATEGORIES.HOME_AUTOMATION, CATEGORIES.MICROPYTHON]}
+              categories={[
+                CATEGORIES.ELASTICSEARCH,
+                CATEGORIES.MACHINE_LEARNING,
+              ]}
               tags={["All", "ID"]}
               url="/"
             />
@@ -490,7 +504,10 @@ export default function Route() {
               podiumName="Room 4"
               title="Python for Security Orchestration Automation and Response (SOAR)"
               description="Muhammad Febri Ramadhan"
-              //categories={[CATEGORIES.HOME_AUTOMATION, CATEGORIES.MICROPYTHON]}
+              categories={[
+                CATEGORIES.SECURITY,
+                CATEGORIES.AUTOMATION,
+              ]}
               tags={["Intermediate", "EN"]}
               url="/"
             />
@@ -544,7 +561,11 @@ export default function Route() {
               podiumName="Main Hall - Online"
               title="Cara Panjat Karir via Data Structure dan Algorithm"
               description="Listiarso Wastuargo (Gogo)"
-              //categories=""
+              categories={[
+                CATEGORIES.CONCEPT,
+                CATEGORIES.DATA_STRUCTURE,
+                CATEGORIES.ALGORITHM,
+              ]}
               tags={["All", "ID"]}
               url="/"
             />
@@ -553,7 +574,10 @@ export default function Route() {
               podiumName="Room 1"
               title="Unraveling the Hashtag Enigma: Digital Forensics meets Predictive Analysis for Election Hashtags"
               description="Muhammad Faurel Gema Augista"
-              //categories={[CATEGORIES.HOME_AUTOMATION, CATEGORIES.MICROPYTHON]}
+              categories={[
+                CATEGORIES.DIGITAL_FORENSICS,
+                CATEGORIES.MACHINE_LEARNING,
+              ]}
               tags={["Beginner", "ID"]}
               url="/"
             />
@@ -562,7 +586,10 @@ export default function Route() {
               podiumName="Room 2"
               title="Building Better Microservices API with Event-Driven Architecture"
               description="Irwan Butar Butar"
-              //categories={[CATEGORIES.HOME_AUTOMATION, CATEGORIES.MICROPYTHON]}
+              categories={[
+                CATEGORIES.MICROSERVICES,
+                CATEGORIES.EVENT_DRIVEN,
+              ]}
               tags={["Intermediate", "ID"]}
               url="/"
             />
@@ -571,7 +598,11 @@ export default function Route() {
               podiumName="Room 3"
               title="Build Robust Automated Data Modeling: A Beginner's Guie to Collaborative Data Modeling"
               description="Ahmad Shohibus Sulthoni"
-              //categories={[CATEGORIES.HOME_AUTOMATION, CATEGORIES.MICROPYTHON]}
+              categories={[
+                CATEGORIES.DATA_ENGINEER,
+                CATEGORIES.AIRFLOW,
+                CATEGORIES.DBT,
+              ]}
               tags={["Beginner", "ID"]}
               url="/"
             />
@@ -580,7 +611,10 @@ export default function Route() {
               podiumName="Room 4"
               title="Automating Victory: Beating Browser Games with Accessible Python"
               description="Jon Gaul"
-              //categories={[CATEGORIES.HOME_AUTOMATION, CATEGORIES.MICROPYTHON]}
+              categories={[
+                CATEGORIES.GAME,
+                CATEGORIES.AUTOMATION,
+              ]}
               tags={["Beginnter", "EN"]}
               url="/"
             />
@@ -616,7 +650,12 @@ export default function Route() {
               podiumName="Main Hall - Online"
               title="Stable Multiplatform Apps with Python Flet"
               description="M Nasrul Alawy"
-              //categories={[CATEGORIES.CODE_QUALITY, CATEGORIES.TIDYVERSE]}
+              categories={[
+                CATEGORIES.FRAMEWORK,
+                CATEGORIES.FLUTTER,
+                CATEGORIES.MOBILE,
+                CATEGORIES.DESKTOP,
+              ]}
               tags={["Intermediate", "ID"]}
               url="/"
             />
@@ -625,7 +664,10 @@ export default function Route() {
               podiumName="Room 1"
               title="Making Python Fun and Flexible with Inversion Control"
               description="Yoga Pratama Aliarham"
-              //categories={[CATEGORIES.SPARK, CATEGORIES.DATA_ENGINEER]}
+              categories={[
+                CATEGORIES.CONCEPT,
+                CATEGORIES.FRAMEWORK,
+              ]}
               tags={["Intermediate", "ID"]}
               url="/"
             />
@@ -634,7 +676,10 @@ export default function Route() {
               podiumName="Room 2"
               title="Islands Will Eventually Connect to Forma Universe: An Introduction to the ActivityPub Protocol and Basic Implementation Guide"
               description="Zhang Yu"
-              //categories=""
+              categories={[
+                CATEGORIES.SOCIAL_MEDIA,
+                CATEGORIES.ACTIVITYPUB,
+              ]}
               tags={["All", "EN"]}
               url="/"
             />
@@ -643,7 +688,10 @@ export default function Route() {
               podiumName="Room 3"
               title="Python in Workplace: Petrochemical Product Price Forecasting"
               description="Andi Dinata"
-              //categories=""
+              categories={[
+                CATEGORIES.MACHINE_LEARNING,
+                CATEGORIES.DEEP_LEARNING,
+              ]}
               tags={["All", "ID"]}
               url="/"
             />
@@ -652,7 +700,9 @@ export default function Route() {
               podiumName="Room 4"
               title="One Piece of Data: Exploring the World of One Piece with Python"
               description="Ismail Sunni"
-              //categories=""
+              categories={[
+                CATEGORIES.WEB_SCRAPING,
+              ]}
               tags={["All", "ID"]}
               url="/"
             />
