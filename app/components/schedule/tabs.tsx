@@ -44,7 +44,7 @@ const TabItem = ({ children, className, active, ...props }: TabItemProps) => {
   return (
     <div
       className={cn(
-        "cursor-pointer border-2 border-primary bg-white px-8 py-4 text-2xl transition-colors",
+        "cursor-pointer rounded-lg border-2 border-primary bg-white px-5 py-3 text-lg transition-colors",
         "hover:bg-primary hover:text-white",
         active && "bg-primary text-white ",
         className,
@@ -66,7 +66,7 @@ type ScheduleTabsProps = {
 const ScheduleTabs = ({ tabs }: ScheduleTabsProps) => {
   const { activeTabs } = useScheduleTabs()
   return (
-    <div className="sticky top-0 mx-auto -mb-8 -mt-24 flex w-full items-center justify-center gap-10 bg-white pb-16 pt-[calc(64px+3rem)] lg:pt-[calc(96px+3rem)]">
+    <div className="sticky top-0 mx-auto -mb-8 -mt-24 flex w-full items-center justify-center gap-5 bg-white pb-16 pt-[calc(64px+3rem)] lg:pt-[calc(96px+3rem)]">
       {tabs.map(({ id, title }) => (
         <TabItem
           key={id}
@@ -118,7 +118,7 @@ const TabContent = ({
     <div
       ref={ref}
       data-st={contentFor}
-      className={cn("scroll-m-80", className)}
+      className={cn("scroll-m-96", className)}
     >
       {children}
     </div>
