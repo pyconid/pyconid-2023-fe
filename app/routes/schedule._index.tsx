@@ -534,8 +534,8 @@ export default function Route() {
             variant="main"
             title="Keynote Session 3"
             date="19 November 2023"
-            start="11:50"
-            end="13:00"
+            start="13:00"
+            end="14:00"
           />
           <ScheduleTabs.Content contentFor="day2" offset={0}>
             <div className="mb-4 flex flex-col gap-4">
