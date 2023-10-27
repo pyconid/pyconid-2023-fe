@@ -42,6 +42,28 @@ export const CATEGORIES = {
   COMPUTER_GRAPHICS: "computer_graphics",
   PY5: "py5",
   GODOT: "godot",
+  RENPY: "renpy",
+  VISUAL_NOVEL: "visual_novel",
+  GAME: "game",
+  WEB_DEVELOPMENT: "web_development",
+  FLASK: "flask",
+  LEAFLET: "leaflet",
+  SPATIAL_DATA: "spatial_data",
+  ELASTICSEARCH: "elasticsearch",
+  DATA_STRUCTURE: "data_structure",
+  ALGORITHM: "algorithm",
+  DIGITAL_FORENSICS: "digital_forensics",
+  MICROSERVICES: "microservices",
+  EVENT_DRIVEN: "event_driven",
+  AIRFLOW: "airflow",
+  DBT: "dbt",
+  AUTOMATION: "automation",
+  FLUTTER: "flutter",
+  MOBILE: "mobile",
+  DESKTOP: "desktop",
+  SOCIAL_MEDIA: "social_media",
+  ACTIVITYPUB: "activitypub",
+  WEB_SCRAPING: "web_scraping",
 } as const
 
 export const CATEGORIES_DISPLAY = {
@@ -166,11 +188,11 @@ export const CATEGORIES_DISPLAY = {
     color: "bg-primary-red",
   },
   [CATEGORIES.KUBERNETES]: {
-    name: "FastAPI",
+    name: "Kubernetes",
     color: "bg-primary-purple",
   },
   [CATEGORIES.SECURITY_AUTOMATION]: {
-    name: "FastAPI",
+    name: "Security Automation",
     color: "bg-primary-red",
   },
   [CATEGORIES.STATIC_ANALYSIS]: {
@@ -216,6 +238,94 @@ export const CATEGORIES_DISPLAY = {
   [CATEGORIES.GODOT]: {
     name: "Godot",
     color: "bg-primary-purple",
+  },
+  [CATEGORIES.RENPY]: {
+    name: "Renpy",
+    color: "bg-primary-red",
+  },
+  [CATEGORIES.VISUAL_NOVEL]: {
+    name: "Visual Novel",
+    color: "bg-primary-orange",
+  },
+  [CATEGORIES.GAME]: {
+    name: "Game",
+    color: "bg-primary-purple",
+  },
+  [CATEGORIES.WEB_DEVELOPMENT]: {
+    name: "Web Development",
+    color: "bg-primary-purple",
+  },
+  [CATEGORIES.FLASK]: {
+    name: "Flask",
+    color: "bg-primary-red",
+  },
+  [CATEGORIES.LEAFLET]: {
+    name: "Leaflet",
+    color: "bg-primary-orange",
+  },
+  [CATEGORIES.SPATIAL_DATA]: {
+    name: "Spatial Data",
+    color: "bg-primary-purple",
+  },
+  [CATEGORIES.ELASTICSEARCH]: {
+    name: "Elasticsearch",
+    color: "bg-primary-red",
+  },
+  [CATEGORIES.ALGORITHM]: {
+    name: "Algorithm",
+    color: "bg-primary-orange",
+  },
+  [CATEGORIES.DATA_STRUCTURE]: {
+    name: "Data Structure",
+    color: "bg-primary-purple",
+  },
+  [CATEGORIES.DIGITAL_FORENSICS]: {
+    name: "Digital Forensics",
+    color: "bg-primary-orange",
+  },
+  [CATEGORIES.MICROSERVICES]: {
+    name: "Microservices",
+    color: "bg-primary-red",
+  },
+  [CATEGORIES.EVENT_DRIVEN]: {
+    name: "Event Driven",
+    color: "bg-primary-purple",
+  },
+  [CATEGORIES.AIRFLOW]: {
+    name: "Airflow",
+    color: "bg-primary-orange",
+  },
+  [CATEGORIES.DBT]: {
+    name: "DBT",
+    color: "bg-primary-red",
+  },
+  [CATEGORIES.AUTOMATION]: {
+    name: "Automation",
+    color: "bg-primary-orange",
+  },
+  [CATEGORIES.FLUTTER]: {
+    name: "Flutter",
+    color: "bg-primary-red",
+  },
+  [CATEGORIES.MOBILE]: {
+    name: "Mobile",
+    color: "bg-primary-orange",
+  },
+  [CATEGORIES.DESKTOP]: {
+    name: "Desktop",
+    color: "bg-primary-purple",
+  },
+  [CATEGORIES.SOCIAL_MEDIA]: {
+    name: "Social Media",
+    color: "bg-primary-red",
+  },
+  [CATEGORIES.ACTIVITYPUB]: {
+    name: "ActivityPub",
+    color: "bg-primary-orange",
+  },
+  [CATEGORIES.WEB_SCRAPING]: {
+    name: "Web Scraping",
+    color: "bg-primary-red",
   },
 } as const
 
