@@ -454,7 +454,7 @@ export default function Route() {
               podiumName="Main Hall - Online"
               title="More than Visual Novel: Renpy & Python Game Development"
               description="Louis Krishna Putera Suryapranata"
-              categories=""
+              //categories=""
               tags={["All", "ID"]}
               url="/"
             />
