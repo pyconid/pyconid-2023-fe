@@ -31,11 +31,14 @@ type PodiumSectionProps = {
 
 const PodiumSection = ({ tags, podiumName }: PodiumSectionProps) => {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
       <span className="text-lg">{podiumName}</span>
       <ul className="flex gap-4">
         {tags.map((tag) => (
-          <li key={tag} className="rounded-2xl border border-primary px-4 py-2">
+          <li
+            key={tag}
+            className="rounded-lg border border-primary px-2 py-1 text-xs lg:rounded-2xl lg:px-4 lg:py-2 lg:text-sm"
+          >
             {tag}
           </li>
         ))}
@@ -96,9 +99,11 @@ const ScheduleCard = (props: ScheduleCardProps) => {
 
   return (
     <div className={cn(scheduleCardVariants({ type, className }))}>
+      {type === "keynote" ? <span className="text-lg">Main Hall</span> : null}
       {type === "podium" && (
         <PodiumSection podiumName={props.podiumName} tags={props.tags} />
       )}
+
       <h1 className="text-xl font-bold lg:text-2xl">{title}</h1>
       {description ? (
         <p className="text-sm lg:text-base">{description}</p>

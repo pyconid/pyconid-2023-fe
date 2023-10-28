@@ -25,7 +25,7 @@ export default function Route() {
           Explore the schedule for PyCon ID 2023
         </p>
       </div>
-      <div className="relative mx-auto max-w-7xl px-4 md:px-6">
+      <div className="relative mx-auto max-w-7xl px-4 pb-32 md:px-6">
         <ScheduleTabsProvider defaultActive="day1">
           <ScheduleTabs tabs={tabs} />
           <Header title="Day 1" />
@@ -422,24 +422,24 @@ export default function Route() {
             start="09:30"
             end="11:00"
           />
-          <ScheduleTabs.Content contentFor="day2" offset={0}>
+          <ScheduleTabs.Content contentFor="day2">
             <div className="mb-4 flex flex-col gap-4">
-            <ScheduleCard
-              type="keynote"
-              title="Opening Session"
-              description=""
-              time="09.30 - 10.00"
-              url="/"
-            />
-            <ScheduleCard
-              type="keynote"
-              title="Keynote Session 2 - Menjadi Penyelam Handal"
-              description="Giovanni Sakti"
-              time="10.00 - 11.00"
-              tags={["All","ID"]}
-              url="/"
-            />
-          </div>
+              <ScheduleCard
+                type="keynote"
+                title="Opening Session"
+                description=""
+                time="09.30 - 10.00"
+                url="/"
+              />
+              <ScheduleCard
+                type="keynote"
+                title="Keynote Session 2 - Menjadi Penyelam Handal"
+                description="Giovanni Sakti"
+                time="10.00 - 11.00"
+                tags={["All", "ID"]}
+                url="/"
+              />
+            </div>
           </ScheduleTabs.Content>
           <Header
             variant="main"
@@ -467,10 +467,7 @@ export default function Route() {
               podiumName="Room 1"
               title="Kesalahan Umum dalam Pengamanan Aplikasi Web"
               description="Iskandar Setiadi"
-              categories={[
-                CATEGORIES.SECURITY,
-                CATEGORIES.WEB_DEVELOPMENT,
-              ]}
+              categories={[CATEGORIES.SECURITY, CATEGORIES.WEB_DEVELOPMENT]}
               tags={["All", "ID"]}
               url="/"
             />
@@ -504,10 +501,7 @@ export default function Route() {
               podiumName="Room 4"
               title="Python for Security Orchestration Automation and Response (SOAR)"
               description="Muhammad Febri Ramadhan"
-              categories={[
-                CATEGORIES.SECURITY,
-                CATEGORIES.AUTOMATION,
-              ]}
+              categories={[CATEGORIES.SECURITY, CATEGORIES.AUTOMATION]}
               tags={["Intermediate", "EN"]}
               url="/"
             />
@@ -586,10 +580,7 @@ export default function Route() {
               podiumName="Room 2"
               title="Building Better Microservices API with Event-Driven Architecture"
               description="Irwan Butar Butar"
-              categories={[
-                CATEGORIES.MICROSERVICES,
-                CATEGORIES.EVENT_DRIVEN,
-              ]}
+              categories={[CATEGORIES.MICROSERVICES, CATEGORIES.EVENT_DRIVEN]}
               tags={["Intermediate", "ID"]}
               url="/"
             />
@@ -611,10 +602,7 @@ export default function Route() {
               podiumName="Room 4"
               title="Automating Victory: Beating Browser Games with Accessible Python"
               description="Jon Gaul"
-              categories={[
-                CATEGORIES.GAME,
-                CATEGORIES.AUTOMATION,
-              ]}
+              categories={[CATEGORIES.GAME, CATEGORIES.AUTOMATION]}
               tags={["Beginnter", "EN"]}
               url="/"
             />
@@ -626,7 +614,7 @@ export default function Route() {
             start="14:50"
             end="15:20"
           />
-          <ScheduleTabs.Content contentFor="day1" offset={0}>
+          <ScheduleTabs.Content contentFor="day2" offset={0}>
             <div className="mb-4 flex flex-col gap-4">
               <ScheduleCard
                 type="keynote"
@@ -664,10 +652,7 @@ export default function Route() {
               podiumName="Room 1"
               title="Making Python Fun and Flexible with Inversion Control"
               description="Yoga Pratama Aliarham"
-              categories={[
-                CATEGORIES.CONCEPT,
-                CATEGORIES.FRAMEWORK,
-              ]}
+              categories={[CATEGORIES.CONCEPT, CATEGORIES.FRAMEWORK]}
               tags={["Intermediate", "ID"]}
               url="/"
             />
@@ -676,10 +661,7 @@ export default function Route() {
               podiumName="Room 2"
               title="Islands Will Eventually Connect to Forma Universe: An Introduction to the ActivityPub Protocol and Basic Implementation Guide"
               description="Zhang Yu"
-              categories={[
-                CATEGORIES.SOCIAL_MEDIA,
-                CATEGORIES.ACTIVITYPUB,
-              ]}
+              categories={[CATEGORIES.SOCIAL_MEDIA, CATEGORIES.ACTIVITYPUB]}
               tags={["All", "EN"]}
               url="/"
             />
@@ -700,9 +682,7 @@ export default function Route() {
               podiumName="Room 4"
               title="One Piece of Data: Exploring the World of One Piece with Python"
               description="Ismail Sunni"
-              categories={[
-                CATEGORIES.WEB_SCRAPING,
-              ]}
+              categories={[CATEGORIES.WEB_SCRAPING]}
               tags={["All", "ID"]}
               url="/"
             />

@@ -3,11 +3,11 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "~/libs"
 
 const headerVariants = cva(
-  "sticky top-[230px] mb-4 w-full rounded-3xl lg:rounded-2xl py-4 px-8 text-white h-[64px] flex items-center justify-between",
+  "sticky top-[230px] mb-4 w-full rounded-3xl lg:rounded-2xl py-4 px-8 text-white h-[70px] flex items-center justify-between",
   {
     variants: {
       variant: {
-        main: "bg-primary text-left text-xl lg:text-xl font-sans",
+        main: "bg-primary text-sm text-left flex-col lg:flex-row h-[70px]  lg:text-xl font-sans",
         default:
           "bg-zinc-800 text-center text-lg lg:text-2xl font-brand justify-center",
       },
