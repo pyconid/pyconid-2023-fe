@@ -18,14 +18,14 @@ const sponsors = {
   ],
   gold: [
     {
-      logo: "julo.svg",
-      alt: "logo_julo",
+      logo: "nginx.svg",
+      alt: "logo_nginx",
       description:
         "Lorem ipsum dolor sit amet consectetur. Velit sit pellentesque ut porttitor. Duis pellentesque felis imperdiet lorem non. A diam nunc posuere sed proin massa in praesent eu. Sagittis sollicitudin placerat iaculis in hac. Quam vulputate scelerisque sit iaculis posuere nec facilisi gravida nec. Blandit urna enim rhoncus arcu posuere ullamcorper porttitor. Quis non massa ut in ultricies iaculis ut.",
     },
     {
-      logo: "nginx.svg",
-      alt: "logo_nginx",
+      logo: "julo.svg",
+      alt: "logo_julo",
       description:
         "Lorem ipsum dolor sit amet consectetur. Velit sit pellentesque ut porttitor. Duis pellentesque felis imperdiet lorem non. A diam nunc posuere sed proin massa in praesent eu. Sagittis sollicitudin placerat iaculis in hac. Quam vulputate scelerisque sit iaculis posuere nec facilisi gravida nec. Blandit urna enim rhoncus arcu posuere ullamcorper porttitor. Quis non massa ut in ultricies iaculis ut.",
     },
@@ -57,11 +57,14 @@ export default function Index() {
           className="mb-5 mt-16 h-2 rounded bg-primary-purple lg:mb-7"
           role="separator"
         />
-        <div className="mx-auto w-fit rounded-lg bg-primary-purple p-5 text-xl font-bold text-white">
+        <div className="mx-auto w-fit rounded-lg bg-primary-purple p-2 text-xl font-bold text-white lg:p-3">
           Platinum Sponsor
         </div>
         {sponsors.platinum.map((sponsor, index) => (
-          <div key={index} className="mx-auto flex w-1/2 flex-col items-center">
+          <div
+            key={index}
+            className="mx-auto mt-4 flex flex-col items-center lg:w-1/2"
+          >
             <img src={sponsor.logo} alt={sponsor.alt} />
             <p>{sponsor.description}</p>
           </div>
@@ -70,16 +73,18 @@ export default function Index() {
           className="mb-5 mt-16 h-2 rounded bg-primary-orange lg:mb-7"
           role="separator"
         />
-        <div className="mx-auto w-fit rounded-lg bg-primary-orange p-5 text-xl font-bold text-white">
+        <div className="mx-auto w-fit rounded-lg bg-primary-orange p-2 text-xl font-bold text-white lg:p-3">
           Gold Sponsor
         </div>
-        <div className="grid grid-cols-2">
+        <div className="mt-4 space-y-8 lg:grid lg:grid-cols-2 lg:space-y-0">
           {sponsors.gold.map((sponsor, index) => (
             <div
               key={index}
-              className="mx-auto flex w-2/3 flex-col items-center"
+              className="mx-auto flex flex-col items-center lg:w-2/3"
             >
-              <img src={sponsor.logo} alt={sponsor.alt} />
+              <div className="h-[80px]">
+                <img src={sponsor.logo} alt={sponsor.alt} />
+              </div>
               <p>{sponsor.description}</p>
             </div>
           ))}
@@ -88,12 +93,17 @@ export default function Index() {
           className="mb-5 mt-16 h-2 rounded bg-primary-red lg:mb-7"
           role="separator"
         />
-        <div className="mx-auto w-fit rounded-lg bg-primary-red p-5 text-xl font-bold text-white">
+        <div className="mx-auto w-fit rounded-lg bg-primary-red p-2 text-xl font-bold text-white lg:p-3">
           Silver Sponsor
         </div>
         {sponsors.silver.map((sponsor, index) => (
-          <div key={index} className="mx-auto flex w-1/3 flex-col items-center">
-            <img src={sponsor.logo} alt={sponsor.alt} />
+          <div
+            key={index}
+            className="mx-auto mt-4 flex flex-col items-center lg:w-1/3"
+          >
+            <div className="h-[80px]">
+              <img src={sponsor.logo} alt={sponsor.alt} />
+            </div>
             <p>{sponsor.description}</p>
           </div>
         ))}
