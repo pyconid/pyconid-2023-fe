@@ -118,7 +118,7 @@ const TabContent = ({
     <div
       ref={ref}
       data-st={contentFor}
-      className={cn("scroll-m-96", className)}
+      className={cn("scroll-m-[396px]", className)}
     >
       {children}
     </div>

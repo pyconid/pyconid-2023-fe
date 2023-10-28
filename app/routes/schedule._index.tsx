@@ -422,7 +422,7 @@ export default function Route() {
             start="09:30"
             end="11:00"
           />
-          <ScheduleTabs.Content contentFor="day2" offset={0}>
+          <ScheduleTabs.Content contentFor="day2">
             <div className="mb-4 flex flex-col gap-4">
               <ScheduleCard
                 type="keynote"
