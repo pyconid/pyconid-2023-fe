@@ -99,9 +99,11 @@ const ScheduleCard = (props: ScheduleCardProps) => {
 
   return (
     <div className={cn(scheduleCardVariants({ type, className }))}>
+      {type === "keynote" ? <span className="text-lg">Main Hall</span> : null}
       {type === "podium" && (
         <PodiumSection podiumName={props.podiumName} tags={props.tags} />
       )}
+
       <h1 className="text-xl font-bold lg:text-2xl">{title}</h1>
       {description ? (
         <p className="text-sm lg:text-base">{description}</p>
