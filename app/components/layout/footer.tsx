@@ -18,41 +18,41 @@ const socials = [
 
 const organizers = [
   {
-    logo: "pythonid.svg",
+    logo: "/pythonid.svg",
     alt: "logo_pythonid",
   },
   {
-    logo: "bandungpy.svg",
+    logo: "/bandungpy.svg",
     alt: "logo_bandungpy",
   },
 ]
 
 const supporters = [
   {
-    logo: "python.svg",
+    logo: "/python.svg",
     alt: "logo_python",
   },
 ]
 
 const sponsors = [
   {
-    logo: "googlecloud.svg",
+    logo: "/googlecloud.svg",
     alt: "logo_googlecloud",
     category: "platinum",
   },
   {
-    logo: "nginx.svg",
+    logo: "/nginx.svg",
     alt: "logo_nginx",
     category: "gold",
   },
   {
-    logo: "julo.svg",
+    logo: "/julo.svg",
     alt: "logo_julo",
     category: "gold",
   },
 
   {
-    logo: "ocbcnisp.svg",
+    logo: "/ocbcnisp.svg",
     alt: "logo_ocbnisp",
     category: "silver",
   },
@@ -117,7 +117,7 @@ export function Footer() {
 
         <div className="mt-8 space-y-8">
           <div className="flex items-center justify-center lg:justify-start">
-            <img src="pycon-logo.svg" alt="logo_pycon" />
+            <img src="/pycon-logo.svg" alt="logo_pycon" />
           </div>
         </div>
 
