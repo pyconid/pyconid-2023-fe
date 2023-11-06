@@ -488,7 +488,7 @@ export default function Route() {
               type="podium"
               podiumName="Room 3"
               title="Elasticsearch: Building a Learning-to-Rank Autocomplete for Online Travel Agency"
-              description="Elsafina Siswanto"
+              description="Elisafina Siswanto"
               categories={[
                 CATEGORIES.ELASTICSEARCH,
                 CATEGORIES.MACHINE_LEARNING,
