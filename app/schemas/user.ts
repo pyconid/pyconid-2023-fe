@@ -71,7 +71,6 @@ const publicFields = z
     jobCategories: z.boolean().optional().default(false),
     address: z.boolean().optional().default(false),
     socials: z.boolean().optional().default(false),
-
   })
   .optional()
 

@@ -13,9 +13,10 @@ import { getFieldsetConstraint, parse } from "@conform-to/zod"
 import { userSigninSchema } from "~/schemas"
 import { authenticator } from "~/services/auth.server"
 import { commitSession, getSession } from "~/services/session.server"
+import { siteService } from "~/services/site-verify.server"
 
 import { Button, Layout } from "~/components"
-import { TextInput,Captcha } from "~/components/shared"
+import { Captcha, TextInput } from "~/components/shared"
 import { FormFieldSet } from "~/components/ui/form"
 import { useToast } from "~/components/ui/use-toast"
 
@@ -30,6 +31,18 @@ export async function action({ request }: ActionArgs) {
 
   if (!submission.value || submission.intent !== "submit") {
     return submission
+  }
+
+  const siteVerifyResponse = await siteService.verify(submission.value.captcha)
+
+  if (siteVerifyResponse.error) {
+    const error: string = siteVerifyResponse.error
+    return {
+      ...submission,
+      error: {
+        captcha: [error],
+      },
+    }
   }
 
   await authenticator.authenticate("user-pass", request, {
@@ -62,7 +75,7 @@ export default function Route() {
 
   const isSubmitting = navigation.state !== "idle"
 
-  const [form, { email, password,captcha }] = useForm({
+  const [form, { email, password, captcha }] = useForm({
     id,
     lastSubmission,
     shouldValidate: "onBlur",
@@ -119,7 +132,7 @@ export default function Route() {
                       </>
                     }
                   />
-                  <Captcha field={captcha}/>
+                  <Captcha field={captcha} />
                   <p className=" text-red-500">
                     {error ? error.message : null}
                   </p>

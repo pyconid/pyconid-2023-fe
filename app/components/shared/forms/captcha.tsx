@@ -1,13 +1,13 @@
 import { useRef } from "react"
+import { useRouteLoaderData } from "@remix-run/react"
 import { conform, useInputEvent, type FieldConfig } from "@conform-to/react"
 import ReCAPTCHA from "react-google-recaptcha"
-import { useRouteLoaderData } from "@remix-run/react"
 
 export type captchaType<T> = {
   field: FieldConfig<T>
 }
 const Captcha = <T,>({ field }: captchaType<T>) => {
-    const { ENV } = useRouteLoaderData("root");
+  const { ENV } = useRouteLoaderData("root")
 
   const shadowInputRef = useRef<HTMLInputElement>(null)
   const control = useInputEvent({
@@ -37,4 +37,4 @@ const Captcha = <T,>({ field }: captchaType<T>) => {
   )
 }
 
-export {Captcha}
+export { Captcha }
