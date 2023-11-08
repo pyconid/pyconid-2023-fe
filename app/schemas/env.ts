@@ -6,4 +6,5 @@ export const envSchema = z.object({
   COUNTRY_STATE_API_KEY: z.string(),
   IMAGEKIT_PUBLIC_API_KEY: z.string(),
   IMAGEKIT_PRIVATE_API_KEY: z.string(),
+  CAPTCHA_KEY:z.string(),
 })

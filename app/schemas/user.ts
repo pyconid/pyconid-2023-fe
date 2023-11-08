@@ -26,6 +26,7 @@ const password = z
   .min(8, "Password require at least 8 characters")
   .max(100, "Password max length limited to 100 characters")
 
+const captcha = z.string()
 const organisation = z.string().min(1, "Company is required")
 const jobTitle = z.string().min(1, "Job title is required")
 const industryCategoryId = z.string().min(1, "Industry categories is required")
@@ -70,6 +71,7 @@ const publicFields = z
     jobCategories: z.boolean().optional().default(false),
     address: z.boolean().optional().default(false),
     socials: z.boolean().optional().default(false),
+
   })
   .optional()
 
@@ -87,6 +89,7 @@ const compliance = z.object(
 const userSigninSchema = z.object({
   email,
   password,
+  captcha,
 })
 
 const userSignupSchema = z.object({
@@ -94,10 +97,12 @@ const userSignupSchema = z.object({
   lastName,
   email,
   password,
+  captcha,
 })
 
 const userForgotPasswordSchema = z.object({
   email,
+  captcha,
 })
 
 export const userResetPasswordSchema = z

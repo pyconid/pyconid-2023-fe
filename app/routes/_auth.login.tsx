@@ -15,7 +15,7 @@ import { authenticator } from "~/services/auth.server"
 import { commitSession, getSession } from "~/services/session.server"
 
 import { Button, Layout } from "~/components"
-import { TextInput } from "~/components/shared"
+import { TextInput,Captcha } from "~/components/shared"
 import { FormFieldSet } from "~/components/ui/form"
 import { useToast } from "~/components/ui/use-toast"
 
@@ -62,7 +62,7 @@ export default function Route() {
 
   const isSubmitting = navigation.state !== "idle"
 
-  const [form, { email, password }] = useForm({
+  const [form, { email, password,captcha }] = useForm({
     id,
     lastSubmission,
     shouldValidate: "onBlur",
@@ -119,7 +119,7 @@ export default function Route() {
                       </>
                     }
                   />
-
+                  <Captcha field={captcha}/>
                   <p className=" text-red-500">
                     {error ? error.message : null}
                   </p>
