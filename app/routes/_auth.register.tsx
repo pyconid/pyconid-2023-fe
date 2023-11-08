@@ -8,7 +8,7 @@ import { userSignupSchema } from "~/schemas"
 import { userService } from "~/services/user.server"
 
 import { Button, Layout } from "~/components"
-import { TextInput } from "~/components/shared"
+import { Captcha, TextInput } from "~/components/shared"
 import { FormFieldSet } from "~/components/ui/form"
 
 export const meta: V2_MetaFunction = () => {
@@ -40,7 +40,7 @@ export default function Route() {
 
   const isSubmitting = navigation.state !== "idle"
 
-  const [form, { firstName, lastName, email, password }] = useForm({
+  const [form, { firstName, lastName, email, password,captcha }] = useForm({
     id,
     lastSubmission,
     shouldValidate: "onBlur",
@@ -85,6 +85,7 @@ export default function Route() {
                     type="password"
                     placeholder="Enter your password"
                   />
+                  <Captcha field={captcha} />
                   <Button
                     type="submit"
                     className="mt-4 w-full md:ml-auto md:w-80"

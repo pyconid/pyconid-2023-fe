@@ -9,5 +9,6 @@ export function getEnv(): z.infer<typeof envSchema> {
     COUNTRY_STATE_API_KEY: process.env.COUNTRY_STATE_API_KEY || "",
     IMAGEKIT_PUBLIC_API_KEY: process.env.IMAGEKIT_PUBLIC_API_KEY || "",
     IMAGEKIT_PRIVATE_API_KEY: process.env.IMAGEKIT_PRIVATE_API_KEY || "",
+    CAPTCHA_KEY:process.env.CAPTCHA_KEY || "",
   }
 }

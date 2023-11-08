@@ -7,7 +7,7 @@ import { userForgotPasswordSchema } from "~/schemas"
 import { userService } from "~/services/user.server"
 
 import { Button, FormFieldSet, Layout } from "~/components"
-import { TextInput } from "~/components/shared"
+import { Captcha, TextInput } from "~/components/shared"
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "Login - Pycon ID 2023" }]
@@ -39,7 +39,7 @@ export default function Route() {
   const navigation = useNavigation()
   const isSubmitting = navigation.state !== "idle"
 
-  const [form, { email }] = useForm({
+  const [form, { email,captcha }] = useForm({
     id,
     lastSubmission,
     shouldValidate: "onBlur",
@@ -74,7 +74,7 @@ export default function Route() {
                     label="Email"
                     placeholder="Enter your email address"
                   />
-
+                <Captcha field={captcha} />
                   <Button
                     type="submit"
                     className="w-full md:ml-auto md:w-80"

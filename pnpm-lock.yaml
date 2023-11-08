@@ -1,7 +1,7 @@
 lockfileVersion: '6.0'
 
 settings:
-  autoInstallPeers: true
+  autoInstallPeers: false
   excludeLinksFromLockfile: false
 
 dependencies:
@@ -10,7 +10,7 @@ dependencies:
     version: 0.9.0(react@18.2.0)
   '@conform-to/zod':
     specifier: ^0.9.0
-    version: 0.9.0(@conform-to/dom@0.9.0)(zod@3.22.2)
+    version: 0.9.0(zod@3.22.2)
   '@fontsource/open-sans':
     specifier: ^5.0.8
     version: 5.0.8
@@ -115,13 +115,13 @@ dependencies:
     version: 2.0.12(react@18.2.0)
   remix-auth:
     specifier: ^3.5.1
-    version: 3.5.1(@remix-run/react@1.19.2)(@remix-run/server-runtime@1.19.2)
+    version: 3.5.1(@remix-run/react@1.19.2)
   remix-auth-form:
     specifier: ^1.3.0
-    version: 1.3.0(@remix-run/server-runtime@1.19.2)(remix-auth@3.5.1)
+    version: 1.3.0(remix-auth@3.5.1)
   remix-utils:
     specifier: ^6.6.0
-    version: 6.6.0(@remix-run/react@1.19.2)(@remix-run/server-runtime@1.19.2)(react@18.2.0)(typescript@5.1.6)(zod@3.22.2)
+    version: 6.6.0(@remix-run/react@1.19.2)(react@18.2.0)(typescript@5.1.6)(zod@3.22.2)
   swr:
     specifier: ^2.2.4
     version: 2.2.4(react@18.2.0)
@@ -165,7 +165,7 @@ devDependencies:
     version: 18.2.7
   autoprefixer:
     specifier: 10.4.14
-    version: 10.4.14(postcss@8.4.26)
+    version: 10.4.14
   eslint:
     specifier: ^8.46.0
     version: 8.46.0
@@ -1530,13 +1530,12 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@conform-to/zod@0.9.0(@conform-to/dom@0.9.0)(zod@3.22.2):
+  /@conform-to/zod@0.9.0(zod@3.22.2):
     resolution: {integrity: sha512-Eq19/U6inDlCB1GNrvfTJBxyRVFesHVgkB5piWqLmhRYFHL8ooQGvmhVaOqeqqm+e+zNCjsIe3jip5ZW7uiBIw==}
     peerDependencies:
       '@conform-to/dom': 0.9.0
       zod: ^3.21.0
     dependencies:
-      '@conform-to/dom': 0.9.0
       zod: 3.22.2
     dev: false
 
@@ -4202,7 +4201,7 @@ packages:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: false
 
-  /autoprefixer@10.4.14(postcss@8.4.26):
+  /autoprefixer@10.4.14:
     resolution: {integrity: sha512-FQzyfOsTlwVzjHxKEqRIAdJx9niO6VCBCoEwax/VLSoQF29ggECcPuBqUMZ+u8jCZOPSy8b8/8KnuFbp0SaFZQ==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -4214,7 +4213,6 @@ packages:
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
-      postcss: 8.4.26
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -9279,28 +9277,26 @@ packages:
       unified: 10.1.2
     dev: true
 
-  /remix-auth-form@1.3.0(@remix-run/server-runtime@1.19.2)(remix-auth@3.5.1):
+  /remix-auth-form@1.3.0(remix-auth@3.5.1):
     resolution: {integrity: sha512-m+pwFJM61+qGPIvROHmN7LANJMbpL2QgYen/wY8wnJfwwannWt2+7zEoGWF7NbxMnoxCib75EGlPZpyyvwtBXQ==}
     peerDependencies:
       '@remix-run/server-runtime': ^1.0.0
       remix-auth: ^3.4.0
     dependencies:
-      '@remix-run/server-runtime': 1.19.2
-      remix-auth: 3.5.1(@remix-run/react@1.19.2)(@remix-run/server-runtime@1.19.2)
+      remix-auth: 3.5.1(@remix-run/react@1.19.2)
     dev: false
 
-  /remix-auth@3.5.1(@remix-run/react@1.19.2)(@remix-run/server-runtime@1.19.2):
+  /remix-auth@3.5.1(@remix-run/react@1.19.2):
     resolution: {integrity: sha512-PH8JTMd2n4OoQE7xGoCMDvrPyHfDvKMNEi8VT3Lvi/g3+HlJERHWXdYBOSl0TImEYOprs8VI/nC82y47aKJrJQ==}
     peerDependencies:
       '@remix-run/react': ^1.0.0
       '@remix-run/server-runtime': ^1.0.0
     dependencies:
       '@remix-run/react': 1.19.2(react-dom@18.2.0)(react@18.2.0)
-      '@remix-run/server-runtime': 1.19.2
       uuid: 8.3.2
     dev: false
 
-  /remix-utils@6.6.0(@remix-run/react@1.19.2)(@remix-run/server-runtime@1.19.2)(react@18.2.0)(typescript@5.1.6)(zod@3.22.2):
+  /remix-utils@6.6.0(@remix-run/react@1.19.2)(react@18.2.0)(typescript@5.1.6)(zod@3.22.2):
     resolution: {integrity: sha512-4r4ifahU61Aa54m6Yu8B8GTzXyo+9RUzkFZdBNZOErpZ1LUMQ/ng4LeCJX2M6m4obdMjq0ot0pPlnAzeZOSttg==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -9310,7 +9306,6 @@ packages:
       zod: ^3.19.1
     dependencies:
       '@remix-run/react': 1.19.2(react-dom@18.2.0)(react@18.2.0)
-      '@remix-run/server-runtime': 1.19.2
       intl-parse-accept-language: 1.0.0
       is-ip: 3.1.0
       react: 18.2.0
