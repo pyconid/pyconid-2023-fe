@@ -5,6 +5,7 @@ import { Form, Link, useActionData, useNavigation } from "@remix-run/react"
 import { useForm } from "@conform-to/react"
 import { getFieldsetConstraint, parse } from "@conform-to/zod"
 import { userSignupSchema } from "~/schemas"
+import { siteService } from "~/services/site-verify.server"
 import { userService } from "~/services/user.server"
 
 import { Button, Layout } from "~/components"
@@ -24,6 +25,18 @@ export async function action({ request }: ActionArgs) {
     return json(submission)
   }
 
+  const siteVerifyResponse = await siteService.verify(submission.value.captcha)
+
+  if (siteVerifyResponse.error) {
+    const error: string = siteVerifyResponse.error.data
+    return json({
+      ...submission,
+      error: {
+        captcha: [error],
+      },
+    })
+  }
+
   const result = await userService.register(submission.value)
 
   if (result.error) {
@@ -40,7 +53,7 @@ export default function Route() {
 
   const isSubmitting = navigation.state !== "idle"
 
-  const [form, { firstName, lastName, email, password,captcha }] = useForm({
+  const [form, { firstName, lastName, email, password, captcha }] = useForm({
     id,
     lastSubmission,
     shouldValidate: "onBlur",

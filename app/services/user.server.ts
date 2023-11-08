@@ -62,8 +62,6 @@ export const userService = {
             throw new Error("User is already verified")
           case 404:
             throw new Error("Invalid Token")
-          default:
-            throw new Error("Something's wrong")
         }
       })
       .then((data) => ({ data, error: null }))
