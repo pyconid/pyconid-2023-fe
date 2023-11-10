@@ -235,6 +235,15 @@ export default function Route() {
             />
             <ScheduleCard
               type="podium"
+              podiumName="Room 3"
+              title="New Way to Run Phyton Applications Faster : NGINX Unit"
+              description="Wahyu Herdyanto"
+              categories={[CATEGORIES.FRAMEWORK]}
+              tags={["All", "ID"]}
+              url="/"
+            />
+            <ScheduleCard
+              type="podium"
               podiumName="Room 4"
               title="Competitive Programming is Easy: How to Learn Better"
               description="Mr. Pahlevi Fikri Auliya"
@@ -341,6 +350,15 @@ export default function Route() {
               description="Ali Akbar Septiandri"
               categories={[CATEGORIES.CODE_QUALITY, CATEGORIES.TIDYVERSE]}
               tags={["Beginner", "ID"]}
+              url="/"
+            />
+            <ScheduleCard
+              type="podium"
+              podiumName="Room 1"
+              title="Growth with DuetAI: A stories from Developer Experience"
+              description="Syahid Ismail"
+              categories={[CATEGORIES.ARTIFICIAL_INTELLIGENCE]}
+              tags={["All", "ID"]}
               url="/"
             />
             <ScheduleCard
@@ -535,8 +553,8 @@ export default function Route() {
             <div className="mb-4 flex flex-col gap-4">
               <ScheduleCard
                 type="keynote"
-                title="Keynote Session 3 - TBA Soon"
-                description=""
+                title="Keynote Session 3 - Python and LLMs: Shaping the future of AI"
+                description="Erwin Huizenga"
                 time="13:00 - 14:00"
                 url="/"
               />
