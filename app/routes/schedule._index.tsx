@@ -646,7 +646,7 @@ export default function Route() {
           <Header
             variant="main"
             title="Parallel Session 8"
-            date="18 November 2023"
+            date="19 November 2023"
             start="15:20"
             end="16:00"
           />
