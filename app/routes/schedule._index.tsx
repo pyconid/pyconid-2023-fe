@@ -239,7 +239,7 @@ export default function Route() {
               title="New Way to Run Phyton Applications Faster : NGINX Unit"
               description="Wahyu Herdyanto"
               categories={[CATEGORIES.FRAMEWORK]}
-              tags={["All", "ID"]}
+              tags={["F5","All", "ID"]}
               url="/"
             />
             <ScheduleCard
@@ -358,7 +358,7 @@ export default function Route() {
               title="Growth with DuetAI: A stories from Developer Experience"
               description="Syahid Ismail"
               categories={[CATEGORIES.ARTIFICIAL_INTELLIGENCE]}
-              tags={["All", "ID"]}
+              tags={["Google","All", "ID"]}
               url="/"
             />
             <ScheduleCard
