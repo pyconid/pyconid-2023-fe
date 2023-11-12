@@ -187,9 +187,14 @@ model PublicFields {
 model Speaker {
   id String @id @default(cuid())
 
-  slug String  @unique
-  name String  @unique
-  bio  String?
+  slug           String  @unique
+  name           String  @unique
+  description    String? @db.Text
+  title          String?
+  talks_type     String?
+  language       String?
+  audience_level String?
+  topic_tags     String?
 
   // Speaker can link with their User account
   user   User?   @relation(fields: [userId], references: [id])
@@ -200,7 +205,6 @@ model Speaker {
 
   @@index([userId])
 }
-
 model Ticket {
   id String @id @default(cuid())
 
