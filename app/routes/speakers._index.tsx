@@ -18,6 +18,7 @@ export async function loader() {
       talks_type: true,
       user: {
         select: {
+          id: true,
           firstName: true,
           lastName: true,
           avatar: true,
@@ -54,7 +55,7 @@ export default function Route() {
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mt-2 grid gap-4 md:grid-cols-2 md:gap-10 lg:grid-cols-3">
           {keynoteTalks.map((keynoteTalk, i) => (
-            <SpeakerCard key={keynoteTalk.id} firstName={String(keynoteTalk.user?.firstName)} lastName={String(keynoteTalk.user?.lastName)} index={i} avatar={String(keynoteTalk.user?.avatar)}>
+            <SpeakerCard id={String(keynoteTalk.user?.id)} key={keynoteTalk.id} firstName={String(keynoteTalk.user?.firstName)} lastName={String(keynoteTalk.user?.lastName)} index={i} avatar={String(keynoteTalk.user?.avatar)}>
               {keynoteTalk.title}
             </SpeakerCard>
           ))}
@@ -66,7 +67,7 @@ export default function Route() {
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mt-2 grid gap-4 md:grid-cols-2 md:gap-10 lg:grid-cols-4">
           {speakers.map((speaker, i) => (
-            <SpeakerCard key={speaker.id} firstName={String(speaker.user?.firstName)} lastName={String(speaker.user?.lastName)} index={i} avatar={String(speaker.user?.avatar)}>
+            <SpeakerCard id={String(speaker.user?.id)} key={speaker.id} firstName={String(speaker.user?.firstName)} lastName={String(speaker.user?.lastName)} index={i} avatar={String(speaker.user?.avatar)}>
               {speaker.title}
             </SpeakerCard>
           ))}
