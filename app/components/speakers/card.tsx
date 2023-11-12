@@ -1,4 +1,7 @@
 import { cn } from "~/libs"
+import { getAvatarInitials } from "~/libs/getAvatarInitials"
+
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 
 const colorMap = {
   purple: {
@@ -18,16 +21,21 @@ const colorMap = {
 const COLOR_BORDERS = Object.keys(colorMap) as Array<keyof typeof colorMap>
 
 type SpeakerCardProps = React.HTMLAttributes<HTMLDivElement> & {
-  name: string
+  firstName: string
+  lastName: string
   index?: number
+  avatar?: string
 }
 
 function SpeakerCard({
-  name,
+  firstName,
+  lastName,
+  avatar = "",
   index = 0,
   children,
   className,
 }: SpeakerCardProps) {
+  const initials = getAvatarInitials(firstName, lastName)
   // Cycle through the color map
   const color = COLOR_BORDERS[index % COLOR_BORDERS.length]
   return (
@@ -40,7 +48,10 @@ function SpeakerCard({
             className,
           )}
         >
-          <img src="https://placehold.co/400" alt="" className="object-cover" />
+          <Avatar className="rounded-none w-full h-full">
+            <AvatarImage src={avatar} alt={firstName} />
+            <AvatarFallback className="rounded-none text-3xl w-full h-full aspect-square">{initials}</AvatarFallback>
+          </Avatar>
         </div>
         <div
           className={cn(
@@ -51,7 +62,7 @@ function SpeakerCard({
       </div>
       <div className="mt-4">
         <h4 className="mb-4 text-4xl font-bold tracking-tight text-primary">
-          {name}
+          {`${firstName} ${lastName}`}
         </h4>
         <p className="text-lg">{children}</p>
       </div>
