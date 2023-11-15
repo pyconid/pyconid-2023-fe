@@ -22,8 +22,8 @@ export function Nav() {
       label: "Schedule",
     },
     {
-      to: "/cfp",
-      label: "Call for Proposal",
+      to: "/speakers",
+      label: "Speakers",
     },
     {
       to: "/tickets",
@@ -124,11 +124,10 @@ export function Nav() {
                     className="flex items-center px-1 pt-1 text-center text-xs font-medium xl:text-base"
                   >
                     <span
-                      className={`flex w-full items-center text-[#757575] ${
-                        pathName === item.to
+                      className={`flex w-full items-center text-[#757575] ${pathName === item.to
                           ? "font-semibold text-primary"
                           : "font-normal"
-                      }  hover:text-primary`}
+                        }  hover:text-primary`}
                     >
                       {item.label}
                     </span>
@@ -163,11 +162,10 @@ export function Nav() {
                           className="block pl-3 pr-4 text-base font-medium text-[#757575] sm:pl-5 sm:pr-6"
                         >
                           <span
-                            className={`flex h-full w-full items-center py-2 ${
-                              pathName === item.to
+                            className={`flex h-full w-full items-center py-2 ${pathName === item.to
                                 ? "font-semibold text-primary"
                                 : "font-normal"
-                            } `}
+                              } `}
                           >
                             {item.label}
                           </span>

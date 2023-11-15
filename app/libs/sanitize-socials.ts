@@ -78,7 +78,5 @@ export function sanitizeSocials(socials: SanitizeSocialsArgs) {
     sanitizedEntries,
   ) as SanitizeSocialArgsReturn
 
-  console.log({ sanitized })
-
   return sanitized
 }

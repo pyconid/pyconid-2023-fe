@@ -5,10 +5,11 @@ import { Form, Link, useActionData, useNavigation } from "@remix-run/react"
 import { useForm } from "@conform-to/react"
 import { getFieldsetConstraint, parse } from "@conform-to/zod"
 import { userSignupSchema } from "~/schemas"
+import { siteService } from "~/services/site-verify.server"
 import { userService } from "~/services/user.server"
 
 import { Button, Layout } from "~/components"
-import { TextInput } from "~/components/shared"
+import { Captcha, TextInput } from "~/components/shared"
 import { FormFieldSet } from "~/components/ui/form"
 
 export const meta: V2_MetaFunction = () => {
@@ -22,6 +23,18 @@ export async function action({ request }: ActionArgs) {
 
   if (!submission.value || submission.intent !== "submit") {
     return json(submission)
+  }
+
+  const siteVerifyResponse = await siteService.verify(submission.value.captcha)
+
+  if (siteVerifyResponse.error) {
+    const error: string = siteVerifyResponse.error.data
+    return json({
+      ...submission,
+      error: {
+        captcha: [error],
+      },
+    })
   }
 
   const result = await userService.register(submission.value)
@@ -40,7 +53,7 @@ export default function Route() {
 
   const isSubmitting = navigation.state !== "idle"
 
-  const [form, { firstName, lastName, email, password }] = useForm({
+  const [form, { firstName, lastName, email, password, captcha }] = useForm({
     id,
     lastSubmission,
     shouldValidate: "onBlur",
@@ -85,6 +98,7 @@ export default function Route() {
                     type="password"
                     placeholder="Enter your password"
                   />
+                  <Captcha field={captcha} />
                   <Button
                     type="submit"
                     className="mt-4 w-full md:ml-auto md:w-80"

@@ -4,10 +4,11 @@ import { Form, useActionData, useNavigation } from "@remix-run/react"
 import { useForm } from "@conform-to/react"
 import { getFieldsetConstraint, parse } from "@conform-to/zod"
 import { userForgotPasswordSchema } from "~/schemas"
+import { siteService } from "~/services/site-verify.server"
 import { userService } from "~/services/user.server"
 
 import { Button, FormFieldSet, Layout } from "~/components"
-import { TextInput } from "~/components/shared"
+import { Captcha, TextInput } from "~/components/shared"
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "Login - Pycon ID 2023" }]
@@ -20,6 +21,19 @@ export async function action({ request }: ActionArgs) {
 
   if (!submission.value || submission.intent !== "submit") {
     return json({ ...submission, data: { success: false } })
+  }
+
+  const siteVerifyResponse = await siteService.verify(submission.value.captcha)
+
+  if (siteVerifyResponse.error) {
+    const error: string = siteVerifyResponse.error
+    return json({
+      ...submission,
+      error: {
+        captcha: [error],
+      },
+      data: { success: false },
+    })
   }
 
   const result = await userService.forgotPassword(submission.value)
@@ -39,7 +53,7 @@ export default function Route() {
   const navigation = useNavigation()
   const isSubmitting = navigation.state !== "idle"
 
-  const [form, { email }] = useForm({
+  const [form, { email, captcha }] = useForm({
     id,
     lastSubmission,
     shouldValidate: "onBlur",
@@ -74,7 +88,7 @@ export default function Route() {
                     label="Email"
                     placeholder="Enter your email address"
                   />
-
+                  <Captcha field={captcha} />
                   <Button
                     type="submit"
                     className="w-full md:ml-auto md:w-80"
