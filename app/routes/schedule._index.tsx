@@ -18,26 +18,27 @@ export const meta: V2_MetaFunction = () => {
 
 export type Schedule = Prisma.ScheduleGetPayload<{
   select: {
-    id: true
+    id: boolean
     day: true
     start: true
     end: true
     sessionName: true
     roomName: true
     variant: true
-    streamingLink: boolean
     speaker: {
       select: {
         user: {
           select: {
             firstName: true
             lastName: true
+            avatar: true
           }
         }
         title: true
         audience_level: true
         topic_tags: true
         language: true
+        description: true
       }
     }
   }
@@ -59,26 +60,27 @@ export async function loader({ request }: LoaderArgs) {
 
   const schedule = await prisma.schedule.findMany({
     select: {
-      id: true,
+      id: isParticipant,
       day: true,
       start: true,
       end: true,
       sessionName: true,
       roomName: true,
       variant: true,
-      streamingLink: isParticipant,
       speaker: {
         select: {
           user: {
             select: {
               firstName: true,
               lastName: true,
+              avatar: true,
             },
           },
           title: true,
           audience_level: true,
           topic_tags: true,
           language: true,
+          description: true,
         },
       },
     },
@@ -373,12 +375,12 @@ export default function Route() {
 }
 
 function KeynoteSession({ data }: { data: Schedule[] }) {
-  return data.map((item) => {
-    const { start, end, id, sessionName, speaker, streamingLink } = item
+  return data.map((item, i) => {
+    const { start, end, sessionName, speaker } = item
     return (
       <ScheduleCard
         data={item}
-        key={id}
+        key={i}
         type="keynote"
         title={sessionName ?? ""}
         description={
@@ -397,7 +399,7 @@ function KeynoteSession({ data }: { data: Schedule[] }) {
 }
 
 function ParallelSession({ data }: { data: Schedule[] }) {
-  return data.map((p) => {
+  return data.map((p, i) => {
     const { speaker } = p
 
     if (!speaker) return null
@@ -405,7 +407,7 @@ function ParallelSession({ data }: { data: Schedule[] }) {
     return (
       <ScheduleCard
         data={p}
-        key={p.id}
+        key={i}
         type="podium"
         podiumName={String(p.roomName)}
         title={String(speaker.title)}
