@@ -56,6 +56,11 @@ const sponsors = [
     alt: "logo_ocbnisp",
     category: "silver",
   },
+  {
+    logo: "/qiscus.svg",
+    alt: "logo_qiscus",
+    category: "silver",
+  },
 ]
 
 export function Footer() {
@@ -93,7 +98,7 @@ export function Footer() {
                   }
                 })}
               </div>
-              <div className="flex space-x-4">
+              <div className="flex h-[90px] space-x-4">
                 {sponsors.map((sponsor, index) => {
                   if (sponsor.category === "gold") {
                     return (
@@ -102,7 +107,7 @@ export function Footer() {
                   }
                 })}
               </div>
-              <div className="flex space-x-4">
+              <div className="flex h-[90px] space-x-12">
                 {sponsors.map((sponsor, index) => {
                   if (sponsor.category === "silver") {
                     return (
