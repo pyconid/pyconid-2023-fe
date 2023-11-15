@@ -50,6 +50,13 @@ const sponsors = {
       description:
         "As a bank, OCBC NISP believes that success comes from trust and collaboration. With the value “no such things as can’t”, we grow with our employees and partners to go far together.In career, we encourage everyone to build progress and value together with us, because #OpportunityStartsHere.",
     },
+    {
+      logo: "/qiscus.svg",
+      alt: "logo_qiscus",
+      href: "https://www.qiscus.com/",
+      description:
+        "Qiscus is a leading Omnichannel Customer Engagement Platform in Indonesia, operating as a B2B Software as a Service enterprise. To date, Qiscus has several products under its wings: Qiscus Omnichannel Chat, Qiscus CRM, Qiscus Robolabs, and Qiscus App Center to name a few.\nSince its inception in Singapore, Qiscus has helped hundreds of clients from 23 industries in 19 countries, with 13 various use cases in its portfolio. Qiscus offers solutions to help companies embrace new expectations of excellent customer experience (CX) throughout every step of their customer journey.",
+    },
   ],
 }
 
@@ -138,19 +145,29 @@ export default function Index() {
         <div className="mx-auto w-fit rounded-lg bg-primary-black p-2 text-xl font-bold text-white lg:p-3">
           Silver Sponsor
         </div>
-        {sponsors.silver.map((sponsor, index) => (
-          <div
-            key={index}
-            className="mx-auto mt-4 flex flex-col items-center lg:w-1/3"
-          >
-            <div className="h-[80px]">
-              <a href={sponsor.href} target="_blank" rel="noopener noreferrer">
-                <img src={sponsor.logo} alt={sponsor.alt} />
-              </a>
+        <div className="mt-4 space-y-8 lg:grid lg:grid-cols-2 lg:space-y-0">
+          {sponsors.silver.map((sponsor, index) => (
+            <div
+              key={index}
+              className="mx-auto flex flex-col items-center lg:w-2/3"
+            >
+              <div className="h-[80px]">
+                <a
+                  href={sponsor.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={sponsor.logo} alt={sponsor.alt} />
+                </a>
+              </div>
+              <div className="space-y-2">
+                {sponsor.description.split("\n").map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
             </div>
-            <p>{sponsor.description}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </Layout>
   )
