@@ -100,9 +100,10 @@ type ScheduleCardTypes = ScheduleCardKeynote | ScheduleCardPodium
 type ScheduleCardProps = ScheduleCardTypes &
   React.HTMLAttributes<HTMLDivElement> & {
     data?: Schedule
+    showWatch?: boolean
   }
 
-const ScheduleCard = (props: ScheduleCardProps) => {
+const ScheduleCard = ({ showWatch = true, ...props }: ScheduleCardProps) => {
   const { title, type, description, className, data } = props
 
   return (
@@ -125,10 +126,13 @@ const ScheduleCard = (props: ScheduleCardProps) => {
         <span className="text-lg lg:text-xl">{props.time}</span>
       )}
       {type === "podium" && <PodiumCategories categories={props.categories} />}
-
-      <Button size="lg" className="flex-shrink-0" asChild>
-        <Link to={data?.id ? `/stream/${data.id}` : "/login"}>Watch Now</Link>
-      </Button>
+      {showWatch ? (
+        <Button size="lg" className="flex-shrink-0" asChild>
+          <Link to={data?.id ? `/stream/${data.id}` : "/tickets"}>
+            Watch Now
+          </Link>
+        </Button>
+      ) : null}
     </div>
   )
 }

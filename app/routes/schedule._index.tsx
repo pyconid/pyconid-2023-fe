@@ -55,7 +55,7 @@ export async function loader({ request }: LoaderArgs) {
 
   if (session) {
     const user = await models.user.query.getByToken({ token: session.token })
-    isParticipant = user?.participantTypeId !== null
+    isParticipant = Boolean(user?.participantTypeId)
   }
 
   const schedule = await prisma.schedule.findMany({
@@ -192,6 +192,7 @@ export default function Route() {
                 description=""
                 time="11:50 - 13:00"
                 url="/"
+                showWatch={false}
               />
             </div>
           </ScheduleTabs.Content>
@@ -230,6 +231,7 @@ export default function Route() {
                 description=""
                 time="14:40 - 15:20"
                 url="/"
+                showWatch={false}
               />
             </div>
           </ScheduleTabs.Content>
@@ -303,6 +305,7 @@ export default function Route() {
                 description=""
                 time="11:50 - 12:50"
                 url="/"
+                showWatch={false}
               />
             </div>
           </ScheduleTabs.Content>
@@ -343,6 +346,7 @@ export default function Route() {
                 description=""
                 time="14:50 - 15:20"
                 url="/"
+                showWatch={false}
               />
             </div>
           </ScheduleTabs.Content>
