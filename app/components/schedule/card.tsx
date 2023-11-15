@@ -1,10 +1,12 @@
 import { Link } from "@remix-run/react"
+import type { Schedule } from "~/routes/schedule._index"
 import { cva } from "class-variance-authority"
 
 import { cn } from "~/libs"
 
 import { Button } from "../ui"
 import { CATEGORIES_DISPLAY, type Categories } from "./constant"
+import { ScheduleDialog } from "./dialog"
 
 type ScheduleCardKeynote = {
   type: "keynote"
@@ -96,12 +98,14 @@ const scheduleCardVariants = cva(
 type ScheduleCardTypes = ScheduleCardKeynote | ScheduleCardPodium
 
 type ScheduleCardProps = ScheduleCardTypes &
-  React.HTMLAttributes<HTMLDivElement>
+  React.HTMLAttributes<HTMLDivElement> & {
+    data?: Schedule
+  }
 
 const showStreamingLink = false
 
 const ScheduleCard = (props: ScheduleCardProps) => {
-  const { title, url, type, description, className } = props
+  const { title, url, type, description, className, data } = props
 
   return (
     <div className={cn(scheduleCardVariants({ type, className }))}>
@@ -110,7 +114,11 @@ const ScheduleCard = (props: ScheduleCardProps) => {
         <PodiumSection podiumName={props.podiumName} tags={props.tags} />
       )}
 
-      <h1 className="text-xl font-bold lg:text-2xl">{title}</h1>
+      <ScheduleDialog id={data?.id ?? ""} data={data}>
+        <h1 className="cursor-pointer text-xl font-bold hover:underline lg:text-2xl">
+          {title}
+        </h1>
+      </ScheduleDialog>
       {description ? (
         <p className="text-sm lg:text-base">{description}</p>
       ) : null}

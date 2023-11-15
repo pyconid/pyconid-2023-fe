@@ -16,7 +16,7 @@ export const meta: V2_MetaFunction = () => {
   return [{ title: "Schedule" }]
 }
 
-type Schedule = Prisma.ScheduleGetPayload<{
+export type Schedule = Prisma.ScheduleGetPayload<{
   select: {
     id: true
     day: true
@@ -373,23 +373,27 @@ export default function Route() {
 }
 
 function KeynoteSession({ data }: { data: Schedule[] }) {
-  return data.map(({ start, end, id, sessionName, speaker, streamingLink }) => (
-    <ScheduleCard
-      key={id}
-      type="keynote"
-      title={sessionName ?? ""}
-      description={
-        speaker
-          ? `${constructFullName(
-              speaker.user?.firstName,
-              speaker.user?.lastName,
-            )} - ${speaker.title}`
-          : ""
-      }
-      time={`${start} - ${end}`}
-      url={""}
-    />
-  ))
+  return data.map((item) => {
+    const { start, end, id, sessionName, speaker, streamingLink } = item
+    return (
+      <ScheduleCard
+        data={item}
+        key={id}
+        type="keynote"
+        title={sessionName ?? ""}
+        description={
+          speaker
+            ? `${constructFullName(
+                speaker.user?.firstName,
+                speaker.user?.lastName,
+              )} - ${speaker.title}`
+            : ""
+        }
+        time={`${start} - ${end}`}
+        url={""}
+      />
+    )
+  })
 }
 
 function ParallelSession({ data }: { data: Schedule[] }) {
@@ -400,6 +404,7 @@ function ParallelSession({ data }: { data: Schedule[] }) {
 
     return (
       <ScheduleCard
+        data={p}
         key={p.id}
         type="podium"
         podiumName={String(p.roomName)}
