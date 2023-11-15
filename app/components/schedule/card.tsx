@@ -31,7 +31,7 @@ type PodiumSectionProps = {
   podiumName: ScheduleCardPodium["podiumName"]
 }
 
-const PodiumSection = ({ tags, podiumName }: PodiumSectionProps) => {
+export const PodiumSection = ({ tags, podiumName }: PodiumSectionProps) => {
   return (
     <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
       <span className="text-lg">{podiumName}</span>
@@ -53,7 +53,7 @@ type PodiumCategoriesProps = {
   categories: ScheduleCardPodium["categories"]
 }
 
-const PodiumCategories = ({ categories }: PodiumCategoriesProps) => {
+export const PodiumCategories = ({ categories }: PodiumCategoriesProps) => {
   return (
     <ul className="flex flex-wrap gap-2">
       {categories.map((key) => (
@@ -102,10 +102,8 @@ type ScheduleCardProps = ScheduleCardTypes &
     data?: Schedule
   }
 
-const showStreamingLink = false
-
 const ScheduleCard = (props: ScheduleCardProps) => {
-  const { title, url, type, description, className, data } = props
+  const { title, type, description, className, data } = props
 
   return (
     <div className={cn(scheduleCardVariants({ type, className }))}>
@@ -127,11 +125,10 @@ const ScheduleCard = (props: ScheduleCardProps) => {
         <span className="text-lg lg:text-xl">{props.time}</span>
       )}
       {type === "podium" && <PodiumCategories categories={props.categories} />}
-      {showStreamingLink ? (
-        <Button size="lg" className="flex-shrink-0" asChild>
-          <Link to={url}>Watch Now</Link>
-        </Button>
-      ) : null}
+
+      <Button size="lg" className="flex-shrink-0" asChild>
+        <Link to={data?.id ? `/stream/${data.id}` : "/login"}>Watch Now</Link>
+      </Button>
     </div>
   )
 }
