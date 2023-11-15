@@ -62,26 +62,27 @@ export function ScheduleDialog({ data, children }: ScheduleDialogProps) {
                   categories={getTopicTags(speaker.topic_tags)}
                 />
               </div>
-              <div className="flex gap-4">
-                <div className="flex">
-                  <Calendar className="mr-2" />
-                  {day}
-                </div>
-                <div className="flex">
-                  {start} - {end} (WIB)
-                </div>
-              </div>
-              <DialogDescription className="border-t border-border py-6">
-                <h2 className="mb-2 text-lg font-semibold">Topic</h2>
-                {speaker?.description}
-              </DialogDescription>
             </>
           ) : null}
-
-          <Link to={id ? `/stream/${id}` : "/login"}>
-            <Button>Watch Now</Button>
-          </Link>
+          <div className="flex gap-4">
+            <div className="flex">
+              <Calendar className="mr-2" />
+              {day}
+            </div>
+            <div className="flex">
+              {start} - {end} (WIB)
+            </div>
+          </div>
+          {speaker?.description ? (
+            <DialogDescription className="border-t border-border py-6">
+              <h2 className="mb-2 text-lg font-semibold">Topic</h2>
+              {speaker?.description}
+            </DialogDescription>
+          ) : null}
         </DialogHeader>
+        <Link className="mt-3" to={id ? `/stream/${id}` : "/login"}>
+          <Button>Watch Now</Button>
+        </Link>
       </DialogContent>
     </Dialog>
   )

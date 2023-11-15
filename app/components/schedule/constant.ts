@@ -65,6 +65,9 @@ export const CATEGORIES = {
   ACTIVITYPUB: "activitypub",
   WEB_SCRAPING: "web_scraping",
   CLOUS: "clous",
+  GRAPHQL: "graphql",
+  DATABASE: "database",
+  WEB_SECURITY: "web_security",
 } as const
 
 export const CATEGORIES_DISPLAY = {
@@ -331,6 +334,18 @@ export const CATEGORIES_DISPLAY = {
   [CATEGORIES.CLOUS]: {
     name: "Clous",
     color: "bg-primary-purple",
+  },
+  [CATEGORIES.GRAPHQL]: {
+    name: "GraphQL",
+    color: "bg-primary-purple",
+  },
+  [CATEGORIES.DATABASE]: {
+    name: "Database",
+    color: "bg-primary-red",
+  },
+  [CATEGORIES.WEB_SECURITY]: {
+    name: "Web Security",
+    color: "bg-primary-orange",
   },
 } as const
 
