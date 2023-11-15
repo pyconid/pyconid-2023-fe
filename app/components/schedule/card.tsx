@@ -19,7 +19,7 @@ type ScheduleCardPodium = {
   podiumName: string
   description: string
   tags: string[]
-  categories: Categories[]
+  categories: string[]
   title: string
   url: string
 }
@@ -62,10 +62,16 @@ const PodiumCategories = ({ categories }: PodiumCategoriesProps) => {
           <span
             className={cn(
               "h-2 w-2 rounded-full",
-              CATEGORIES_DISPLAY[key].color,
+              key in CATEGORIES_DISPLAY
+                ? CATEGORIES_DISPLAY[key as Categories].color
+                : "",
             )}
           />
-          <span>{CATEGORIES_DISPLAY[key].name}</span>
+          <span>
+            {key in CATEGORIES_DISPLAY
+              ? CATEGORIES_DISPLAY[key as Categories].name
+              : ""}
+          </span>
         </li>
       ))}
     </ul>
