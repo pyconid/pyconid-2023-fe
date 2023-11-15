@@ -85,6 +85,11 @@ export async function loader({ request }: LoaderArgs) {
   })
 
   const openingKeynote1 = schedule.slice(0, 2)
+  const openingKeynote2 = schedule.slice(28, 30)
+  const openingKeynote3 = schedule.slice(35, 36)
+
+  const lightningClosing1 = schedule.slice(27, 28)
+  const lightningClosing2 = schedule.slice(46)
 
   const parallel1 = schedule.filter(parallelFilterFn(1))
   const parallel2 = schedule.filter(parallelFilterFn(2))
@@ -98,6 +103,10 @@ export async function loader({ request }: LoaderArgs) {
   return json({
     schedule,
     openingKeynote1,
+    openingKeynote2,
+    openingKeynote3,
+    lightningClosing1,
+    lightningClosing2,
     parallel1,
     parallel2,
     parallel3,
@@ -116,6 +125,10 @@ const tabs = [
 export default function Route() {
   const {
     openingKeynote1,
+    openingKeynote2,
+    openingKeynote3,
+    lightningClosing1,
+    lightningClosing2,
     parallel1,
     parallel2,
     parallel3,
@@ -149,25 +162,7 @@ export default function Route() {
           />
           <ScheduleTabs.Content contentFor="day1" offset={0}>
             <div className="mb-4 flex flex-col gap-4">
-              {openingKeynote1.map(
-                ({ start, end, id, sessionName, speaker, streamingLink }) => (
-                  <ScheduleCard
-                    key={id}
-                    type="keynote"
-                    title={sessionName ?? ""}
-                    description={
-                      speaker
-                        ? `${constructFullName(
-                            speaker.user?.firstName,
-                            speaker.user?.lastName,
-                          )}- ${speaker.title}`
-                        : ""
-                    }
-                    time={`${start} - ${end}`}
-                    url={""}
-                  />
-                ),
-              )}
+              <KeynoteSession data={openingKeynote1} />
             </div>
           </ScheduleTabs.Content>
           <Header
@@ -258,38 +253,14 @@ export default function Route() {
           </ScheduleTabs.Content>
           <Header
             variant="main"
-            title="Lightning Talks Day 1"
+            title="Lightning Talks & Closing Day 1"
             date="18 November 2023"
             start="17:00"
-            end="17:20"
-          />
-          <ScheduleTabs.Content contentFor="day1" offset={0}>
-            <div className="mb-4 flex flex-col gap-4">
-              <ScheduleCard
-                type="keynote"
-                title="Lightning Talks Day 1"
-                description=""
-                time="17:00 - 17:20"
-                url="/"
-              />
-            </div>
-          </ScheduleTabs.Content>
-          <Header
-            variant="main"
-            title="Closing Day 1"
-            date="18 November 2023"
-            start="17:20"
             end="17:40"
           />
           <ScheduleTabs.Content contentFor="day1" offset={0}>
             <div className="mb-4 flex flex-col gap-4">
-              <ScheduleCard
-                type="keynote"
-                title="Closing Session"
-                description=""
-                time="17:20 - 17:40"
-                url="/"
-              />
+              <KeynoteSession data={lightningClosing1} />
             </div>
           </ScheduleTabs.Content>
           <Header title="Day 2" />
@@ -302,21 +273,7 @@ export default function Route() {
           />
           <ScheduleTabs.Content contentFor="day2">
             <div className="mb-4 flex flex-col gap-4">
-              <ScheduleCard
-                type="keynote"
-                title="Opening Session"
-                description=""
-                time="09:30 - 10:00"
-                url="/"
-              />
-              <ScheduleCard
-                type="keynote"
-                title="Keynote Session 2 - Menjadi Penyelam Handal"
-                description="Giovanni Sakti"
-                time="10:00 - 11:00"
-                tags={["All", "ID"]}
-                url="/"
-              />
+              <KeynoteSession data={openingKeynote2} />
             </div>
           </ScheduleTabs.Content>
           <Header
@@ -356,13 +313,7 @@ export default function Route() {
           />
           <ScheduleTabs.Content contentFor="day2" offset={0}>
             <div className="mb-4 flex flex-col gap-4">
-              <ScheduleCard
-                type="keynote"
-                title="Keynote Session 3 - Python and LLMs: Shaping the future of AI"
-                description="Erwin Huizenga"
-                time="13:00 - 14:00"
-                url="/"
-              />
+              <KeynoteSession data={openingKeynote3} />
             </div>
           </ScheduleTabs.Content>
           <Header
@@ -405,44 +356,40 @@ export default function Route() {
           </ScheduleTabs.Content>
           <Header
             variant="main"
-            title="Lightning Talks Day 2"
+            title="Lightning Talks & Closing Day 2"
             date="19 November 2023"
             start="16:10"
-            end="16:40"
-          />
-          <ScheduleTabs.Content contentFor="day2" offset={0}>
-            <div className="mb-4 flex flex-col gap-4">
-              <ScheduleCard
-                type="keynote"
-                title="Lightning Talks Day 2"
-                description=""
-                time="16:10 - 16:40"
-                url="/"
-              />
-            </div>
-          </ScheduleTabs.Content>
-          <Header
-            variant="main"
-            title="Closing Day 2"
-            date="19 November 2023"
-            start="16:40"
             end="17:00"
           />
           <ScheduleTabs.Content contentFor="day2" offset={0}>
             <div className="mb-4 flex flex-col gap-4">
-              <ScheduleCard
-                type="keynote"
-                title="Closing Session"
-                description=""
-                time="16:40 - 17:00"
-                url="/"
-              />
+              <KeynoteSession data={lightningClosing2} />
             </div>
           </ScheduleTabs.Content>
         </ScheduleTabsProvider>
       </div>
     </Layout>
   )
+}
+
+function KeynoteSession({ data }: { data: Schedule[] }) {
+  return data.map(({ start, end, id, sessionName, speaker, streamingLink }) => (
+    <ScheduleCard
+      key={id}
+      type="keynote"
+      title={sessionName ?? ""}
+      description={
+        speaker
+          ? `${constructFullName(
+              speaker.user?.firstName,
+              speaker.user?.lastName,
+            )} - ${speaker.title}`
+          : ""
+      }
+      time={`${start} - ${end}`}
+      url={""}
+    />
+  ))
 }
 
 function ParallelSession({ data }: { data: Schedule[] }) {
