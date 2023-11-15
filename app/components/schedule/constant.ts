@@ -64,6 +64,7 @@ export const CATEGORIES = {
   SOCIAL_MEDIA: "social_media",
   ACTIVITYPUB: "activitypub",
   WEB_SCRAPING: "web_scraping",
+  CLOUS: "clous",
 } as const
 
 export const CATEGORIES_DISPLAY = {
@@ -326,6 +327,10 @@ export const CATEGORIES_DISPLAY = {
   [CATEGORIES.WEB_SCRAPING]: {
     name: "Web Scraping",
     color: "bg-primary-red",
+  },
+  [CATEGORIES.CLOUS]: {
+    name: "Clous",
+    color: "bg-primary-purple",
   },
 } as const
 
