@@ -41,7 +41,10 @@ export function ScheduleDialog({ data, children }: ScheduleDialogProps) {
           </DialogTitle>
           {speaker?.description ? (
             <>
-              <div className="!mb-8 flex items-center gap-2">
+              <Link
+                to={`/profile/${speaker.user?.id}`}
+                className="group !mb-8 flex items-center gap-2"
+              >
                 <Avatar>
                   <AvatarImage src={speaker.user?.avatar ?? ""} />
                   <AvatarFallback>
@@ -51,8 +54,8 @@ export function ScheduleDialog({ data, children }: ScheduleDialogProps) {
                     )}
                   </AvatarFallback>
                 </Avatar>
-                <span>{`${speaker.user?.firstName} ${speaker.user?.lastName}`}</span>
-              </div>
+                <span className="group-hover:underline">{`${speaker.user?.firstName} ${speaker.user?.lastName}`}</span>
+              </Link>
               <div className="!mb-4 space-y-3">
                 <PodiumSection
                   podiumName={String(roomName)}
