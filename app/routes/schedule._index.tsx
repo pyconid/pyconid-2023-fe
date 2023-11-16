@@ -29,6 +29,7 @@ export type Schedule = Prisma.ScheduleGetPayload<{
       select: {
         user: {
           select: {
+            id: true
             firstName: true
             lastName: true
             avatar: true
@@ -71,6 +72,7 @@ export async function loader({ request }: LoaderArgs) {
         select: {
           user: {
             select: {
+              id: true,
               firstName: true,
               lastName: true,
               avatar: true,
