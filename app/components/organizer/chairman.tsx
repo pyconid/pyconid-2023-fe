@@ -27,7 +27,7 @@ function ChairmanCard({
   // Cycle through the color map
   const color = COLOR_BORDERS[index % COLOR_BORDERS.length]
   return (
-    <div className="flex gap-12 pb-4 lg:pb-20">
+    <div className="flex flex-col items-center gap-12 pb-4 lg:flex-row lg:pb-20">
       <div className="relative">
         <div
           className={cn(
@@ -45,7 +45,7 @@ function ChairmanCard({
           )}
         />
       </div>
-      <div className="mt-4">
+      <div className="mt-4 text-center lg:text-justify">
         <h4 className="mb-4 text-4xl tracking-tight">
           {`${firstName} ${lastName}`}
         </h4>
