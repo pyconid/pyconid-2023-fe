@@ -62,7 +62,7 @@ export default function Index() {
         </h1>
         <img src="/red-pycon-org.svg" alt="" />
       </div>
-      <div className="mx-auto mb-16 flex w-fit flex-col gap-3  md:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-4 lg:px-4">
+      <div className="mx-auto mb-16 flex w-fit flex-col gap-4 md:px-6  lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-4 lg:gap-4 lg:px-4">
         <VolunteerCard id="1" firstName="Rudy" lastName="Tabutty" />
       </div>
     </Layout>
