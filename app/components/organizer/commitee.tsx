@@ -9,7 +9,6 @@ type CommiteeCardProps = React.HTMLAttributes<HTMLDivElement> & {
 function CommiteeCard({
   firstName,
   lastName,
-  role,
   index = 0,
   children,
   className,
@@ -19,7 +18,6 @@ function CommiteeCard({
     <div className="w-fit space-y-2 rounded-2xl border-2 border-solid border-primary p-4">
       <img src="https://placehold.co/250" alt="" />
       <p>{`${firstName} ${lastName}`}</p>
-      <p className="text-gray-500">{role}</p>
       <div className=" flex gap-3">
         <img src="icons/github.svg" />
         <img src="icons/x.svg" />

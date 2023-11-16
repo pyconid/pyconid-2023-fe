@@ -14,7 +14,7 @@ function VolunteerCard({
   id,
 }: VolunteerCardProps) {
   return (
-    <div className="red w- flex w-fit gap-3 space-y-2 rounded-2xl border-2 border-solid border-primary p-4">
+    <div className="flex w-fit gap-3 space-y-2 rounded-2xl border-2 border-solid border-primary p-4">
       <img src="https://placehold.co/60" alt="" />
       <div className="w-44 space-y-2">
         <p>{`${firstName} ${lastName}`}</p>
