@@ -1,10 +1,12 @@
 import { Link } from "@remix-run/react"
+import type { Schedule } from "~/routes/schedule._index"
 import { cva } from "class-variance-authority"
 
 import { cn } from "~/libs"
 
 import { Button } from "../ui"
 import { CATEGORIES_DISPLAY, type Categories } from "./constant"
+import { ScheduleDialog } from "./dialog"
 
 type ScheduleCardKeynote = {
   type: "keynote"
@@ -19,7 +21,7 @@ type ScheduleCardPodium = {
   podiumName: string
   description: string
   tags: string[]
-  categories: Categories[]
+  categories: string[]
   title: string
   url: string
 }
@@ -29,7 +31,7 @@ type PodiumSectionProps = {
   podiumName: ScheduleCardPodium["podiumName"]
 }
 
-const PodiumSection = ({ tags, podiumName }: PodiumSectionProps) => {
+export const PodiumSection = ({ tags, podiumName }: PodiumSectionProps) => {
   return (
     <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
       <span className="text-lg">{podiumName}</span>
@@ -51,7 +53,7 @@ type PodiumCategoriesProps = {
   categories: ScheduleCardPodium["categories"]
 }
 
-const PodiumCategories = ({ categories }: PodiumCategoriesProps) => {
+export const PodiumCategories = ({ categories }: PodiumCategoriesProps) => {
   return (
     <ul className="flex flex-wrap gap-2">
       {categories.map((key) => (
@@ -62,10 +64,16 @@ const PodiumCategories = ({ categories }: PodiumCategoriesProps) => {
           <span
             className={cn(
               "h-2 w-2 rounded-full",
-              CATEGORIES_DISPLAY[key].color,
+              key in CATEGORIES_DISPLAY
+                ? CATEGORIES_DISPLAY[key as Categories].color
+                : "",
             )}
           />
-          <span>{CATEGORIES_DISPLAY[key].name}</span>
+          <span>
+            {key in CATEGORIES_DISPLAY
+              ? CATEGORIES_DISPLAY[key as Categories].name
+              : ""}
+          </span>
         </li>
       ))}
     </ul>
@@ -90,12 +98,13 @@ const scheduleCardVariants = cva(
 type ScheduleCardTypes = ScheduleCardKeynote | ScheduleCardPodium
 
 type ScheduleCardProps = ScheduleCardTypes &
-  React.HTMLAttributes<HTMLDivElement>
+  React.HTMLAttributes<HTMLDivElement> & {
+    data?: Schedule
+    showWatch?: boolean
+  }
 
-const showStreamingLink = false
-
-const ScheduleCard = (props: ScheduleCardProps) => {
-  const { title, url, type, description, className } = props
+const ScheduleCard = ({ showWatch = true, ...props }: ScheduleCardProps) => {
+  const { title, type, description, className, data } = props
 
   return (
     <div className={cn(scheduleCardVariants({ type, className }))}>
@@ -104,7 +113,11 @@ const ScheduleCard = (props: ScheduleCardProps) => {
         <PodiumSection podiumName={props.podiumName} tags={props.tags} />
       )}
 
-      <h1 className="text-xl font-bold lg:text-2xl">{title}</h1>
+      <ScheduleDialog id={data?.id ?? ""} data={data}>
+        <h1 className="cursor-pointer text-xl font-bold hover:underline lg:text-2xl">
+          {title}
+        </h1>
+      </ScheduleDialog>
       {description ? (
         <p className="text-sm lg:text-base">{description}</p>
       ) : null}
@@ -113,9 +126,11 @@ const ScheduleCard = (props: ScheduleCardProps) => {
         <span className="text-lg lg:text-xl">{props.time}</span>
       )}
       {type === "podium" && <PodiumCategories categories={props.categories} />}
-      {showStreamingLink ? (
+      {showWatch ? (
         <Button size="lg" className="flex-shrink-0" asChild>
-          <Link to={url}>Watch Now</Link>
+          <Link to={data?.id ? `/stream/${data.id}` : "/tickets"}>
+            Watch Now
+          </Link>
         </Button>
       ) : null}
     </div>

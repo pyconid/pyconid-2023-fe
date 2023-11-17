@@ -64,6 +64,10 @@ export const CATEGORIES = {
   SOCIAL_MEDIA: "social_media",
   ACTIVITYPUB: "activitypub",
   WEB_SCRAPING: "web_scraping",
+  CLOUDS: "clous",
+  GRAPHQL: "graphql",
+  DATABASE: "database",
+  WEB_SECURITY: "web_security",
 } as const
 
 export const CATEGORIES_DISPLAY = {
@@ -326,6 +330,22 @@ export const CATEGORIES_DISPLAY = {
   [CATEGORIES.WEB_SCRAPING]: {
     name: "Web Scraping",
     color: "bg-primary-red",
+  },
+  [CATEGORIES.CLOUDS]: {
+    name: "Clouds",
+    color: "bg-primary-purple",
+  },
+  [CATEGORIES.GRAPHQL]: {
+    name: "GraphQL",
+    color: "bg-primary-purple",
+  },
+  [CATEGORIES.DATABASE]: {
+    name: "Database",
+    color: "bg-primary-red",
+  },
+  [CATEGORIES.WEB_SECURITY]: {
+    name: "Web Security",
+    color: "bg-primary-orange",
   },
 } as const
 

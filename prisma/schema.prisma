@@ -73,9 +73,10 @@ model User {
   connectedBy User[] @relation("UserConnection")
   connecting  User[] @relation("UserConnection")
 
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  emailVerifiedAt DateTime? @db.Timestamp(0)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  emailVerifiedAt DateTime?    @db.Timestamp(0)
+  CheckinLog      CheckinLog[]
 
   @@index([roleId])
   @@index([participantTypeId])
@@ -87,10 +88,10 @@ model User {
 model UserVerify {
   id String @id @default(cuid())
 
-  token  String @unique
+  token  String    @unique
   type   String // verify | reset-password
   usedAt DateTime? @db.Timestamp(0)
-  user   User   @relation(fields: [userId], references: [id])
+  user   User      @relation(fields: [userId], references: [id])
   userId String
 
   createdAt DateTime @default(now())
@@ -200,11 +201,32 @@ model Speaker {
   user   User?   @relation(fields: [userId], references: [id])
   userId String? @unique
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  Schedule  Schedule[]
 
   @@index([userId])
 }
+
+model Schedule {
+  id String @id @default(cuid())
+
+  day           String?
+  start         String?
+  end           String?
+  sessionName   String?
+  roomName      String?
+  variant       String?
+  speaker       Speaker? @relation(fields: [speakerId], references: [id])
+  speakerId     String?
+  streamingLink String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([speakerId])
+}
+
 model Ticket {
   id String @id @default(cuid())
 
@@ -327,4 +349,25 @@ model VoucherWhitelist {
   updatedAt DateTime @updatedAt
 
   @@index([voucherId])
+}
+
+model Checkin {
+  id         String       @id @default(cuid())
+  name       String
+  CheckinLog CheckinLog[]
+}
+
+model CheckinLog {
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  checkin   Checkin @relation(fields: [checkinId], references: [id])
+  checkinId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, checkinId])
+  @@index([userId])
+  @@index([checkinId])
 }

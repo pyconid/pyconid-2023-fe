@@ -153,9 +153,14 @@ const userUpdateSchema = z.object({
   publicFields,
 })
 
+const userCheckinSchema = z.object({
+  email,
+})
+
 export {
   userUpdateSchema,
   userSigninSchema,
   userSignupSchema,
   userForgotPasswordSchema,
+  userCheckinSchema,
 }
