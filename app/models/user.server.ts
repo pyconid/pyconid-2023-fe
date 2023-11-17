@@ -112,6 +112,7 @@ export const query = {
         displayName: true,
         avatar: true,
         participantType: true,
+        tShirtSize: true,
       },
     })
   },

@@ -139,6 +139,9 @@ export default function CheckinPage() {
               {submission.user.participantType ? (
                 <>
                   <span>{submission.user.participantType?.name}</span>
+                  <span>
+                    T-Shirt Size: <b>{submission.user.tShirtSize}</b>
+                  </span>
                   <Button onClick={() => window.print()}>Print QR</Button>
                 </>
               ) : null}
