@@ -149,18 +149,19 @@ export default function CheckinPage() {
           ) : null}
         </div>
       </div>
-      <div className="hidden print:block">
+      <div className="hidden origin-center justify-center print:flex">
         {submission?.user?.participantType ? (
-          <div className="flex h-full flex-col items-center justify-between text-center">
-            <h1 className="text-[9px] font-bold">
-              {submission.user.displayName ??
+          <div className="mx-auto flex w-full max-w-[60%] flex-col items-center justify-between text-center">
+            <h1 className="text-[16px] font-bold">
+              {"Nama Panjang" ??
+                submission.user.displayName ??
                 `${submission.user.firstName} ${submission.user.lastName}`}
             </h1>
             <span className="mb-2 text-[9px]">
               {submission.user.participantType?.name}
             </span>
             <QRCode
-              size={105}
+              size={60}
               bgColor="transparent"
               value={`https://pycon.id/profile/${submission.user.id}`}
             />

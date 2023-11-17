@@ -1,13 +1,14 @@
 @page {
-  size: 40mm 45mm;
+  size: 45mm 40mm;
   margin: 0mm; /* this affects the margin in the printer settings */
 }
 
 html {
-  background-color: #ffffff;
+  background-color: white;
   margin: 0px; /* this affects the margin on the html before sending to printer */
 }
 
 body {
-  margin: 2.5mm;
+  margin: 1mm;
+  height: calc(100vh - 2mm);
 }
