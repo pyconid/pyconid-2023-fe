@@ -109,6 +109,7 @@ export const query = {
         id: true,
         firstName: true,
         lastName: true,
+        displayName: true,
         avatar: true,
         participantType: true,
       },
