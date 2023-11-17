@@ -120,7 +120,9 @@ export default function CheckinPage() {
           </Form>
         </div>
         <div className="h-[400px] flex-1">
-          {submission?.user ? (
+          {isSubmitting ? (
+            <Skeleton className="h-[400px] w-full rounded-xl" />
+          ) : submission?.user ? (
             <div className="flex h-full w-full flex-col items-center justify-center gap-4">
               <Avatar className="h-32 w-32">
                 <AvatarImage src={submission.user.avatar ?? ""} />
@@ -141,18 +143,24 @@ export default function CheckinPage() {
                 </>
               ) : null}
             </div>
-          ) : isSubmitting ? (
-            <Skeleton className="h-[400px] w-full rounded-xl" />
           ) : null}
         </div>
       </div>
       <div className="hidden print:block">
         {submission?.user?.participantType ? (
-          <QRCode
-            size={150}
-            bgColor="transparent"
-            value={`https://pycon.id/profile/${submission.user.id}`}
-          />
+          <div className="flex h-full flex-col items-center justify-between text-center">
+            <QRCode
+              size={105}
+              bgColor="transparent"
+              value={`https://pycon.id/profile/${submission.user.id}`}
+            />
+            <h1 className="mt-1 text-[9px] font-bold">
+              {submission.user.firstName} {submission.user.lastName}
+            </h1>
+            <span className="text-[9px]">
+              {submission.user.participantType?.name}
+            </span>
+          </div>
         ) : null}
       </div>
     </>
