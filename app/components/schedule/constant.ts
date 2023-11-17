@@ -64,7 +64,7 @@ export const CATEGORIES = {
   SOCIAL_MEDIA: "social_media",
   ACTIVITYPUB: "activitypub",
   WEB_SCRAPING: "web_scraping",
-  CLOUS: "clous",
+  CLOUDS: "clous",
   GRAPHQL: "graphql",
   DATABASE: "database",
   WEB_SECURITY: "web_security",
@@ -331,8 +331,8 @@ export const CATEGORIES_DISPLAY = {
     name: "Web Scraping",
     color: "bg-primary-red",
   },
-  [CATEGORIES.CLOUS]: {
-    name: "Clous",
+  [CATEGORIES.CLOUDS]: {
+    name: "Clouds",
     color: "bg-primary-purple",
   },
   [CATEGORIES.GRAPHQL]: {
