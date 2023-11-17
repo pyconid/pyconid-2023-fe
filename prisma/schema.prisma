@@ -73,9 +73,10 @@ model User {
   connectedBy User[] @relation("UserConnection")
   connecting  User[] @relation("UserConnection")
 
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  emailVerifiedAt DateTime? @db.Timestamp(0)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  emailVerifiedAt DateTime?    @db.Timestamp(0)
+  CheckinLog      CheckinLog[]
 
   @@index([roleId])
   @@index([participantTypeId])
@@ -348,4 +349,25 @@ model VoucherWhitelist {
   updatedAt DateTime @updatedAt
 
   @@index([voucherId])
+}
+
+model Checkin {
+  id         String       @id @default(cuid())
+  name       String
+  CheckinLog CheckinLog[]
+}
+
+model CheckinLog {
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  checkin   Checkin @relation(fields: [checkinId], references: [id])
+  checkinId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, checkinId])
+  @@index([userId])
+  @@index([checkinId])
 }

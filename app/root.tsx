@@ -19,6 +19,7 @@ import brandFontStyles from "@fontsource/quicksand/index.css"
 import { Analytics } from "@vercel/analytics/react"
 import stylesheet from "~/globals.css"
 import { models } from "~/models"
+import stylesheetPrint from "~/prints.css"
 import { authenticator } from "~/services/auth.server"
 import { IKContext } from "imagekitio-react"
 import NProgress from "nprogress"
@@ -31,6 +32,7 @@ import { Toaster } from "~/components/ui/toaster"
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
+  { rel: "stylesheet", href: stylesheetPrint, media: "print" },
   { rel: "stylesheet", href: brandFontStyles },
   { rel: "stylesheet", href: brandFontStylesBold },
   { rel: "stylesheet", href: sansFontStyles },

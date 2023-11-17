@@ -102,6 +102,18 @@ export const query = {
       },
     })
   },
+  getByEmail({ email }: Pick<User, "email">) {
+    return prisma.user.findUnique({
+      where: { email },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        avatar: true,
+        participantType: true,
+      },
+    })
+  },
   async getByToken({ token }: Pick<User, "token">) {
     return prisma.user.findFirst({
       where: { token },
