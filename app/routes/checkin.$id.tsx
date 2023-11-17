@@ -151,12 +151,12 @@ export default function CheckinPage() {
       </div>
       <div className="hidden origin-center justify-center print:flex">
         {submission?.user?.participantType ? (
-          <div className="mx-auto flex w-full max-w-[60%] flex-col items-center justify-between text-center">
-            <h1 className="text-[16px] font-bold">
+          <div className="mx-auto flex w-full max-w-[80%] flex-col items-center justify-between text-center">
+            <h1 className="text-[20px] font-bold">
               {submission.user.displayName ??
                 `${submission.user.firstName} ${submission.user.lastName}`}
             </h1>
-            <span className="mb-2 text-[9px]">
+            <span className="mb-2 text-[12px]">
               {submission.user.participantType?.name}
             </span>
             <QRCode
