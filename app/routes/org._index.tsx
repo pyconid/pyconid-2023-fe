@@ -104,9 +104,7 @@ export default function Index() {
               key={data.id}
             >
               <div className="max-w-2xl">
-                <p>
-                  {data.bio}
-                </p>
+                <p>{data.bio}</p>
                 <div className="mt-4 flex justify-center gap-3 lg:justify-start">
                   {data.github ? (
                     <a
@@ -155,13 +153,13 @@ export default function Index() {
           )
         })}
       </div>
-      <div className="flex items-end justify-center">
+      <div className="mb-16 flex items-end justify-center">
         <h1 className="font-brand text-4xl font-semibold text-primary lg:text-5xl">
           Binus Volunteer
         </h1>
         <img src="/red-pycon-org.svg" alt="" />
       </div>
-      <div className="mx-auto mb-16 flex w--full p-10 md:p-0 md:w-fit flex-col gap-4 md:px-6  lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-4 lg:gap-4 lg:px-4">
+      <div className="w--full mx-auto mb-16 flex flex-col gap-4 p-10 md:w-fit md:p-0 md:px-6  lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-4 lg:gap-4 lg:px-4">
         {binusVolunteer.map((data, i) => {
           return (
             <VolunteerCard
