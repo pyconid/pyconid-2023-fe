@@ -1,4 +1,6 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { cn } from "~/libs"
+import { getAvatarInitials } from "~/libs/getAvatarInitials"
 
 const colorMap = {
   purple: {
@@ -14,6 +16,7 @@ type ChairmanCardProps = React.HTMLAttributes<HTMLDivElement> & {
   lastName: string
   index?: number
   id: string
+  avatar?: string
 }
 
 function ChairmanCard({
@@ -22,21 +25,30 @@ function ChairmanCard({
   index = 0,
   children,
   className,
+  avatar,
   id,
 }: ChairmanCardProps) {
   // Cycle through the color map
+  const initials = getAvatarInitials(firstName, lastName)
+
   const color = COLOR_BORDERS[index % COLOR_BORDERS.length]
   return (
     <div className="flex flex-col items-center gap-12 pb-4 lg:flex-row lg:pb-20">
       <div className="relative">
         <div
           className={cn(
-            "relative -z-10 h-full overflow-hidden rounded-xl border-2 bg-white",
+            "relative -z-10 w-[300px] overflow-hidden rounded-xl border-2 bg-white",
             colorMap[color].card,
             className,
           )}
         >
-          <img src="https://placehold.co/250" />
+          <Avatar className="h-full w-full rounded-none">
+            <AvatarImage src={avatar} alt={firstName} />
+            <AvatarFallback className="aspect-square h-full w-full rounded-none text-3xl">
+              {initials}
+            </AvatarFallback>
+          </Avatar>
+
         </div>
         <div
           className={cn(
