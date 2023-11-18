@@ -69,10 +69,10 @@ export async function action({ request, params }: ActionArgs) {
 export async function loader({ params }: LoaderArgs) {
   const checkin = await prisma.checkin.findUnique({
     where: { id: params.id },
-    select: { name: true },
+    select: { name: true, enabled: true },
   })
 
-  if (!checkin) {
+  if (!checkin || !checkin.enabled) {
     return redirect("/")
   }
 
