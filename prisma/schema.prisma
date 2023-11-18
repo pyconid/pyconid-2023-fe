@@ -355,6 +355,7 @@ model VoucherWhitelist {
 model Checkin {
   id         String       @id @default(cuid())
   name       String
+  enabled    Boolean      @default(true)
   CheckinLog CheckinLog[]
 }
 
