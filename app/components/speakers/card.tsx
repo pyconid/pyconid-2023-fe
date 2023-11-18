@@ -1,8 +1,9 @@
+import { Link } from "@remix-run/react"
+
 import { cn } from "~/libs"
 import { getAvatarInitials } from "~/libs/getAvatarInitials"
 
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
-import { Link } from "@remix-run/react"
 
 const colorMap = {
   purple: {
@@ -52,9 +53,11 @@ function SpeakerCard({
               className,
             )}
           >
-            <Avatar className="rounded-none w-full h-full">
+            <Avatar className="h-full w-full rounded-none">
               <AvatarImage src={avatar} alt={firstName} />
-              <AvatarFallback className="rounded-none text-3xl w-full h-full aspect-square">{initials}</AvatarFallback>
+              <AvatarFallback className="aspect-square h-full w-full rounded-none text-3xl">
+                {initials}
+              </AvatarFallback>
             </Avatar>
           </div>
           <div
@@ -72,7 +75,6 @@ function SpeakerCard({
         </div>
       </div>
     </Link>
-
   )
 }
 

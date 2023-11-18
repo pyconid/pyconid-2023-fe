@@ -93,33 +93,45 @@ export default function Index() {
           </div>
           <div className="mx-auto w-full max-w-6xl p-3 md:flex">
             <div className="w-full pb-6 pl-3 pr-3 md:w-[80%] md:pb-10 md:pl-10 md:pr-10">
-              <h1 className="text-4xl font-bold">{schedule?.speaker?.title}</h1>
-              <Link
-                to={`/profile/${schedule?.speaker?.user?.id}`}
-                className="group !mt-8 flex items-center gap-2"
-              >
-                <Avatar className="h-12 w-12">
-                  <AvatarImage src={schedule?.speaker?.user?.avatar ?? ""} />
-                  <AvatarFallback>
-                    {getAvatarInitials(
-                      schedule?.speaker?.user?.firstName,
-                      schedule?.speaker?.user?.lastName,
-                    )}
-                  </AvatarFallback>
-                </Avatar>
-                <span className="text-xl group-hover:underline">{`${schedule?.speaker?.user?.firstName} ${schedule?.speaker?.user?.lastName}`}</span>
-              </Link>
+              <h1 className="text-4xl font-bold">
+                {schedule?.speaker
+                  ? schedule.speaker.title
+                  : schedule?.sessionName}
+              </h1>
+              {schedule?.speaker ? (
+                <Link
+                  to={`/profile/${schedule?.speaker?.user?.id}`}
+                  className="group !mt-8 flex items-center gap-2"
+                >
+                  <Avatar className="h-12 w-12">
+                    <AvatarImage src={schedule?.speaker?.user?.avatar ?? ""} />
+                    <AvatarFallback>
+                      {getAvatarInitials(
+                        schedule?.speaker?.user?.firstName,
+                        schedule?.speaker?.user?.lastName,
+                      )}
+                    </AvatarFallback>
+                  </Avatar>
+                  <span className="text-xl group-hover:underline">{`${schedule?.speaker?.user?.firstName} ${schedule?.speaker?.user?.lastName}`}</span>
+                </Link>
+              ) : null}
               <div className="!mt-8 space-y-3">
                 <PodiumSection
                   podiumName={String(schedule?.roomName)}
-                  tags={[
-                    schedule?.speaker?.language ?? "",
-                    schedule?.speaker?.audience_level ?? "",
-                  ]}
+                  tags={
+                    schedule?.speaker
+                      ? [
+                          schedule?.speaker?.language ?? "",
+                          schedule?.speaker?.audience_level ?? "",
+                        ]
+                      : []
+                  }
                 />
-                <PodiumCategories
-                  categories={getTopicTags(schedule?.speaker?.topic_tags)}
-                />
+                {schedule?.speaker ? (
+                  <PodiumCategories
+                    categories={getTopicTags(schedule?.speaker?.topic_tags)}
+                  />
+                ) : null}
               </div>
             </div>
           </div>
@@ -128,7 +140,7 @@ export default function Index() {
           <div className="w-full md:w-[60%]">
             <div className="w-full">
               <h1>Topic</h1>
-              <p>{schedule?.speaker?.description}</p>
+              <p>{schedule?.speaker?.description ?? "-"}</p>
             </div>
           </div>
         </div>
