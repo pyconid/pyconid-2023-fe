@@ -83,9 +83,11 @@ export function ScheduleDialog({ data, children }: ScheduleDialogProps) {
             </DialogDescription>
           ) : null}
         </DialogHeader>
-        <Link className="mt-3" to={id ? `/stream/${id}` : "/login"}>
-          <Button>Watch Now</Button>
-        </Link>
+        {data.enabled ? (
+          <Link className="mt-3" to={id ? `/stream/${id}` : "/login"}>
+            <Button>Watch Now</Button>
+          </Link>
+        ) : null}
       </DialogContent>
     </Dialog>
   )

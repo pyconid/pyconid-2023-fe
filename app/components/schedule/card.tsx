@@ -126,7 +126,7 @@ const ScheduleCard = ({ showWatch = true, ...props }: ScheduleCardProps) => {
         <span className="text-lg lg:text-xl">{props.time}</span>
       )}
       {type === "podium" && <PodiumCategories categories={props.categories} />}
-      {showWatch ? (
+      {showWatch && props.data?.enabled ? (
         <Button size="lg" className="flex-shrink-0" asChild>
           <Link to={data?.id ? `/stream/${data.id}` : "/tickets"}>
             Watch Now

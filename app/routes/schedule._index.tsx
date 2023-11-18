@@ -25,6 +25,7 @@ export type Schedule = Prisma.ScheduleGetPayload<{
     sessionName: true
     roomName: true
     variant: true
+    enabled: true
     speaker: {
       select: {
         user: {
@@ -68,6 +69,7 @@ export async function loader({ request }: LoaderArgs) {
       sessionName: true,
       roomName: true,
       variant: true,
+      enabled: true,
       speaker: {
         select: {
           user: {

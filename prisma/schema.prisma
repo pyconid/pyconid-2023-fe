@@ -219,6 +219,7 @@ model Schedule {
   variant       String?
   speaker       Speaker? @relation(fields: [speakerId], references: [id])
   speakerId     String?
+  enabled       Boolean @default(true)
   streamingLink String?
 
   createdAt DateTime @default(now())
