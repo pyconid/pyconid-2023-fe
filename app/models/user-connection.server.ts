@@ -112,20 +112,8 @@ export const query = {
       user.lookingFor =
         lookingForData.find((lf) => lf.symbol === user.lookingFor)?.name || null
 
-      const { website, facebook, linkedin, twitter, instagram, github } = user
-
-      const socials = sanitizeSocials({
-        website,
-        facebook,
-        github,
-        instagram,
-        linkedin,
-        twitter,
-      })
-
       return {
         ...user,
-        ...socials,
         participantType: user.participantType?.name ?? "Non Participant",
         industryCategory: user.IndustryCategory?.name,
         isSocialsPublic: user.PublicFields?.socials,
