@@ -25,11 +25,12 @@ const colorMap = {
 const COLOR_BORDERS = Object.keys(colorMap) as Array<keyof typeof colorMap>
 
 type UserCardProps = React.HTMLAttributes<HTMLDivElement> & {
-  data: NonNullable<Connections>["connecting"][0]
+  data: NonNullable<Connections>[0]
   index?: number
 }
 
 function UserCard({ data, index = 0, children, className }: UserCardProps) {
+  if (!data) return null
   // Cycle through the color map
   const color = COLOR_BORDERS[index % COLOR_BORDERS.length]
   const { id, firstName, lastName, avatar, displayName, jobTitle } = data

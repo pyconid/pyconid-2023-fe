@@ -1,8 +1,9 @@
+import { Link } from "@remix-run/react"
+
 import { cn } from "~/libs"
 import { getAvatarInitials } from "~/libs/getAvatarInitials"
 
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
-import { Link } from "@remix-run/react"
 
 type CommiteeCardProps = React.HTMLAttributes<HTMLDivElement> & {
   firstName: string
@@ -73,35 +74,34 @@ function CommiteeCard({
             </div>
           </div>
           <div className="mt-6 space-y-3">
-            <p className="capitalize truncate">{`${firstName} ${lastName}`}</p>
+            <p className="truncate capitalize">{`${firstName} ${lastName}`}</p>
             <div className="flex gap-3">
               <a
                 target="_blank"
-                className={cn(github ? "opacity-1" : "opacity-50 pointer-events-none")}
+                className={cn(
+                  github ? "opacity-1" : "pointer-events-none opacity-50",
+                )}
                 rel="noopener noreferrer"
                 href={github?.url ? github?.url : "#"}
               >
                 <img src="icons/github.svg" alt="Github" />
               </a>
 
-
               <a
                 target="_blank"
-                className={cn(twitter ? "opacity-1" : "opacity-50 pointer-events-none")}
+                className={cn(
+                  twitter ? "opacity-1" : "pointer-events-none opacity-50",
+                )}
                 rel="noopener noreferrer"
                 href={twitter?.url ? twitter?.url : "#"}
               >
                 <img src="icons/x.svg" alt="X" />
               </a>
             </div>
-
-
-
           </div>
         </div>
       </div>
     </Link>
-
   )
 }
 

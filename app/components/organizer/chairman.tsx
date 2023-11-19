@@ -1,5 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { Link } from "@remix-run/react"
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
+
 import { cn } from "~/libs"
 import { getAvatarInitials } from "~/libs/getAvatarInitials"
 
@@ -50,7 +51,6 @@ function ChairmanCard({
                 {initials}
               </AvatarFallback>
             </Avatar>
-
           </div>
           <div
             className={cn(

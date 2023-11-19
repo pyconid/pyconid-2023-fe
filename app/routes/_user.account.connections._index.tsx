@@ -4,7 +4,10 @@ import { models } from "~/models"
 import { authenticator } from "~/services/auth.server"
 
 import { Layout } from "~/components"
+import { ExportToExcel } from "~/components/shared/export-excel"
 import { UserCard } from "~/components/user/card"
+
+
 
 export async function loader({ request }: LoaderArgs) {
   const session = await authenticator.isAuthenticated(request, {
@@ -18,11 +21,12 @@ export async function loader({ request }: LoaderArgs) {
     id: user?.id as string,
   })
 
-  return json({ connections: connections?.connecting })
+  return json({ connections })
 }
 
 export default function Route() {
   const { connections } = useLoaderData<typeof loader>()
+
 
   return (
     <Layout>
@@ -30,13 +34,14 @@ export default function Route() {
         <h1 className="text-center font-brand text-4xl font-bold text-primary md:text-5xl">
           Connections
         </h1>
+        <ExportToExcel data={connections} />
       </div>
       <div className="mx-auto mb-20 max-w-7xl px-6 md:px-6">
         {connections && connections.length ? (
           <div className="mt-2 grid gap-4 md:grid-cols-2 md:gap-10 lg:grid-cols-4">
-            {connections.map((data, i) => (
+            {connections.map((data, i) => data ? (
               <UserCard key={data.id} data={data} index={i} />
-            ))}
+            ) : null)}
           </div>
         ) : (
           <div className="mb-32 mt-11 flex w-full flex-col items-center">
