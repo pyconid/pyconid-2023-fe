@@ -97,7 +97,7 @@ export default function Index() {
         {leadOrganizer.map((data) => {
           return (
             <ChairmanCard
-              id="1"
+              id={data.id}
               firstName={data.firstName}
               lastName={String(data.lastName)}
               avatar={data.avatar ?? ""}
@@ -141,7 +141,7 @@ export default function Index() {
         {comite.map((data, i) => {
           return (
             <CommiteeCard
-              id={"1"}
+              id={data.id}
               key={data.id}
               index={i}
               github={data.github}
@@ -164,7 +164,7 @@ export default function Index() {
           return (
             <VolunteerCard
               key={data.id}
-              id="1"
+              id={data.id}
               avatar={String(data.avatar)}
               firstName={data.firstName}
               lastName={String(data.lastName)}
