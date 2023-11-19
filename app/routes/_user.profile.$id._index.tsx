@@ -66,7 +66,7 @@ export async function loader({ params, request }: LoaderArgs) {
     shouldShowConnection = user?.id !== params.id
 
     isConnected = Boolean(
-      connection?.connecting.find(({ id }) => params.id === id),
+      connection?.find(({ id }) => params.id === id),
     )
   }
 
